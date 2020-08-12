@@ -1,6 +1,14 @@
 if not game:FindFirstChild("RedWiresAimBot") then
 local v = Instance.new("Part", game)
 v.Name = "RedWiresAimBot"
+local Keybinds = [[
+Aimbot keybinds:
+Left alt - turns Aimbot on/off
+(Turning it on will attempt to find a player wherever your cursor hovers, if a player is found, your cursor will "forcefully" stay on the set targeted part, depending on the game, your mouse may/may not lock itself in the center of
+the screen.)
+Right alt - targets an opponent within 500 studs
+Left click + X - Changes the targeted part (This is set to head by default)
+]]
 local Aimbot = Instance.new("ScreenGui")
 local MFrame = Instance.new("Frame")
 local Select = Instance.new("TextButton")
@@ -247,6 +255,10 @@ on:GetPropertyChangedSignal("Value"):connect(function()
 	deselect()
 	end
 end)
+print(Keybinds)
+game.StarterGui:SetCore("SendNotification", {
+Title = "Keybinds";
+Text = "To see how the aimbot works, check the developer log.";})
 else
 game.StarterGui:SetCore("SendNotification", {
 Title = "Aimbot";
