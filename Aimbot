@@ -21,6 +21,17 @@ local target = Instance.new("StringValue", MFrame)
 target.Name = "target"
 target.Value = "Head"
 local m = lplr:GetMouse()
+function GetPlayer(player)
+if game.Players:FindFirstChild(player.Name) and player.Name ~= lplr.Name then
+if game.Teams:FindFirstChildOfClass("Team") and game.Players[player.Name].Team ~= lplr.Team and game.Players[player.Name].Character.Humanoid.Health ~= 0 then
+selectplr(player.Name)
+elseif not game.Teams:FindFirstChildOfClass("Team") and game.Players[player.Name].Character.Humanoid.Health ~= 0 then
+selectplr(player.Name)
+elseif allteam() then
+selectplr(player.Name)
+end
+end
+end
 function allteam()
 local count = 0
 for i, plr in pairs(game.Players:GetPlayers()) do
@@ -82,22 +93,10 @@ end
 	end
 	if m.Target ~= nil then
 	if plr.Value == "" and on.Value == true then
-	if game.Players:FindFirstChild(m.Target.Parent.Name) and m.Target.Parent.Name ~= game.Players.LocalPlayer.Name then
-	if game.Teams:FindFirstChildOfClass("Team") and game.Players[m.Target.Parent.Name].Team ~= lplr.Team and game.Players[m.Target.Parent.Name].Character.Humanoid.Health ~= 0 then
-	selectplr(m.Target.Parent.Name)
-	elseif not game.Teams:FindFirstChildOfClass("Team") and game.Players[m.Target.Parent.Name].Character.Humanoid.Health ~= 0 then
-	selectplr(m.Target.Parent.Name)
-	elseif allteam() then
-	selectplr(m.Target.Parent.Name)
-	end
-	elseif game.Players:FindFirstChild(m.Target.Parent.Parent.Name) and m.Target.Parent.Parent.Name ~= game.Players.LocalPlayer.Name then
-	if game.Teams:FindFirstChildOfClass("Team") and game.Players[m.Target.Parent.Parent.Name].Team ~= lplr.Team and game.Players[m.Target.Parent.Parent.Name].Character.Humanoid.Health ~= 0 then
-	selectplr(m.Target.Parent.Parent.Name)
-	elseif not game.Teams:FindFirstChildOfClass("Team") and game.Players[m.Target.Parent.Parent.Name].Character.Humanoid.Health ~= 0 then
-	selectplr(m.Target.Parent.Parent.Name)
-	elseif allteam() then
-	selectplr(m.Target.Parent.Parent.Name)
-	end
+	if game.Players:FindFirstChild(m.Target.Parent.Name) then
+	GetPlayer(m.Target.Parent)
+	elseif game.Players:FindFirstChild(m.Target.Parent.Parent.Name) then
+    GetPlayer(m.Target.Parent.Parent)
 	end
 	end
 	end
