@@ -102,9 +102,6 @@ end
 	end
 	end
 end
-if on.Value == true and plr.Value ~= "" and fuck() then
-    fuck():SetIsMouseLocked(true)
-end
 	end)
 --Properties:
 plr:GetPropertyChangedSignal("Value"):connect(function()
