@@ -33,7 +33,7 @@ local AAA = 0
 for playerteam, lplrteam in pairs(TeamTable) do
 numberofargs = numberofargs + 1
 if lplr.Team == game.Teams[lplrteam] then
-if game.Players[character.Name].Team ~= game.Teams[playerteam] and game.Players[character.Name].Team ~= lplr.Team then
+if game.Players[character.Name].Team ~= game.Teams[playerteam] then
 AAA = AAA + 1
 end
 else
@@ -49,7 +49,7 @@ end
 local m = lplr:GetMouse()
 function GetPlayer(character)
 if character.Name ~= lplr.Name then
-if game.Teams:FindFirstChildOfClass("Team") and TeamIgnore(character) and character.Humanoid.Health ~= 0 then
+if game.Teams:FindFirstChildOfClass("Team") and TeamIgnore(character) and game.Players[character.Name].Team ~= lplr.Team and character.Humanoid.Health ~= 0 then
 selectplr(character.Name)
 elseif not game.Teams:FindFirstChildOfClass("Team") and character.Humanoid.Health ~= 0 then
 selectplr(character.Name)
@@ -242,14 +242,14 @@ function SCRIPT_KKJF67_FAKESCRIPT() -- X.LocalScript
 	end)
 
 end
-function getnearbyplr()
+function GetNearestPlayer()
 if plr.Value == "" and on.Value == true then
 local studs = 500
 local table1 = {}
 local table2 = {}
 for i,v in pairs(game.Players:GetPlayers()) do
 	if v.Character and v.Name ~= lplr.Name then
-	if TeamIgnore(v) or allteam() then
+	if TeamIgnore(v) and v.Team ~= lplr.Team or allteam() then
 		local pos = math.floor(lplr:DistanceFromCharacter(v.Character.HumanoidRootPart.Position))
 		local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[target.Value].Position)
 		if onscreen then
@@ -281,20 +281,20 @@ function SCRIPT_DYHS71_FAKESCRIPT() -- MFrame.LocalScript
 	if on.Value == false then
 	on.Value = true
 	txt.Text = msg.."true"
+	GetNearestPlayer()
 	else
 	on.Value = false
 	txt.Text = msg.."false"
 	end
 	end
 	if game.UserInputService:IsKeyDown(Enum.KeyCode.RightAlt) then
-	getnearbyplr()
+	GetNearestPlayer()
 	end
 	end)
 
 end
 coroutine.resume(coroutine.create(SCRIPT_DYHS71_FAKESCRIPT))
 Select.MouseButton1Down:connect(function()
-getnearbyplr()
 end)
 on:GetPropertyChangedSignal("Value"):connect(function()
    	if on.Value == false then
