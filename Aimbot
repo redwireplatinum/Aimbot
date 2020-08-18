@@ -281,7 +281,6 @@ function SCRIPT_DYHS71_FAKESCRIPT() -- MFrame.LocalScript
 	if on.Value == false then
 	on.Value = true
 	txt.Text = msg.."true"
-	GetNearestPlayer()
 	else
 	on.Value = false
 	txt.Text = msg.."false"
@@ -295,6 +294,7 @@ function SCRIPT_DYHS71_FAKESCRIPT() -- MFrame.LocalScript
 end
 coroutine.resume(coroutine.create(SCRIPT_DYHS71_FAKESCRIPT))
 Select.MouseButton1Down:connect(function()
+GetNearestPlayer()
 end)
 on:GetPropertyChangedSignal("Value"):connect(function()
    	if on.Value == false then
