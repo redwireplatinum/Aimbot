@@ -200,20 +200,25 @@ end
 function getnearbyplr()
 if plr.Value == "" and on.Value == true then
 local studs = 500
-local nearplr
+local table1 = {}
+local table2 = {}
 for i,v in pairs(game.Players:GetPlayers()) do
 	if v.Character and v.Name ~= game.Players.LocalPlayer.Name then
 	if lplr.Team ~= v.Team or allteam() then
-		local pos = lplr:DistanceFromCharacter(v.Character.HumanoidRootPart.Position)
+		local pos = math.floor(lplr:DistanceFromCharacter(v.Character.HumanoidRootPart.Position))
 		local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[target.Value].Position)
-		if pos < studs and onscreen then
-			nearplr = v
+		if onscreen then
+		table1[pos] = v.Name
+		table.insert(table2, pos)
 		end
 	end
 	end
 end
-if nearplr then
-selectplr(nearplr.Name)
+table.sort(table2)
+for position, name in pairs(table1) do
+if table2[1] == position and position < studs then
+selectplr(name)
+end
 end
 end
 end
