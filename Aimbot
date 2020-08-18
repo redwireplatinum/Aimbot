@@ -12,7 +12,8 @@ Left click + X - Changes the targeted part (This is set to head by default)
 --Chat functions
 /e teamignore [teamtoignore] [teamtoignoreteam] / Example: if [teamtoignore] is Criminal and [teamtoignoreteam] is Prisoner, then anyone on the Criminal team will be ignored as a
 target when you're a Prisoner.
-/e unteamignore [teamtoignore] [teamtoignoreteam] (will start targeting certain players if you already set a [teamtoignore] and [teamtoignoreteam]
+/e unteamignore [teamtoignore] [teamtoignoreteam] (will stop ignoring a certain team if you already set a [teamtoignore] and
+[teamtoignoreteam])
 Both chat functions support shortened names (Ex: 'Criminal' can be written as 'crim')
 ]]
 local Aimbot = Instance.new("ScreenGui")
