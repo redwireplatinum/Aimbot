@@ -1,6 +1,7 @@
 if not game:FindFirstChild("RedWiresAimBot") then
 local v = Instance.new("Part", game)
 v.Name = "RedWiresAimBot"
+local TeamTable = {}
 local Keybinds = [[
 Aimbot keybinds:
 Left alt - turns Aimbot on/off
@@ -8,6 +9,11 @@ Left alt - turns Aimbot on/off
 the screen.)
 Right alt - targets an opponent within 500 studs
 Left click + X - Changes the targeted part (This is set to head by default)
+--Chat functions
+/e teamignore [teamtoignore] [teamtoignoreteam] / Example: if [teamtoignore] is Criminal and [teamtoignoreteam] is Prisoner, then anyone on the Criminal team will be ignored as a
+target when you're a Prisoner.
+/e unteamignore [teamtoignore] [teamtoignoreteam] (will start targeting certain players if you already set a [teamtoignore] and [teamtoignoreteam]
+Both chat functions support shortened names (Ex: 'Criminal' can be written as 'crim')
 ]]
 local Aimbot = Instance.new("ScreenGui")
 local MFrame = Instance.new("Frame")
@@ -20,15 +26,34 @@ local lplr = game.Players.LocalPlayer
 local target = Instance.new("StringValue", MFrame)
 target.Name = "target"
 target.Value = "Head"
+function TeamIgnore(character)
+local numberofargs = 0
+local AAA = 0
+for playerteam, lplrteam in pairs(TeamTable) do
+numberofargs = numberofargs + 1
+if lplr.Team == game.Teams[lplrteam] then
+if game.Players[character.Name].Team ~= game.Teams[playerteam] and game.Players[character.Name].Team ~= lplr.Team then
+AAA = AAA + 1
+end
+else
+AAA = AAA + 1
+end
+end
+if numberofargs == AAA then
+return true
+else
+return false
+end
+end
 local m = lplr:GetMouse()
-function GetPlayer(player)
-if game.Players:FindFirstChild(player.Name) and player.Name ~= lplr.Name then
-if game.Teams:FindFirstChildOfClass("Team") and game.Players[player.Name].Team ~= lplr.Team and game.Players[player.Name].Character.Humanoid.Health ~= 0 then
-selectplr(player.Name)
-elseif not game.Teams:FindFirstChildOfClass("Team") and game.Players[player.Name].Character.Humanoid.Health ~= 0 then
-selectplr(player.Name)
+function GetPlayer(character)
+if character.Name ~= lplr.Name then
+if game.Teams:FindFirstChildOfClass("Team") and TeamIgnore(character) and character.Humanoid.Health ~= 0 then
+selectplr(character.Name)
+elseif not game.Teams:FindFirstChildOfClass("Team") and character.Humanoid.Health ~= 0 then
+selectplr(character.Name)
 elseif allteam() then
-selectplr(player.Name)
+selectplr(character.Name)
 end
 end
 end
@@ -44,6 +69,25 @@ return true
 else
 return false
 end
+end
+function stringtotable(str)
+local t = {}
+local arg = ""
+local tableseperator = " "
+str = str..tableseperator
+for i = 1, string.len(str) do
+if str:sub(i,i) ~= tableseperator then
+arg = arg..str:sub(i,i)
+else
+if tonumber(arg) then
+table.insert(t, tonumber(arg))
+else
+table.insert(t, arg)
+end
+arg = ""
+end
+end
+return t
 end
 function fuck()
 local plrmodule = lplr.PlayerScripts:FindFirstChild("PlayerModule")
@@ -203,8 +247,8 @@ local studs = 500
 local table1 = {}
 local table2 = {}
 for i,v in pairs(game.Players:GetPlayers()) do
-	if v.Character and v.Name ~= game.Players.LocalPlayer.Name then
-	if lplr.Team ~= v.Team or allteam() then
+	if v.Character and v.Name ~= lplr.Name then
+	if TeamIgnore(v) or allteam() then
 		local pos = math.floor(lplr:DistanceFromCharacter(v.Character.HumanoidRootPart.Position))
 		local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[target.Value].Position)
 		if onscreen then
@@ -258,8 +302,52 @@ on:GetPropertyChangedSignal("Value"):connect(function()
 end)
 print(Keybinds)
 game.StarterGui:SetCore("SendNotification", {
-Title = "Keybinds";
+Title = "Aimbot";
 Text = "To see how the aimbot works, check the developer log.";})
+lplr.Chatted:connect(function(msg)
+if msg:sub(1,14) == "/e teamignore " then
+local args = stringtotable(msg)
+if args[3] and args[4] then
+local teamtoignore
+local teamtoignoreteam
+for i,team in pairs(game.Teams:GetTeams()) do
+if team.Name:lower():sub(1, string.len(args[3])) == string.lower(args[3]) then
+teamtoignore = team.Name
+end
+if team.Name:lower():sub(1, string.len(args[4])) == string.lower(args[4]) then
+teamtoignoreteam = team.Name
+end
+if teamtoignore and teamtoignoreteam then
+local chat = lplr.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Wait()
+    if string.match(chat.TextLabel.Text, "Emote") then
+        chat.TextLabel.Text = "Players in the "..teamtoignore.." team will be ignored when you're in the "..teamtoignoreteam.." team."
+        chat.TextLabel.TextColor3 = Color3.new(0,1,0)
+    end
+TeamTable[teamtoignore] = teamtoignoreteam
+end
+end
+end
+end
+if msg:sub(1,16) == "/e unteamignore " then
+local args = stringtotable(msg)
+local chat = lplr.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Wait()
+if args[3] and args[4] then
+local t1
+local t2
+for team1, team2 in pairs(TeamTable) do
+if team1:lower():sub(1, string.len(args[3])) == string.lower(args[3]) and team2:lower():sub(1, string.len(args[4])) == string.lower(args[4]) then
+t1 = team1
+t2 = team2
+TeamTable[team1] = nil
+end
+end
+    if string.match(chat.TextLabel.Text, "Emote") then
+        chat.TextLabel.Text = "Players in the "..t1.." team will no longer be ignored when you're in the "..t2.." team."
+        chat.TextLabel.TextColor3 = Color3.new(0,1,0)
+    end
+end
+end
+end)
 else
 game.StarterGui:SetCore("SendNotification", {
 Title = "Aimbot";
