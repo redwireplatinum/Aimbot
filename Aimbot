@@ -1,6 +1,5 @@
-if not game:FindFirstChild("RedWiresAimBot") then
-local v = Instance.new("Part", game)
-v.Name = "RedWiresAimBot"
+if not _G.RedsAimbot then
+_G.RedsAimbot = true
 local TeamTable = {}
 local Keybinds = [[
 Aimbot keybinds:
