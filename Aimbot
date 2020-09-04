@@ -141,6 +141,8 @@ end
 	GetPlayer(m.Target.Parent)
 	elseif game.Players:FindFirstChild(m.Target.Parent.Parent.Name) then
     GetPlayer(m.Target.Parent.Parent)
+    else
+    deselect()
 	end
 	end
 	end
@@ -157,9 +159,6 @@ chr.Humanoid.Health = 0
 end
 end)
 end
-chr.Humanoid.Died:connect(function()
-deselect()
-end)
 end
 end)
 m.Button1Down:connect(function()
