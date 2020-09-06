@@ -133,7 +133,7 @@ end
 end
 game.RunService.Heartbeat:connect(function()
 if game.CoreGui:FindFirstChild("Aimbot") then
-	if plr.Value ~= "" and game.Players:FindFirstChild(plr.Value) then
+	if plr.Value ~= "" and game.Players:FindFirstChild(plr.Value) and game.Players[plr.Value].Character and game.Players[plr.Value].Character:FindFirstChild(target.Value) then
 	local v, _ = workspace.Camera:WorldToScreenPoint(game.Players[plr.Value].Character[target.Value].Position)
 if _ then
 	local x = v.X * 0.45 - m.X * 0.45
@@ -242,9 +242,9 @@ local studs = 500
 local table1 = {}
 local table2 = {}
 for i,v in pairs(game.Players:GetPlayers()) do
-	if v.Character and v.Name ~= lplr.Name then
+	if v.Character and v.Name ~= lplr.Name and v.Character:FindFirstChild(target.Value) then
 	if TeamIgnore(v) and v.Team ~= lplr.Team or allteam() then
-		local pos = math.floor(lplr:DistanceFromCharacter(v.Character.HumanoidRootPart.Position))
+		local pos = math.floor(lplr:DistanceFromCharacter(v.Character[target.Value].Position))
 		local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[target.Value].Position)
 		if onscreen then
 		table1[pos] = v.Name
