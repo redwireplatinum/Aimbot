@@ -59,7 +59,7 @@ else
 return false
 end
 end
-function stringtotable(str)
+function repack(str)
 local t = {}
 local arg = ""
 local tableseperator = " "
@@ -305,7 +305,7 @@ Title = "Aimbot";
 Text = "To see how the aimbot works, check the developer log.";})
 lplr.Chatted:connect(function(msg)
 if msg:sub(1,14) == "/e teamignore " then
-local args = stringtotable(msg)
+local args = repack(msg)
 if args[3] and args[4] then
 local teamtoignore
 local teamtoignoreteam
@@ -328,7 +328,7 @@ end
 end
 end
 if msg:sub(1,16) == "/e unteamignore " then
-local args = stringtotable(msg)
+local args = repack(msg)
 local chat = lplr.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Wait()
 if args[3] and args[4] then
 local t1
