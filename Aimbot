@@ -235,7 +235,7 @@ X.TextWrapped = true
 function SCRIPT_KKJF67_FAKESCRIPT() -- X.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = X
-	script.Parent.MouseButton1Down:connect(function()
+	script.Parent.MouseButton1Click:connect(function()
 	script.Parent.Parent.Parent:Destroy()
 	end)
 
@@ -291,7 +291,7 @@ function SCRIPT_DYHS71_FAKESCRIPT() -- MFrame.LocalScript
 
 end
 coroutine.resume(coroutine.create(SCRIPT_DYHS71_FAKESCRIPT))
-Select.MouseButton1Down:connect(function()
+Select.MouseButton1Click:connect(function()
 GetNearestPlayer()
 end)
 on:GetPropertyChangedSignal("Value"):connect(function()
