@@ -130,8 +130,6 @@ elseif not game.Teams:FindFirstChildOfClass("Team") and character.Humanoid.Healt
 selectplr(character.Name)
 elseif allteam() then
 selectplr(character.Name)
-else
-deselect()
 end
 end
 end
@@ -148,8 +146,6 @@ if _ then
 elseif not _ then
 deselect()
 end
-	else
-	    deselect()
 	end
 	if m.Target ~= nil then
 	if game.Players:FindFirstChild(m.Target.Parent.Name) then
@@ -347,6 +343,23 @@ end
 end
 end
 end)
+function Died(player)
+if not player.Character then player.CharacterAdded:Wait() end
+player.Character:WaitForChild("Humanoid")
+function v(e)
+e.Character.Humanoid.Died:connect(function()
+if plr.Value == e.Name then
+deselect()
+end
+end)
+end
+v(player)
+player.CharacterAdded:connect(function()
+v(player)
+end)
+end
+for i,v in pairs(game.Players:GetPlayers()) do Died(v) end
+game.Players.PlayerAdded:connect(Died)
 else
 game.StarterGui:SetCore("SendNotification", {
 Title = "Aimbot";
