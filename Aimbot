@@ -1,4 +1,5 @@
-if not _G.RedsAimbot then
+if not _G.RedsAimbotExecuted then
+_G.RedsAimbotExecuted = true
 -- Farewell Infortality.
 -- Version: 2.82
 -- Instances:
