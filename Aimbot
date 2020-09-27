@@ -1,37 +1,15 @@
 if not _G.RedsAimbot then
-_G.RedsAimbot = true
-local TeamTable = {}
-local Keybinds = [[
-Aimbot keybinds:
-Left alt - turns Aimbot on/off
-(Turning it on will attempt to find a player wherever your cursor hovers, if a player is found, your cursor will "forcefully" stay on the set targeted part, depending on the game, your mouse may/may not lock itself in the center of
-the screen.)
-Right alt - targets an opponent within 500 studs
-Left click + X - Changes the targeted part (This is set to head by default)
---Chat functions
-/e teamignore [teamtoignore] [teamtoignoreteam] / Example: if [teamtoignore] is Criminal and [teamtoignoreteam] is Prisoner, then anyone on the Criminal team will be ignored as a
-target when you're a Prisoner.
-/e unteamignore [teamtoignore] [teamtoignoreteam] (will stop ignoring a certain team if you already set a [teamtoignore] and
-[teamtoignoreteam])
-Both chat functions support shortened names (Ex: 'Criminal' can be written as 'crim')
-]]
-print(Keybinds)
+-- Farewell Infortality.
+-- Version: 2.82
+-- Instances:
 local Aimbot = Instance.new("ScreenGui")
 local MFrame = Instance.new("Frame")
-local Select = Instance.new("TextButton")
-local ison = Instance.new("TextButton")
+local TargetNearestPlayer = Instance.new("TextButton")
+local IsAimbotOn = Instance.new("TextButton")
 local X = Instance.new("TextButton")
-local on = Instance.new("BoolValue", MFrame)
-on.Name = "on"
-on.Value = false
-local plr = Instance.new("StringValue", MFrame)
-plr.Name = "plr"
-plr.Value = ""
-local target = Instance.new("StringValue", MFrame)
-target.Name = "target"
-target.Value = "Head"
-local lplr = game.Players.LocalPlayer
-local m = lplr:GetMouse()
+local AutoTarget = Instance.new("TextButton")
+local Title = Instance.new("TextLabel")
+local TargetedPart = Instance.new("TextButton")
 --Properties:
 Aimbot.Name = "Aimbot"
 Aimbot.Parent = game.CoreGui
@@ -40,179 +18,128 @@ Aimbot.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 MFrame.Name = "MFrame"
 MFrame.Parent = Aimbot
 MFrame.Active = true
-MFrame.BackgroundColor3 = Color3.new(0.462745, 0.462745, 0.462745)
-MFrame.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
-MFrame.Position = UDim2.new(0.446167886, 0, 0.0224883445, 0)
-MFrame.Size = UDim2.new(0, 232, 0, 81)
+MFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+MFrame.BorderColor3 = Color3.new(0, 0.666667, 0)
+MFrame.Position = UDim2.new(0.66648984, 0, 0.112894237, 0)
+MFrame.Size = UDim2.new(0, 260, 0, 97)
 
-Select.Name = "Select"
-Select.Parent = MFrame
-Select.BackgroundColor3 = Color3.new(0.462745, 0.462745, 0.462745)
-Select.Position = UDim2.new(0, 0, 0.377166152, 0)
-Select.Size = UDim2.new(0, 183, 0, 50)
-Select.Font = Enum.Font.Code
-Select.Text = "Click to target someone within 500 studs. (turn aimbot on)"
-Select.TextColor3 = Color3.new(0, 0, 0)
-Select.TextScaled = true
-Select.TextSize = 14
-Select.TextWrapped = true
+TargetNearestPlayer.Name = "TargetNearestPlayer"
+TargetNearestPlayer.Parent = MFrame
+TargetNearestPlayer.BackgroundColor3 = Color3.new(0, 0, 0)
+TargetNearestPlayer.BorderColor3 = Color3.new(0, 0.666667, 0)
+TargetNearestPlayer.Position = UDim2.new(0, 0, 0.480258912, 0)
+TargetNearestPlayer.Size = UDim2.new(0, 88, 0, 50)
+TargetNearestPlayer.Font = Enum.Font.Highway
+TargetNearestPlayer.Text = "Target someone within 500 studs (Or Right Alt)"
+TargetNearestPlayer.TextColor3 = Color3.new(0, 0.666667, 0)
+TargetNearestPlayer.TextScaled = true
+TargetNearestPlayer.TextSize = 14
+TargetNearestPlayer.TextWrapped = true
 
-ison.Name = "ison"
-ison.Parent = MFrame
-ison.BackgroundColor3 = Color3.new(0.462745, 0.462745, 0.462745)
-ison.Position = UDim2.new(0.788793087, 0, 0.377166152, 0)
-ison.Size = UDim2.new(0, 49, 0, 50)
-ison.Font = Enum.Font.Code
-ison.Text = "Aimbot on: "
-ison.TextColor3 = Color3.new(0, 0, 0)
-ison.TextScaled = true
-ison.TextSize = 14
-ison.TextWrapped = true
+IsAimbotOn.Name = "IsAimbotOn"
+IsAimbotOn.Parent = MFrame
+IsAimbotOn.BackgroundColor3 = Color3.new(0, 0, 0)
+IsAimbotOn.BorderColor3 = Color3.new(0, 0.666667, 0)
+IsAimbotOn.Position = UDim2.new(0.703846157, 0, 0.480258912, 0)
+IsAimbotOn.Size = UDim2.new(0, 76, 0, 50)
+IsAimbotOn.Font = Enum.Font.Highway
+IsAimbotOn.Text = "Aimbot Enabled: "
+IsAimbotOn.TextColor3 = Color3.new(0, 0.666667, 0)
+IsAimbotOn.TextScaled = true
+IsAimbotOn.TextSize = 14
+IsAimbotOn.TextWrapped = true
 
 X.Name = "X"
 X.Parent = MFrame
-X.BackgroundColor3 = Color3.new(1, 1, 1)
-X.BackgroundTransparency = 1
-X.Size = UDim2.new(0, 29, 0, 29)
-X.Font = Enum.Font.SourceSans
+X.BackgroundColor3 = Color3.new(0, 0, 0)
+X.BorderColor3 = Color3.new(0, 0.666667, 0)
+X.Position = UDim2.new(0.823076904, 0, 0, 0)
+X.Size = UDim2.new(0, 46, 0, 46)
+X.Font = Enum.Font.Highway
 X.Text = "X"
 X.TextColor3 = Color3.new(1, 0, 0)
 X.TextScaled = true
 X.TextSize = 14
 X.TextWrapped = true
+
+AutoTarget.Name = "AutoTarget"
+AutoTarget.Parent = MFrame
+AutoTarget.BackgroundColor3 = Color3.new(0, 0, 0)
+AutoTarget.BorderColor3 = Color3.new(0, 0.666667, 0)
+AutoTarget.Position = UDim2.new(0.338461548, 0, 0.480258912, 0)
+AutoTarget.Size = UDim2.new(0, 95, 0, 50)
+AutoTarget.Font = Enum.Font.Highway
+AutoTarget.Text = "Auto-Target Enabled:"
+AutoTarget.TextColor3 = Color3.new(0, 0.666667, 0)
+AutoTarget.TextScaled = true
+AutoTarget.TextSize = 14
+AutoTarget.TextWrapped = true
+
+Title.Name = "Title"
+Title.Parent = MFrame
+Title.BackgroundColor3 = Color3.new(1, 1, 1)
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(0, 0, 0.010309278, 0)
+Title.Size = UDim2.new(0, 126, 0, 46)
+Title.Font = Enum.Font.Highway
+Title.Text = "RedWire's Somewhat-Universal Aimbot"
+Title.TextColor3 = Color3.new(0, 0.666667, 0)
+Title.TextScaled = true
+Title.TextSize = 14
+Title.TextWrapped = true
+
+TargetedPart.Name = "TargetedPart"
+TargetedPart.Parent = MFrame
+TargetedPart.BackgroundColor3 = Color3.new(0, 0, 0)
+TargetedPart.BorderColor3 = Color3.new(0, 0.666667, 0)
+TargetedPart.Position = UDim2.new(0.484615386, 0, -0.00427717995, 0)
+TargetedPart.Size = UDim2.new(0, 88, 0, 46)
+TargetedPart.Font = Enum.Font.Highway
+TargetedPart.Text = "Targeted Part: "
+TargetedPart.TextColor3 = Color3.new(0, 0.666667, 0)
+TargetedPart.TextScaled = true
+TargetedPart.TextSize = 14
+TargetedPart.TextWrapped = true
 -- Scripts:
-function repack(str)
-local t = {}
-local arg = ""
-local tableseperator = " "
-str = str..tableseperator
-for i = 1, string.len(str) do
-if str:sub(i,i) ~= tableseperator then
-arg = arg..str:sub(i,i)
-else
-if tonumber(arg) then
-table.insert(t, tonumber(arg))
-else
-table.insert(t, arg)
-end
-arg = ""
-end
-end
-return t
-end
-function fuck()
-local plrmodule = lplr.PlayerScripts:FindFirstChild("PlayerModule")
-local cammodule
-local camsettings
-if plrmodule then
-cammodule = plrmodule:FindFirstChild("CameraModule")
-if cammodule then
-camsettings = require(cammodule)
-end
-end
-if plrmodule and cammodule and camsettings then
-return camsettings.activeCameraController
-else
-return nil
-end
-end
-function selectplr(name)
-if on.Value == true and plr.Value == "" then
-if fuck() then
-fuck():SetIsMouseLocked(true)
-lplr.Character.Humanoid.CameraOffset = Vector3.new(2, 0, 0)
-end
-	plr.Value = name
-	Select.Text = "Chosen "..name
-local chr = game.Players[name].Character
-if game.PlaceId == 286090429 then
-chr.ChildAdded:connect(function(c)
-if c.Name == "Cam" and plr.Value == chr.Name then
-chr.Humanoid.Health = 0
-end
-end)
-end
-end
-end
-function deselect()
-if plr.Value ~= "" then
-if fuck() then
-fuck():SetIsMouseLocked(false)
-lplr.Character.Humanoid.CameraOffset = Vector3.new(0, 0, 0)
-end
-plr.Value = ""
-Select.Text = "Click to target someone within 500 studs. (turn aimbot on)"
-end
-end
-function allteam()
-local count = 0
-for i, plr in pairs(game.Players:GetPlayers()) do
-if plr.Team == lplr.Team then
-count = count + 1
-end
-end
-if count == #game.Players:GetPlayers() then
-return true
-else
-return false
-end
-end
-function TeamIgnore(character)
-local numberofargs = 0
-local AAA = 0
-for playerteam, lplrteam in pairs(TeamTable) do
-numberofargs = numberofargs + 1
-if lplr.Team == game.Teams[lplrteam] then
-if game.Players[character.Name].Team ~= game.Teams[playerteam] then
-AAA = AAA + 1
-end
-else
-AAA = AAA + 1
-end
-end
-if numberofargs == AAA then
-return true
-else
-return false
-end
-end
-function GetPlayer(character)
-if character.Name ~= lplr.Name then
-if game.Teams:FindFirstChildOfClass("Team") and TeamIgnore(character) and game.Players[character.Name].Team ~= lplr.Team and character.Humanoid.Health ~= 0 then
-selectplr(character.Name)
-elseif not game.Teams:FindFirstChildOfClass("Team") and character.Humanoid.Health ~= 0 then
-selectplr(character.Name)
-elseif allteam() then
-selectplr(character.Name)
-end
-end
-end
-function GetNearestPlayer()
-if plr.Value == "" and on.Value == true then
-local studs = 500
-local table1 = {}
-local table2 = {}
-for i,v in pairs(game.Players:GetPlayers()) do
-	if v.Character and v.Name ~= lplr.Name and v.Character:FindFirstChild(target.Value) then
-	if TeamIgnore(v) and v.Team ~= lplr.Team or allteam() then
-		local pos = math.floor(lplr:DistanceFromCharacter(v.Character[target.Value].Position))
-		local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[target.Value].Position)
-		if onscreen then
-		table1[pos] = v.Name
-		table.insert(table2, pos)
-		end
+function SCRIPT_CPXG85_FAKESCRIPT() -- TargetNearestPlayer.LocalScript 
+	local script = Instance.new('LocalScript')
+	script.Parent = TargetNearestPlayer
+	repeat wait() until _G.Changed and _G.RedsAimbot.Functions.GetNearestPlayer
+	_G.Changed(_G.RedsAimbot.Stats, "Player", function(v)
+	if v ~= "" then
+	script.Parent.Text = "Chosen "..v
+	else
+	script.Parent.Text = "Target someone within 500 studs (Or Right Alt)"
 	end
+	end)
+	script.Parent.MouseButton1Click:connect(function()
+	_G.RedsAimbot.Functions.GetNearestPlayer()
+	end)
+
+end
+coroutine.resume(coroutine.create(SCRIPT_CPXG85_FAKESCRIPT))
+function SCRIPT_VJWX81_FAKESCRIPT() -- IsAimbotOn.LocalScript 
+	local script = Instance.new('LocalScript')
+	script.Parent = IsAimbotOn
+	repeat wait() until _G.Changed
+	script.Parent.Text = "Aimbot Enabled: "..tostring(_G.RedsAimbot.Stats.IsOn)
+	_G.Changed(_G.RedsAimbot.Stats, "IsOn", function(v)
+	script.Parent.Text = "Aimbot Enabled: "..tostring(v)
+	if v == false then
+	_G.RedsAimbot.Functions.deselect()
 	end
+	end)
+	script.Parent.MouseButton1Click:connect(function()
+	if _G.RedsAimbot.Stats.IsOn then
+	_G.RedsAimbot.Stats.IsOn = false
+	else
+	_G.RedsAimbot.Stats.IsOn = true
+	end
+	end)
+
 end
-table.sort(table2)
-for position, name in pairs(table1) do
-if table2[1] == position and position < studs then
-GetPlayer(game.Players[name].Character)
-end
-end
-end
-end
-function SCRIPT_KKJF67_FAKESCRIPT() -- X.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_VJWX81_FAKESCRIPT))
+function SCRIPT_IPPL68_FAKESCRIPT() -- X.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = X
 	script.Parent.MouseButton1Click:connect(function()
@@ -220,143 +147,359 @@ function SCRIPT_KKJF67_FAKESCRIPT() -- X.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_KKJF67_FAKESCRIPT))
-function SCRIPT_DYHS71_FAKESCRIPT() -- MFrame.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_IPPL68_FAKESCRIPT))
+function SCRIPT_SWHR86_FAKESCRIPT() -- MFrame.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = MFrame
-	script.Parent.Draggable = true
-	local on = script.Parent.on
-	local txt = script.Parent.ison
-	local msg = "Aimbot on: "
-	txt.Text = msg.."false"
-	m.KeyDown:connect(function()
-	if game.UserInputService:IsKeyDown(Enum.KeyCode.LeftAlt) then
-	if on.Value == false then
-	on.Value = true
-	txt.Text = msg.."true"
+	_G.RedsAimbot = {}
+	_G.RedsAimbot.Stats = {}
+	_G.RedsAimbot.Functions = {}
+	_G.RedsAimbot.Stats.Target = "Head"
+	_G.RedsAimbot.Stats.IsOn = false
+	_G.RedsAimbot.Stats.Player = ""
+	_G.RedsAimbot.Stats.AutoTarget = false
+	local Keybinds = [[
+	Aimbot keybinds:
+	Left alt - turns Aimbot on/off
+	(Turning it on will attempt to find a player wherever your cursor hovers, if a player is found, your cursor will "forcefully" stay on the set targeted part, depending on the game, your mouse may/may not lock itself in the center of
+	the screen.)
+	Right alt - targets an opponent within 500 studs
+	Left click + X - Changes the targeted part (This is set to head by default)
+	--Chat functions
+	/e teamignore [teamtoignore] [teamtoignoreteam] / Example: if [teamtoignore] is Criminal and [teamtoignoreteam] is Prisoner, then anyone on the Criminal team will be ignored as a
+	target when you're a Prisoner.
+	/e unteamignore [teamtoignore] [teamtoignoreteam] (will stop ignoring a certain team if you already set a [teamtoignore] and
+	[teamtoignoreteam])
+	Both chat functions support shortened names (Ex: 'Criminal' can be written as 'crim')
+	]]
+	print(Keybinds)
+	_G.Changed = function(part, value, func)
+	    local current = part[value]
+	    coroutine.resume(coroutine.create(function()
+	        while true do
+	            repeat game.RunService.RenderStepped:wait() until part[value] ~= current
+	            func(part[value], current, part)
+	            current = part[value]
+	    end
+	    end))
+	end
+	local lplr = game.Players.LocalPlayer
+	local m = lplr:GetMouse()
+	local TeamTable = {}
+	function repack(str)
+	local t = {}
+	local arg = ""
+	local tableseperator = " "
+	str = str..tableseperator
+	for i = 1, string.len(str) do
+	if str:sub(i,i) ~= tableseperator then
+	arg = arg..str:sub(i,i)
 	else
-	on.Value = false
-	txt.Text = msg.."false"
+	if tonumber(arg) then
+	table.insert(t, tonumber(arg))
+	else
+	table.insert(t, arg)
+	end
+	arg = ""
 	end
 	end
-	if game.UserInputService:IsKeyDown(Enum.KeyCode.RightAlt) then
-	GetNearestPlayer()
+	return t
+	end
+	function fuck()
+	local plrmodule = lplr.PlayerScripts:FindFirstChild("PlayerModule")
+	local cammodule
+	local camsettings
+	if plrmodule then
+	cammodule = plrmodule:FindFirstChild("CameraModule")
+	if cammodule then
+	camsettings = require(cammodule)
+	end
+	end
+	if plrmodule and cammodule and camsettings then
+	return camsettings.activeCameraController
+	else
+	return nil
+	end
+	end
+	function selectplr(name)
+	if _G.RedsAimbot.Stats.IsOn == true and _G.RedsAimbot.Stats.Player == "" then
+	if fuck() then
+	fuck():SetIsMouseLocked(true)
+	lplr.Character.Humanoid.CameraOffset = Vector3.new(2, 0, 0)
+	end
+		_G.RedsAimbot.Stats.Player = name
+	script.Parent.TargetNearestPlayer.Text = "Chosen "..name
+	local chr = game.Players[name].Character
+	if game.PlaceId == 286090429 then
+	chr.ChildAdded:connect(function(c)
+	if c.Name == "Cam" and _G.RedsAimbot.Stats.Player == chr.Name then
+	chr.Humanoid.Health = 0
+	end
+	end)
+	end
+	end
+	end
+	_G.RedsAimbot.Functions.deselect = function()
+	if _G.RedsAimbot.Stats.Player ~= "" then
+	if fuck() then
+	fuck():SetIsMouseLocked(false)
+	lplr.Character.Humanoid.CameraOffset = Vector3.new(0, 0, 0)
+	end
+	_G.RedsAimbot.Stats.Player = ""
+	script.Parent.TargetNearestPlayer.Text = "Click to target someone within 500 studs. (turn aimbot on)"
+	end
+	end
+	function allteam()
+	local count = 0
+	for i, plr in pairs(game.Players:GetPlayers()) do
+	if plr.Team == lplr.Team then
+	count = count + 1
+	end
+	end
+	if count == #game.Players:GetPlayers() then
+	return true
+	else
+	return false
+	end
+	end
+	function TeamIgnore(character)
+	local numberofargs = 0
+	local AAA = 0
+	for playerteam, lplrteam in pairs(TeamTable) do
+	numberofargs = numberofargs + 1
+	if lplr.Team == game.Teams[lplrteam] then
+	if game.Players[character.Name].Team ~= game.Teams[playerteam] then
+	AAA = AAA + 1
+	end
+	else
+	AAA = AAA + 1
+	end
+	end
+	if numberofargs == AAA then
+	return true
+	else
+	return false
+	end
+	end
+	function GetPlayer(character)
+	if character.Name ~= lplr.Name then
+	if game.Teams:FindFirstChildOfClass("Team") and TeamIgnore(character) and game.Players[character.Name].Team ~= lplr.Team and character.Humanoid.Health ~= 0 then
+	selectplr(character.Name)
+	elseif not game.Teams:FindFirstChildOfClass("Team") and character.Humanoid.Health ~= 0 then
+	selectplr(character.Name)
+	elseif allteam() then
+	selectplr(character.Name)
+	end
+	end
+	end
+	_G.RedsAimbot.Functions.GetNearestPlayer = function()
+	if _G.RedsAimbot.Stats.Player == "" and _G.RedsAimbot.Stats.IsOn == true then
+	local studs = 500
+	local table1 = {}
+	local table2 = {}
+	for i,v in pairs(game.Players:GetPlayers()) do
+		if v.Character and v.Name ~= lplr.Name and v.Character:FindFirstChild(_G.RedsAimbot.Stats.Target) then
+		if TeamIgnore(v) and v.Team ~= lplr.Team or allteam() then
+			local pos = math.floor(lplr:DistanceFromCharacter(v.Character[_G.RedsAimbot.Stats.Target].Position))
+			local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[_G.RedsAimbot.Stats.Target].Position)
+			if onscreen then
+			table1[pos] = v.Name
+			table.insert(table2, pos)
+			end
+		end
+		end
+	end
+	table.sort(table2)
+	for position, name in pairs(table1) do
+	if table2[1] == position and position < studs then
+	GetPlayer(game.Players[name].Character)
+	end
+	end
+	end
+	end
+		m.KeyDown:connect(function()
+		if game.UserInputService:IsKeyDown(Enum.KeyCode.LeftAlt) then
+		if _G.RedsAimbot.Stats.IsOn == false then
+		_G.RedsAimbot.Stats.IsOn = true
+		else
+		_G.RedsAimbot.Stats.IsOn = false
+		end
+		end
+		if game.UserInputService:IsKeyDown(Enum.KeyCode.RightAlt) then
+		_G.RedsAimbot.Functions.GetNearestPlayer()
+		end
+		end)
+	local function message(txt)
+	game.StarterGui:SetCore("SendNotification", {
+	Title = "Aimbot target";
+	Text = txt;
+	})
+	end
+	if not lplr.Character then
+	message("Spawn in the game for the aimbot to work")
+	end
+	if not lplr.Character then lplr.CharacterAdded:Wait() end
+	local chr = lplr.Character
+	repeat wait() until chr:FindFirstChild("Torso") or chr:FindFirstChild("UpperTorso")
+	local Torso = chr:FindFirstChild("Torso") or chr:FindFirstChild("UpperTorso")
+	m.Button1Down:connect(function()
+	if game.UserInputService:IsKeyDown(Enum.KeyCode.X) then
+	if _G.RedsAimbot.Stats.Target == "Torso" or _G.RedsAimbot.Stats.Target == "UpperTorso" then
+	_G.RedsAimbot.Stats.Target = "Head"
+	else
+	_G.RedsAimbot.Stats.Target = Torso.Name
+	end
+	end
+	end)
+	game.RunService.RenderStepped:connect(function()
+		if _G.RedsAimbot.Stats.Player ~= "" and game.Players:FindFirstChild(_G.RedsAimbot.Stats.Player) and game.Players[_G.RedsAimbot.Stats.Player].Character and game.Players[_G.RedsAimbot.Stats.Player].Character:FindFirstChild(_G.RedsAimbot.Stats.Target) then
+		local v, _ = workspace.Camera:WorldToScreenPoint(game.Players[_G.RedsAimbot.Stats.Player].Character[_G.RedsAimbot.Stats.Target].Position)
+	if _ then
+	local StabilizeNum = 0.45
+		local x, y = (v.X - m.X)*StabilizeNum, (v.Y - m.Y)*StabilizeNum
+		if _G.RedsAimbot.Stats.IsOn then
+		mousemoverel(x, y)
+		end
+	elseif not _ then
+	_G.RedsAimbot.Functions.deselect()
+	end
+		end
+		if m.Target ~= nil then
+		if game.Players:FindFirstChild(m.Target.Parent.Name) then
+		GetPlayer(m.Target.Parent)
+		elseif game.Players:FindFirstChild(m.Target.Parent.Parent.Name) then
+	    GetPlayer(m.Target.Parent.Parent)
+		end
+		end
+	if _G.RedsAimbot.Stats.AutoTarget then
+	_G.RedsAimbot.Functions.GetNearestPlayer()
+	end
+		end)
+	game.StarterGui:SetCore("SendNotification", {
+	Title = "Aimbot";
+	Text = "To see how the aimbot works, check the developer log.";})
+	lplr.Chatted:connect(function(msg)
+	if msg:sub(1,14) == "/e teamignore " then
+	local args = repack(msg)
+	if args[3] and args[4] then
+	local teamtoignore
+	local teamtoignoreteam
+	for i,team in pairs(game.Teams:GetTeams()) do
+	if team.Name:lower():sub(1, string.len(args[3])) == string.lower(args[3]) then
+	teamtoignore = team.Name
+	end
+	if team.Name:lower():sub(1, string.len(args[4])) == string.lower(args[4]) then
+	teamtoignoreteam = team.Name
+	end
+	if teamtoignore and teamtoignoreteam then
+	local chat = lplr.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Wait()
+	    if string.match(chat.TextLabel.Text, "Emote") then
+	        chat.TextLabel.Text = "Players in the "..teamtoignore.." team will be ignored when you're in the "..teamtoignoreteam.." team."
+	        chat.TextLabel.TextColor3 = Color3.new(0,1,0)
+	    end
+	TeamTable[teamtoignore] = teamtoignoreteam
+	end
+	end
+	end
+	end
+	if msg:sub(1,16) == "/e unteamignore " then
+	local args = repack(msg)
+	local chat = lplr.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Wait()
+	if args[3] and args[4] then
+	local t1
+	local t2
+	for team1, team2 in pairs(TeamTable) do
+	if team1:lower():sub(1, string.len(args[3])) == string.lower(args[3]) and team2:lower():sub(1, string.len(args[4])) == string.lower(args[4]) then
+	t1 = team1
+	t2 = team2
+	TeamTable[team1] = nil
+	end
+	end
+	    if string.match(chat.TextLabel.Text, "Emote") then
+	        chat.TextLabel.Text = "Players in the "..t1.." team will no longer be ignored when you're in the "..t2.." team."
+	        chat.TextLabel.TextColor3 = Color3.new(0,1,0)
+	    end
+	end
+	end
+	end)
+	
+	function Died(player)
+	if not player.Character then player.CharacterAdded:Wait() end
+	local function OnDeath(chr)
+	chr:WaitForChild("Humanoid")
+	chr.Humanoid.Died:connect(function()
+	if _G.RedsAimbot.Stats.Player == chr.Name then
+	_G.RedsAimbot.Functions.deselect()
+	end
+	end)
+	end
+	OnDeath(player.Character)
+	player.CharacterAdded:connect(OnDeath)
+	end
+	for i,v in pairs(game.Players:GetPlayers()) do Died(v) end
+	game.Players.PlayerAdded:connect(Died)
+
+end
+coroutine.resume(coroutine.create(SCRIPT_SWHR86_FAKESCRIPT))
+function SCRIPT_EMQP71_FAKESCRIPT() -- AutoTarget.LocalScript 
+	local script = Instance.new('LocalScript')
+	script.Parent = AutoTarget
+	repeat wait() until _G.Changed
+	script.Parent.Text = "Auto-Target Enabled: "..tostring(_G.RedsAimbot.Stats.AutoTarget)
+	_G.Changed(_G.RedsAimbot.Stats, "AutoTarget", function(v)
+	script.Parent.Text = "Auto-Target Enabled: "..tostring(v)
+	end)
+	script.Parent.MouseButton1Click:connect(function()
+	if _G.RedsAimbot.Stats.AutoTarget then
+	_G.RedsAimbot.Stats.AutoTarget = false
+	else
+	_G.RedsAimbot.Stats.AutoTarget = true
 	end
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_DYHS71_FAKESCRIPT))
-Select.MouseButton1Click:connect(function()
-GetNearestPlayer()
-end)
-on:GetPropertyChangedSignal("Value"):connect(function()
-   	if on.Value == false then
-	deselect()
-	end
-end)
-m.Button1Down:connect(function()
-function message(txt)
-game.StarterGui:SetCore("SendNotification", {
-Title = "Aimbot target";
-Text = txt;
-})
-end
-if game.UserInputService:IsKeyDown(Enum.KeyCode.X) then
-if target.Value == "Head" then
-target.Value = "HumanoidRootPart"
-message("Target part changed to HumanoidRootPart")
-else
-target.Value = "Head"
-message("Target part changed to Head")
-end
-end
-end)
-game.RunService.Heartbeat:connect(function()
-if game.CoreGui:FindFirstChild("Aimbot") then
-	if plr.Value ~= "" and game.Players:FindFirstChild(plr.Value) and game.Players[plr.Value].Character and game.Players[plr.Value].Character:FindFirstChild(target.Value) then
-	local v, _ = workspace.Camera:WorldToScreenPoint(game.Players[plr.Value].Character[target.Value].Position)
-if _ then
-local StabilizeNum = 0.45
-	local x, y = (v.X - m.X)*StabilizeNum, (v.Y - m.Y)*StabilizeNum
-	if on.Value == true then
-	mousemoverel(x, y)
-	end
-elseif not _ then
-deselect()
-end
-	end
-	if m.Target ~= nil then
-	if game.Players:FindFirstChild(m.Target.Parent.Name) then
-	GetPlayer(m.Target.Parent)
-	elseif game.Players:FindFirstChild(m.Target.Parent.Parent.Name) then
-    GetPlayer(m.Target.Parent.Parent)
-	end
-	end
-end
+coroutine.resume(coroutine.create(SCRIPT_EMQP71_FAKESCRIPT))
+function SCRIPT_MMAG78_FAKESCRIPT() -- TargetedPart.LocalScript 
+	local script = Instance.new('LocalScript')
+	script.Parent = TargetedPart
+	script.Parent.Text = "Loading..."
+	repeat wait() until _G.Changed
+	local lplr = game.Players.LocalPlayer
+	if not lplr.Character then lplr.CharacterAdded:Wait() end
+	local chr = lplr.Character
+	repeat wait() until chr:FindFirstChild("Torso") or chr:FindFirstChild("UpperTorso")
+	script.Parent.Text = "Targeted Part: ".._G.RedsAimbot.Stats.Target
+	local Torso = chr:FindFirstChild("Torso") or chr:FindFirstChild("UpperTorso")
+	_G.Changed(_G.RedsAimbot.Stats, "Target", function(v)
+	script.Parent.Text = "Targeted Part: "..v
 	end)
-game.StarterGui:SetCore("SendNotification", {
-Title = "Aimbot";
-Text = "To see how the aimbot works, check the developer log.";})
-lplr.Chatted:connect(function(msg)
-if msg:sub(1,14) == "/e teamignore " then
-local args = repack(msg)
-if args[3] and args[4] then
-local teamtoignore
-local teamtoignoreteam
-for i,team in pairs(game.Teams:GetTeams()) do
-if team.Name:lower():sub(1, string.len(args[3])) == string.lower(args[3]) then
-teamtoignore = team.Name
-end
-if team.Name:lower():sub(1, string.len(args[4])) == string.lower(args[4]) then
-teamtoignoreteam = team.Name
-end
-if teamtoignore and teamtoignoreteam then
-local chat = lplr.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Wait()
-    if string.match(chat.TextLabel.Text, "Emote") then
-        chat.TextLabel.Text = "Players in the "..teamtoignore.." team will be ignored when you're in the "..teamtoignoreteam.." team."
-        chat.TextLabel.TextColor3 = Color3.new(0,1,0)
-    end
-TeamTable[teamtoignore] = teamtoignoreteam
-end
-end
-end
-end
-if msg:sub(1,16) == "/e unteamignore " then
-local args = repack(msg)
-local chat = lplr.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Wait()
-if args[3] and args[4] then
-local t1
-local t2
-for team1, team2 in pairs(TeamTable) do
-if team1:lower():sub(1, string.len(args[3])) == string.lower(args[3]) and team2:lower():sub(1, string.len(args[4])) == string.lower(args[4]) then
-t1 = team1
-t2 = team2
-TeamTable[team1] = nil
-end
-end
-    if string.match(chat.TextLabel.Text, "Emote") then
-        chat.TextLabel.Text = "Players in the "..t1.." team will no longer be ignored when you're in the "..t2.." team."
-        chat.TextLabel.TextColor3 = Color3.new(0,1,0)
-    end
-end
-end
-end)
+	script.Parent.MouseButton1Click:connect(function()
+	if _G.RedsAimbot.Stats.Target == "Torso" or _G.RedsAimbot.Stats.Target == "UpperTorso" then
+	_G.RedsAimbot.Stats.Target = "Head"
+	else
+	_G.RedsAimbot.Stats.Target = Torso.Name
+	end
+	end)
 
-function Died(player)
-if not player.Character then player.CharacterAdded:Wait() end
-function OnDeath(chr)
-chr:WaitForChild("Humanoid")
-chr.Humanoid.Died:connect(function()
-if plr.Value == chr.Name then
-deselect()
 end
-end)
+coroutine.resume(coroutine.create(SCRIPT_MMAG78_FAKESCRIPT))
+function SCRIPT_MVHU84_FAKESCRIPT() -- Aimbot.LocalScript 
+	local script = Instance.new('LocalScript')
+	script.Parent = Aimbot
+	for i,v in pairs(script.Parent:GetChildren()) do
+		if v.ClassName == "Frame" then
+			v.Draggable = true
+		end
+	end
+	local EncryptedName = ""
+	for i = 1, 15 do
+		local char = string.char(math.random(1, 255))
+		EncryptedName = EncryptedName..char
+	end
+	script.Parent.Name = EncryptedName
+
 end
-OnDeath(player.Character)
-player.CharacterAdded:connect(OnDeath)
-end
-for i,v in pairs(game.Players:GetPlayers()) do Died(v) end
-game.Players.PlayerAdded:connect(Died)
+coroutine.resume(coroutine.create(SCRIPT_MVHU84_FAKESCRIPT))
 else
 game.StarterGui:SetCore("SendNotification", {
 Title = "Aimbot";
