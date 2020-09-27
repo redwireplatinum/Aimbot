@@ -1,3 +1,4 @@
+if not _G.RedsAimbot then
 -- Farewell Infortality.
 -- Version: 2.82
 -- Instances:
@@ -499,3 +500,4 @@ function SCRIPT_GEJA77_FAKESCRIPT() -- Aimbot.LocalScript
 
 end
 coroutine.resume(coroutine.create(SCRIPT_GEJA77_FAKESCRIPT))
+end
