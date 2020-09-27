@@ -1,4 +1,3 @@
-if not _G.RedsAimbot then
 -- Farewell Infortality.
 -- Version: 2.82
 -- Instances:
@@ -101,7 +100,7 @@ TargetedPart.TextScaled = true
 TargetedPart.TextSize = 14
 TargetedPart.TextWrapped = true
 -- Scripts:
-function SCRIPT_CPXG85_FAKESCRIPT() -- TargetNearestPlayer.LocalScript 
+function SCRIPT_CHVA89_FAKESCRIPT() -- TargetNearestPlayer.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = TargetNearestPlayer
 	repeat wait() until _G.Changed and _G.RedsAimbot.Functions.GetNearestPlayer
@@ -117,8 +116,8 @@ function SCRIPT_CPXG85_FAKESCRIPT() -- TargetNearestPlayer.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_CPXG85_FAKESCRIPT))
-function SCRIPT_VJWX81_FAKESCRIPT() -- IsAimbotOn.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_CHVA89_FAKESCRIPT))
+function SCRIPT_VIBJ78_FAKESCRIPT() -- IsAimbotOn.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = IsAimbotOn
 	repeat wait() until _G.Changed
@@ -138,8 +137,8 @@ function SCRIPT_VJWX81_FAKESCRIPT() -- IsAimbotOn.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_VJWX81_FAKESCRIPT))
-function SCRIPT_IPPL68_FAKESCRIPT() -- X.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_VIBJ78_FAKESCRIPT))
+function SCRIPT_DKWJ89_FAKESCRIPT() -- X.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = X
 	script.Parent.MouseButton1Click:connect(function()
@@ -147,8 +146,8 @@ function SCRIPT_IPPL68_FAKESCRIPT() -- X.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_IPPL68_FAKESCRIPT))
-function SCRIPT_SWHR86_FAKESCRIPT() -- MFrame.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_DKWJ89_FAKESCRIPT))
+function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = MFrame
 	_G.RedsAimbot = {}
@@ -166,10 +165,10 @@ function SCRIPT_SWHR86_FAKESCRIPT() -- MFrame.LocalScript
 	Right alt - targets an opponent within 500 studs
 	Left click + X - Changes the targeted part (This is set to head by default)
 	--Chat functions
-	/e teamignore [teamtoignore] [teamtoignoreteam] / Example: if [teamtoignore] is Criminal and [teamtoignoreteam] is Prisoner, then anyone on the Criminal team will be ignored as a
+	/e teamignore [Name of team to ignore] [Team YOU'LL be on when ignoring the selected team] / Example: if [Team Name] is Criminal and [Your Team Name] is Prisoner, then anyone on the Criminal team will be ignored as a
 	target when you're a Prisoner.
-	/e unteamignore [teamtoignore] [teamtoignoreteam] (will stop ignoring a certain team if you already set a [teamtoignore] and
-	[teamtoignoreteam])
+	/e unteamignore [Name of team] [Team you'll be on] (will stop ignoring a certain team if you already set both team to ignore and
+	the team that you'll be on)
 	Both chat functions support shortened names (Ex: 'Criminal' can be written as 'crim')
 	]]
 	print(Keybinds)
@@ -440,8 +439,8 @@ function SCRIPT_SWHR86_FAKESCRIPT() -- MFrame.LocalScript
 	game.Players.PlayerAdded:connect(Died)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_SWHR86_FAKESCRIPT))
-function SCRIPT_EMQP71_FAKESCRIPT() -- AutoTarget.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_NWEQ87_FAKESCRIPT))
+function SCRIPT_EHGL67_FAKESCRIPT() -- AutoTarget.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = AutoTarget
 	repeat wait() until _G.Changed
@@ -458,8 +457,8 @@ function SCRIPT_EMQP71_FAKESCRIPT() -- AutoTarget.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_EMQP71_FAKESCRIPT))
-function SCRIPT_MMAG78_FAKESCRIPT() -- TargetedPart.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_EHGL67_FAKESCRIPT))
+function SCRIPT_YEZV88_FAKESCRIPT() -- TargetedPart.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = TargetedPart
 	script.Parent.Text = "Loading..."
@@ -482,8 +481,8 @@ function SCRIPT_MMAG78_FAKESCRIPT() -- TargetedPart.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_MMAG78_FAKESCRIPT))
-function SCRIPT_MVHU84_FAKESCRIPT() -- Aimbot.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_YEZV88_FAKESCRIPT))
+function SCRIPT_GEJA77_FAKESCRIPT() -- Aimbot.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	for i,v in pairs(script.Parent:GetChildren()) do
@@ -499,9 +498,4 @@ function SCRIPT_MVHU84_FAKESCRIPT() -- Aimbot.LocalScript
 	script.Parent.Name = EncryptedName
 
 end
-coroutine.resume(coroutine.create(SCRIPT_MVHU84_FAKESCRIPT))
-else
-game.StarterGui:SetCore("SendNotification", {
-Title = "Aimbot";
-Text = "Executing Aimbot twice will mess up the aiming function.";})
-end
+coroutine.resume(coroutine.create(SCRIPT_GEJA77_FAKESCRIPT))
