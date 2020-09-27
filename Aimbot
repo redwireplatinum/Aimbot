@@ -345,18 +345,16 @@ end
 end)
 function Died(player)
 if not player.Character then player.CharacterAdded:Wait() end
-player.Character:WaitForChild("Humanoid")
-function v(e)
-e.Character.Humanoid.Died:connect(function()
-if plr.Value == e.Name then
+function OnDeath(chr)
+chr:WaitForChild("Humanoid")
+chr.Humanoid.Died:connect(function()
+if plr.Value == chr.Name then
 deselect()
 end
 end)
 end
-v(player)
-player.CharacterAdded:connect(function()
-v(player)
-end)
+OnDeath(player.Character)
+player.CharacterAdded:connect(OnDeath)
 end
 for i,v in pairs(game.Players:GetPlayers()) do Died(v) end
 game.Players.PlayerAdded:connect(Died)
