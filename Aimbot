@@ -284,9 +284,9 @@ function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript
 	end
 	function GetPlayer(character)
 	if character.Name ~= lplr.Name then
-	if game.Teams:FindFirstChildOfClass("Team") and TeamIgnore(character) and game.Players[character.Name].Team ~= lplr.Team and character.Humanoid.Health ~= 0 then
+	if game.Teams:FindFirstChildOfClass("Team") and TeamIgnore(character) and game.Players[character.Name].Team ~= lplr.Team and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
 	selectplr(character.Name)
-	elseif not game.Teams:FindFirstChildOfClass("Team") and character.Humanoid.Health ~= 0 then
+	elseif not game.Teams:FindFirstChildOfClass("Team") and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
 	selectplr(character.Name)
 	elseif allteam() then
 	selectplr(character.Name)
