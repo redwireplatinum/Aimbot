@@ -162,15 +162,12 @@ function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript
 	local Keybinds = [[
 	Aimbot keybinds:
 	Left alt - turns Aimbot on/off
-	(Turning it on will attempt to find a player wherever your cursor hovers, if a player is found, your cursor will "forcefully" stay on the set targeted part, depending on the game, your mouse may/may not lock itself in the center of
-	the screen.)
+	(Turning it on will attempt to find a player wherever your cursor hovers, if a player is found, your cursor will "forcefully" stay on the set targeted part, depending on the game, your mouse may/may not lock itself in the center of the screen.)
 	Right alt - targets an opponent within 500 studs
 	Left click + X - Changes the targeted part (This is set to head by default)
 	--Chat functions
-	/e teamignore [Name of team to ignore] [Team YOU'LL be on when ignoring the selected team] / Example: if [Team Name] is Criminal and [Your Team Name] is Prisoner, then anyone on the Criminal team will be ignored as a
-	target when you're a Prisoner.
-	/e unteamignore [Name of team] [Team you'll be on] (will stop ignoring a certain team if you already set both team to ignore and
-	the team that you'll be on)
+	/e teamignore [Name of team to ignore] [Team YOU'LL be on when ignoring the selected team] / Example: if [Team Name] is Criminal and [Your Team Name] is Prisoner, then anyone on the Criminal team will be ignored as a target when you're a Prisoner.
+	/e unteamignore [Name of team] [Team you'll be on] (will stop ignoring a certain team if you already set both team to ignore and the team that you'll be on)
 	Both chat functions support shortened names (Ex: 'Criminal' can be written as 'crim')
 	]]
 	print(Keybinds)
