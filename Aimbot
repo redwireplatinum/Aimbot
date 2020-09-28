@@ -235,6 +235,8 @@ function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript
 	chr.ChildAdded:connect(function(c)
 	if c.Name == "Cam" and _G.RedsAimbot.Stats.Player == chr.Name then
 	chr.Humanoid.Health = 0
+	chr.ChildRemoved:Wait()
+	chr.Humanoid.Health = 100
 	end
 	end)
 	end
