@@ -13,7 +13,7 @@ local TargetedPart = Instance.new("TextButton")
 local LockCenterEnabled = Instance.new("TextButton")
 --Properties:
 Aimbot.Name = "Aimbot"
-Aimbot.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Aimbot.Parent = game.CoreGui
 Aimbot.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 MFrame.Name = "MFrame"
