@@ -1,9 +1,7 @@
-if not _G.RedsAimbotExecuted then
-_G.RedsAimbotExecuted = true
-_G.AimbotGUIOpen = true
 -- Farewell Infortality.
 -- Version: 2.82
 -- Instances:
+if not _G.RedsAimbot then
 local Aimbot = Instance.new("ScreenGui")
 local MFrame = Instance.new("Frame")
 local TargetNearestPlayer = Instance.new("TextButton")
@@ -71,7 +69,7 @@ AutoTarget.BorderColor3 = Color3.new(0, 0.666667, 0)
 AutoTarget.Position = UDim2.new(0.338461548, 0, 0.480258912, 0)
 AutoTarget.Size = UDim2.new(0, 95, 0, 50)
 AutoTarget.Font = Enum.Font.Highway
-AutoTarget.Text = "Auto-Target Enabled:"
+AutoTarget.Text = "Auto-Targeting Enabled:"
 AutoTarget.TextColor3 = Color3.new(0, 0.666667, 0)
 AutoTarget.TextScaled = true
 AutoTarget.TextSize = 14
@@ -103,13 +101,13 @@ TargetedPart.TextScaled = true
 TargetedPart.TextSize = 14
 TargetedPart.TextWrapped = true
 -- Scripts:
-function SCRIPT_CHVA89_FAKESCRIPT() -- TargetNearestPlayer.LocalScript 
+function SCRIPT_CHWG70_FAKESCRIPT() -- TargetNearestPlayer.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = TargetNearestPlayer
 	repeat wait() until _G.Changed and _G.RedsAimbot.Functions.GetNearestPlayer
 	_G.Changed(_G.RedsAimbot.Stats, "Player", function(v)
 	if v ~= "" then
-	script.Parent.Text = "Chosen "..v
+	script.Parent.Text = "Chosen "..v.Name
 	else
 	script.Parent.Text = "Target someone within 500 studs (Or Right Alt)"
 	end
@@ -119,8 +117,8 @@ function SCRIPT_CHVA89_FAKESCRIPT() -- TargetNearestPlayer.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_CHVA89_FAKESCRIPT))
-function SCRIPT_VIBJ78_FAKESCRIPT() -- IsAimbotOn.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_CHWG70_FAKESCRIPT))
+function SCRIPT_DZVA82_FAKESCRIPT() -- IsAimbotOn.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = IsAimbotOn
 	repeat wait() until _G.Changed
@@ -140,8 +138,8 @@ function SCRIPT_VIBJ78_FAKESCRIPT() -- IsAimbotOn.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_VIBJ78_FAKESCRIPT))
-function SCRIPT_DKWJ89_FAKESCRIPT() -- X.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_DZVA82_FAKESCRIPT))
+function SCRIPT_HQWZ75_FAKESCRIPT() -- X.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = X
 	script.Parent.MouseButton1Click:connect(function()
@@ -150,10 +148,11 @@ function SCRIPT_DKWJ89_FAKESCRIPT() -- X.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_DKWJ89_FAKESCRIPT))
-function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_HQWZ75_FAKESCRIPT))
+function SCRIPT_JOCC86_FAKESCRIPT() -- MFrame.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = MFrame
+	_G.AimbotGUIOpen = true
 	_G.RedsAimbot = {}
 	_G.RedsAimbot.Stats = {}
 	_G.RedsAimbot.Functions = {}
@@ -164,12 +163,15 @@ function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript
 	local Keybinds = [[
 	Aimbot keybinds:
 	Left alt - turns Aimbot on/off
-	(Turning it on will attempt to find a player wherever your cursor hovers, if a player is found, your cursor will "forcefully" stay on the set targeted part, depending on the game, your mouse may/may not lock itself in the center of the screen.)
+	(Turning it on will attempt to find a player wherever your cursor hovers, if a player is found, your cursor will "forcefully" stay on the set targeted part, depending on the game, your mouse may/may not lock itself in the center of
+	the screen.)
 	Right alt - targets an opponent within 500 studs
 	Left click + X - Changes the targeted part (This is set to head by default)
 	--Chat functions
-	/e teamignore [Name of team to ignore] [Team YOU'LL be on when ignoring the selected team] / Example: if [Team Name] is Criminal and [Your Team Name] is Prisoner, then anyone on the Criminal team will be ignored as a target when you're a Prisoner.
-	/e unteamignore [Name of team] [Team you'll be on] (will stop ignoring a certain team if you already set both team to ignore and the team that you'll be on)
+	/e teamignore [Name of team to ignore] [Team YOU'LL be on when ignoring the selected team] / Example: if [Team Name] is Criminal and [Your Team Name] is Prisoner, then anyone on the Criminal team will be ignored as a
+	target when you're a Prisoner.
+	/e unteamignore [Name of team] [Team you'll be on] (will stop ignoring a certain team if you already set both team to ignore and
+	the team that you'll be on)
 	Both chat functions support shortened names (Ex: 'Criminal' can be written as 'crim')
 	]]
 	print(Keybinds)
@@ -205,7 +207,7 @@ function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript
 	end
 	return t
 	end
-	function fuck()
+	function LockMouse()
 	local plrmodule = lplr.PlayerScripts:FindFirstChild("PlayerModule")
 	local cammodule
 	local camsettings
@@ -221,17 +223,12 @@ function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript
 	return nil
 	end
 	end
-	function selectplr(name)
+	function selectplr(chr)
 	if _G.RedsAimbot.Stats.IsOn == true and _G.RedsAimbot.Stats.Player == "" then
-	if fuck() then
-	fuck():SetIsMouseLocked(true)
-	lplr.Character.Humanoid.CameraOffset = Vector3.new(2, 0, 0)
-	end
-		_G.RedsAimbot.Stats.Player = name
-	local chr = game.Players[name].Character
+	_G.RedsAimbot.Stats.Player = chr
 	if game.PlaceId == 286090429 then
 	chr.ChildAdded:connect(function(c)
-	if c.Name == "Cam" and _G.RedsAimbot.Stats.Player == chr.Name then
+	if c.Name == "Cam" and _G.RedsAimbot.Stats.Player == chr then
 	chr.Humanoid.Health = 0
 	chr.ChildRemoved:Wait()
 	chr.Humanoid.Health = 100
@@ -240,20 +237,16 @@ function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript
 	end
 	end
 	end
-_G.RedsAimbot.Functions.deselect = function()
-if fuck() then
-fuck():SetIsMouseLocked(false)
-lplr.Character.Humanoid.CameraOffset = Vector3.new(0, 0, 0)
-end
-_G.RedsAimbot.Stats.Player = ""
-coroutine.resume(coroutine.create(function()
-if _G.RedsAimbot.Stats.IsOn then
-_G.RedsAimbot.Stats.IsOn = false
-wait()
-_G.RedsAimbot.Stats.IsOn = true
-end
-end))
-end
+	_G.RedsAimbot.Functions.deselect = function()
+	_G.RedsAimbot.Stats.Player = ""
+	coroutine.resume(coroutine.create(function()
+	if _G.RedsAimbot.Stats.IsOn then
+	_G.RedsAimbot.Stats.IsOn = false
+	wait()
+	_G.RedsAimbot.Stats.IsOn = true
+	end
+	end))
+	end
 	function allteam()
 	local count = 0
 	for i, plr in pairs(game.Players:GetPlayers()) do
@@ -289,16 +282,15 @@ end
 	function GetPlayer(character)
 	if character.Name ~= lplr.Name then
 	if game.Teams:FindFirstChildOfClass("Team") and TeamIgnore(character) and game.Players[character.Name].Team ~= lplr.Team and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
-	selectplr(character.Name)
+	selectplr(character)
 	elseif not game.Teams:FindFirstChildOfClass("Team") and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
-	selectplr(character.Name)
+	selectplr(character)
 	elseif allteam() then
-	selectplr(character.Name)
+	selectplr(character)
 	end
 	end
 	end
 	_G.RedsAimbot.Functions.GetNearestPlayer = function()
-	if _G.RedsAimbot.Stats.Player == "" and _G.RedsAimbot.Stats.IsOn == true then
 	local studs = 500
 	local table1 = {}
 	local table2 = {}
@@ -308,17 +300,16 @@ end
 			local pos = math.floor(lplr:DistanceFromCharacter(v.Character[_G.RedsAimbot.Stats.Target].Position))
 			local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[_G.RedsAimbot.Stats.Target].Position)
 			if onscreen then
-			table1[pos] = v.Name
+			table1[pos] = v.Character
 			table.insert(table2, pos)
 			end
 		end
-		end
+	end
 	end
 	table.sort(table2)
-	for position, name in pairs(table1) do
+	for position, character in pairs(table1) do
 	if table2[1] == position and position < studs then
-	GetPlayer(game.Players[name].Character)
-	end
+	GetPlayer(character)
 	end
 	end
 	end
@@ -357,9 +348,9 @@ end
 	end
 	end)
 	game.RunService.RenderStepped:connect(function()
-		if _G.AimbotGUIOpen then
-		if _G.RedsAimbot.Stats.Player ~= "" and game.Players:FindFirstChild(_G.RedsAimbot.Stats.Player) and game.Players[_G.RedsAimbot.Stats.Player].Character and game.Players[_G.RedsAimbot.Stats.Player].Character:FindFirstChild(_G.RedsAimbot.Stats.Target) then
-		local v, _ = workspace.Camera:WorldToScreenPoint(game.Players[_G.RedsAimbot.Stats.Player].Character[_G.RedsAimbot.Stats.Target].Position)
+	if _G.AimbotGUIOpen then
+		if _G.RedsAimbot.Stats.Player ~= "" and _G.RedsAimbot.Stats.Player:FindFirstChild(_G.RedsAimbot.Stats.Target) then
+		local v, _ = workspace.Camera:WorldToScreenPoint(_G.RedsAimbot.Stats.Player[_G.RedsAimbot.Stats.Target].Position)
 	if _ then
 	local StabilizeNum = 0.45
 		local x, y = (v.X - m.X)*StabilizeNum, (v.Y - m.Y)*StabilizeNum
@@ -379,6 +370,20 @@ end
 		end
 	if _G.RedsAimbot.Stats.AutoTarget then
 	_G.RedsAimbot.Functions.GetNearestPlayer()
+	end
+	if LockMouse() then
+	if _G.RedsAimbot.Stats.Player ~= "" then
+	if _G.RedsAimbot.Stats.IsOn then
+	LockMouse():SetIsMouseLocked(true)
+	lplr.Character.Humanoid.CameraOffset = Vector3.new(2, 0, 0)
+	else
+	LockMouse():SetIsMouseLocked(false)
+	lplr.Character.Humanoid.CameraOffset = Vector3.new(0, 0, 0)
+	end
+	else
+	LockMouse():SetIsMouseLocked(false)
+	lplr.Character.Humanoid.CameraOffset = Vector3.new(0, 0, 0)
+	end
 	end
 	end
 		end)
@@ -435,7 +440,7 @@ end
 	local function OnDeath(chr)
 	chr:WaitForChild("Humanoid")
 	chr.Humanoid.Died:connect(function()
-	if _G.RedsAimbot.Stats.Player == chr.Name then
+	if _G.RedsAimbot.Stats.Player == chr then
 	_G.RedsAimbot.Functions.deselect()
 	end
 	end)
@@ -447,14 +452,14 @@ end
 	game.Players.PlayerAdded:connect(Died)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_NWEQ87_FAKESCRIPT))
-function SCRIPT_EHGL67_FAKESCRIPT() -- AutoTarget.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_JOCC86_FAKESCRIPT))
+function SCRIPT_NHXI87_FAKESCRIPT() -- AutoTarget.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = AutoTarget
 	repeat wait() until _G.Changed
-	script.Parent.Text = "Auto-Target Enabled: "..tostring(_G.RedsAimbot.Stats.AutoTarget)
+	script.Parent.Text = "Auto-Targeting Enabled: "..tostring(_G.RedsAimbot.Stats.AutoTarget)
 	_G.Changed(_G.RedsAimbot.Stats, "AutoTarget", function(v)
-	script.Parent.Text = "Auto-Target Enabled: "..tostring(v)
+	script.Parent.Text = "Auto-Targeting Enabled: "..tostring(v)
 	end)
 	script.Parent.MouseButton1Click:connect(function()
 	if _G.RedsAimbot.Stats.AutoTarget then
@@ -465,8 +470,8 @@ function SCRIPT_EHGL67_FAKESCRIPT() -- AutoTarget.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_EHGL67_FAKESCRIPT))
-function SCRIPT_YEZV88_FAKESCRIPT() -- TargetedPart.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_NHXI87_FAKESCRIPT))
+function SCRIPT_RTLB85_FAKESCRIPT() -- TargetedPart.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = TargetedPart
 	script.Parent.Text = "Loading..."
@@ -489,8 +494,8 @@ function SCRIPT_YEZV88_FAKESCRIPT() -- TargetedPart.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_YEZV88_FAKESCRIPT))
-function SCRIPT_GEJA77_FAKESCRIPT() -- Aimbot.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_RTLB85_FAKESCRIPT))
+function SCRIPT_YJRI75_FAKESCRIPT() -- Aimbot.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	for i,v in pairs(script.Parent:GetChildren()) do
@@ -506,5 +511,5 @@ function SCRIPT_GEJA77_FAKESCRIPT() -- Aimbot.LocalScript
 	script.Parent.Name = EncryptedName
 
 end
-coroutine.resume(coroutine.create(SCRIPT_GEJA77_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_YJRI75_FAKESCRIPT))
 end
