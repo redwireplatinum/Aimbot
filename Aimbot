@@ -10,9 +10,10 @@ local X = Instance.new("TextButton")
 local AutoTarget = Instance.new("TextButton")
 local Title = Instance.new("TextLabel")
 local TargetedPart = Instance.new("TextButton")
+local LockCenterEnabled = Instance.new("TextButton")
 --Properties:
 Aimbot.Name = "Aimbot"
-Aimbot.Parent = game.CoreGui
+Aimbot.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Aimbot.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 MFrame.Name = "MFrame"
@@ -21,13 +22,13 @@ MFrame.Active = true
 MFrame.BackgroundColor3 = Color3.new(0, 0, 0)
 MFrame.BorderColor3 = Color3.new(0, 0.666667, 0)
 MFrame.Position = UDim2.new(0.66648984, 0, 0.112894237, 0)
-MFrame.Size = UDim2.new(0, 260, 0, 97)
+MFrame.Size = UDim2.new(0, 260, 0, 130)
 
 TargetNearestPlayer.Name = "TargetNearestPlayer"
 TargetNearestPlayer.Parent = MFrame
 TargetNearestPlayer.BackgroundColor3 = Color3.new(0, 0, 0)
 TargetNearestPlayer.BorderColor3 = Color3.new(0, 0.666667, 0)
-TargetNearestPlayer.Position = UDim2.new(0, 0, 0.480258912, 0)
+TargetNearestPlayer.Position = UDim2.new(0, 0, 0.611028135, 0)
 TargetNearestPlayer.Size = UDim2.new(0, 88, 0, 50)
 TargetNearestPlayer.Font = Enum.Font.Highway
 TargetNearestPlayer.Text = "Target someone within 500 studs (Or Right Alt)"
@@ -40,7 +41,7 @@ IsAimbotOn.Name = "IsAimbotOn"
 IsAimbotOn.Parent = MFrame
 IsAimbotOn.BackgroundColor3 = Color3.new(0, 0, 0)
 IsAimbotOn.BorderColor3 = Color3.new(0, 0.666667, 0)
-IsAimbotOn.Position = UDim2.new(0.703846157, 0, 0.480258912, 0)
+IsAimbotOn.Position = UDim2.new(0.707692325, 0, 0.611028135, 0)
 IsAimbotOn.Size = UDim2.new(0, 76, 0, 50)
 IsAimbotOn.Font = Enum.Font.Highway
 IsAimbotOn.Text = "Aimbot Enabled: "
@@ -66,7 +67,7 @@ AutoTarget.Name = "AutoTarget"
 AutoTarget.Parent = MFrame
 AutoTarget.BackgroundColor3 = Color3.new(0, 0, 0)
 AutoTarget.BorderColor3 = Color3.new(0, 0.666667, 0)
-AutoTarget.Position = UDim2.new(0.338461548, 0, 0.480258912, 0)
+AutoTarget.Position = UDim2.new(0.338461548, 0, 0.611028135, 0)
 AutoTarget.Size = UDim2.new(0, 95, 0, 50)
 AutoTarget.Font = Enum.Font.Highway
 AutoTarget.Text = "Auto-Targeting Enabled:"
@@ -79,8 +80,8 @@ Title.Name = "Title"
 Title.Parent = MFrame
 Title.BackgroundColor3 = Color3.new(1, 1, 1)
 Title.BackgroundTransparency = 1
-Title.Position = UDim2.new(0, 0, 0.010309278, 0)
-Title.Size = UDim2.new(0, 126, 0, 46)
+Title.Position = UDim2.new(0, 0, -0.00507530803, 0)
+Title.Size = UDim2.new(0, 214, 0, 46)
 Title.Font = Enum.Font.Highway
 Title.Text = "RedWire's Somewhat-Universal Aimbot"
 Title.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -92,16 +93,29 @@ TargetedPart.Name = "TargetedPart"
 TargetedPart.Parent = MFrame
 TargetedPart.BackgroundColor3 = Color3.new(0, 0, 0)
 TargetedPart.BorderColor3 = Color3.new(0, 0.666667, 0)
-TargetedPart.Position = UDim2.new(0.484615386, 0, -0.00427717995, 0)
-TargetedPart.Size = UDim2.new(0, 88, 0, 46)
+TargetedPart.Position = UDim2.new(0.511538446, 0, 0.348770857, 0)
+TargetedPart.Size = UDim2.new(0, 127, 0, 33)
 TargetedPart.Font = Enum.Font.Highway
 TargetedPart.Text = "Targeted Part: "
 TargetedPart.TextColor3 = Color3.new(0, 0.666667, 0)
 TargetedPart.TextScaled = true
 TargetedPart.TextSize = 14
 TargetedPart.TextWrapped = true
+
+LockCenterEnabled.Name = "LockCenterEnabled"
+LockCenterEnabled.Parent = MFrame
+LockCenterEnabled.BackgroundColor3 = Color3.new(0, 0, 0)
+LockCenterEnabled.BorderColor3 = Color3.new(0, 0.666667, 0)
+LockCenterEnabled.Position = UDim2.new(0, 0, 0.348770857, 0)
+LockCenterEnabled.Size = UDim2.new(0, 133, 0, 33)
+LockCenterEnabled.Font = Enum.Font.Highway
+LockCenterEnabled.Text = "Center-Lock Mouse: "
+LockCenterEnabled.TextColor3 = Color3.new(0, 0.666667, 0)
+LockCenterEnabled.TextScaled = true
+LockCenterEnabled.TextSize = 14
+LockCenterEnabled.TextWrapped = true
 -- Scripts:
-function SCRIPT_CHWG70_FAKESCRIPT() -- TargetNearestPlayer.LocalScript 
+function SCRIPT_GBOZ76_FAKESCRIPT() -- TargetNearestPlayer.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = TargetNearestPlayer
 	repeat wait() until _G.Changed and _G.RedsAimbot.Functions.GetNearestPlayer
@@ -117,8 +131,8 @@ function SCRIPT_CHWG70_FAKESCRIPT() -- TargetNearestPlayer.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_CHWG70_FAKESCRIPT))
-function SCRIPT_DZVA82_FAKESCRIPT() -- IsAimbotOn.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_GBOZ76_FAKESCRIPT))
+function SCRIPT_KRHL65_FAKESCRIPT() -- IsAimbotOn.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = IsAimbotOn
 	repeat wait() until _G.Changed
@@ -138,8 +152,8 @@ function SCRIPT_DZVA82_FAKESCRIPT() -- IsAimbotOn.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_DZVA82_FAKESCRIPT))
-function SCRIPT_HQWZ75_FAKESCRIPT() -- X.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_KRHL65_FAKESCRIPT))
+function SCRIPT_LBAS78_FAKESCRIPT() -- X.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = X
 	script.Parent.MouseButton1Click:connect(function()
@@ -148,8 +162,8 @@ function SCRIPT_HQWZ75_FAKESCRIPT() -- X.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_HQWZ75_FAKESCRIPT))
-function SCRIPT_JOCC86_FAKESCRIPT() -- MFrame.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_LBAS78_FAKESCRIPT))
+function SCRIPT_QYIE77_FAKESCRIPT() -- MFrame.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = MFrame
 	_G.AimbotGUIOpen = true
@@ -160,13 +174,15 @@ function SCRIPT_JOCC86_FAKESCRIPT() -- MFrame.LocalScript
 	_G.RedsAimbot.Stats.IsOn = false
 	_G.RedsAimbot.Stats.Player = ""
 	_G.RedsAimbot.Stats.AutoTarget = false
+	_G.RedsAimbot.Stats.CenterLock = true
 	local Keybinds = [[
 	Aimbot keybinds:
 	Left alt - turns Aimbot on/off
-	(Turning it on will attempt to find a player wherever your cursor hovers, if a player is found, your cursor will "forcefully" stay on the set targeted part, depending on the game, your mouse may/may not lock itself in the center of
-	the screen.)
-	Right alt - targets an opponent within 500 studs
+	(Turning it on will attempt to find a player wherever your cursor hovers, if a player is found, your cursor will "forcefully" stay on the set targeted part.)
+	Right alt - targets the nearest opponent within 500 studs (aimbot has to be on, obviously)
 	Left click + X - Changes the targeted part (This is set to head by default)
+	Auto-Targeting - Basically spams the GetNearestPlayer function
+	Center-Lock mouse: Chooses whether you want your mouse to stay on the center of the screen or not (some games might not support center-locking.)
 	--Chat functions
 	/e teamignore [Name of team to ignore] [Team YOU'LL be on when ignoring the selected team] / Example: if [Team Name] is Criminal and [Your Team Name] is Prisoner, then anyone on the Criminal team will be ignored as a
 	target when you're a Prisoner.
@@ -217,7 +233,7 @@ function SCRIPT_JOCC86_FAKESCRIPT() -- MFrame.LocalScript
 	camsettings = require(cammodule)
 	end
 	end
-	if plrmodule and cammodule and camsettings then
+	if plrmodule and cammodule and camsettings and _G.RedsAimbot.Stats.CenterLock then
 	return camsettings.activeCameraController
 	else
 	return nil
@@ -452,8 +468,8 @@ function SCRIPT_JOCC86_FAKESCRIPT() -- MFrame.LocalScript
 	game.Players.PlayerAdded:connect(Died)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_JOCC86_FAKESCRIPT))
-function SCRIPT_NHXI87_FAKESCRIPT() -- AutoTarget.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_QYIE77_FAKESCRIPT))
+function SCRIPT_PUSQ89_FAKESCRIPT() -- AutoTarget.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = AutoTarget
 	repeat wait() until _G.Changed
@@ -470,8 +486,8 @@ function SCRIPT_NHXI87_FAKESCRIPT() -- AutoTarget.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_NHXI87_FAKESCRIPT))
-function SCRIPT_RTLB85_FAKESCRIPT() -- TargetedPart.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_PUSQ89_FAKESCRIPT))
+function SCRIPT_DOJC78_FAKESCRIPT() -- TargetedPart.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = TargetedPart
 	script.Parent.Text = "Loading..."
@@ -494,8 +510,26 @@ function SCRIPT_RTLB85_FAKESCRIPT() -- TargetedPart.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_RTLB85_FAKESCRIPT))
-function SCRIPT_YJRI75_FAKESCRIPT() -- Aimbot.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_DOJC78_FAKESCRIPT))
+function SCRIPT_CZQF80_FAKESCRIPT() -- LockCenterEnabled.LocalScript 
+	local script = Instance.new('LocalScript')
+	script.Parent = LockCenterEnabled
+	repeat wait() until _G.RedsAimbot.Stats.CenterLock
+	script.Parent.Text = "Center-Lock Mouse: "..tostring(_G.RedsAimbot.Stats.CenterLock)
+	_G.Changed(_G.RedsAimbot.Stats, "CenterLock", function(v)
+	script.Parent.Text = "Center-Lock Mouse: "..tostring(v)
+	end)
+	script.Parent.MouseButton1Click:connect(function()
+	if _G.RedsAimbot.Stats.CenterLock then
+	_G.RedsAimbot.Stats.CenterLock = false
+	else
+	_G.RedsAimbot.Stats.CenterLock = true
+	end
+	end)
+
+end
+coroutine.resume(coroutine.create(SCRIPT_CZQF80_FAKESCRIPT))
+function SCRIPT_CINC80_FAKESCRIPT() -- Aimbot.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	for i,v in pairs(script.Parent:GetChildren()) do
@@ -511,5 +545,5 @@ function SCRIPT_YJRI75_FAKESCRIPT() -- Aimbot.LocalScript
 	script.Parent.Name = EncryptedName
 
 end
-coroutine.resume(coroutine.create(SCRIPT_YJRI75_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_CINC80_FAKESCRIPT))
 end
