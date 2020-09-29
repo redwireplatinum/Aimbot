@@ -1,5 +1,6 @@
 if not _G.RedsAimbotExecuted then
 _G.RedsAimbotExecuted = true
+_G.AimbotGUIOpen = true
 -- Farewell Infortality.
 -- Version: 2.82
 -- Instances:
@@ -144,6 +145,7 @@ function SCRIPT_DKWJ89_FAKESCRIPT() -- X.LocalScript
 	local script = Instance.new('LocalScript')
 	script.Parent = X
 	script.Parent.MouseButton1Click:connect(function()
+	_G.AimbotGUIOpen = false
 	script.Parent.Parent.Parent:Destroy()
 	end)
 
@@ -352,6 +354,7 @@ function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript
 	end
 	end)
 	game.RunService.RenderStepped:connect(function()
+		if _G.AimbotGUIOpen then
 		if _G.RedsAimbot.Stats.Player ~= "" and game.Players:FindFirstChild(_G.RedsAimbot.Stats.Player) and game.Players[_G.RedsAimbot.Stats.Player].Character and game.Players[_G.RedsAimbot.Stats.Player].Character:FindFirstChild(_G.RedsAimbot.Stats.Target) then
 		local v, _ = workspace.Camera:WorldToScreenPoint(game.Players[_G.RedsAimbot.Stats.Player].Character[_G.RedsAimbot.Stats.Target].Position)
 	if _ then
@@ -373,6 +376,7 @@ function SCRIPT_NWEQ87_FAKESCRIPT() -- MFrame.LocalScript
 		end
 	if _G.RedsAimbot.Stats.AutoTarget then
 	_G.RedsAimbot.Functions.GetNearestPlayer()
+	end
 	end
 		end)
 	game.StarterGui:SetCore("SendNotification", {
