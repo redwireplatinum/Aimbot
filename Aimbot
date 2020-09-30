@@ -115,7 +115,7 @@ LockCenterEnabled.TextScaled = true
 LockCenterEnabled.TextSize = 14
 LockCenterEnabled.TextWrapped = true
 -- Scripts:
-function SCRIPT_VGOM72_FAKESCRIPT() -- TargetNearestPlayer.LocalScript 
+function SCRIPT_ZWQC81_FAKESCRIPT() -- TargetNearestPlayer.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = TargetNearestPlayer
 	repeat wait() until _G.Changed and _G.RedsAimbot.Functions.GetNearestPlayer
@@ -131,8 +131,8 @@ function SCRIPT_VGOM72_FAKESCRIPT() -- TargetNearestPlayer.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_VGOM72_FAKESCRIPT))
-function SCRIPT_DUCF77_FAKESCRIPT() -- IsAimbotOn.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_ZWQC81_FAKESCRIPT))
+function SCRIPT_BTLU68_FAKESCRIPT() -- IsAimbotOn.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = IsAimbotOn
 	repeat wait() until _G.Changed
@@ -152,8 +152,8 @@ function SCRIPT_DUCF77_FAKESCRIPT() -- IsAimbotOn.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_DUCF77_FAKESCRIPT))
-function SCRIPT_TUMX66_FAKESCRIPT() -- X.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_BTLU68_FAKESCRIPT))
+function SCRIPT_IUIE77_FAKESCRIPT() -- X.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = X
 	script.Parent.MouseButton1Click:connect(function()
@@ -162,8 +162,8 @@ function SCRIPT_TUMX66_FAKESCRIPT() -- X.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_TUMX66_FAKESCRIPT))
-function SCRIPT_OAJB84_FAKESCRIPT() -- MFrame.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_IUIE77_FAKESCRIPT))
+function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = MFrame
 	_G.AimbotGUIOpen = true
@@ -480,10 +480,15 @@ function SCRIPT_OAJB84_FAKESCRIPT() -- MFrame.LocalScript
 	end
 	for i,v in pairs(game.Players:GetPlayers()) do Died(v) end
 	game.Players.PlayerAdded:connect(Died)
+	game.Players.PlayerRemoving:connect(function(plr)
+	if plr.Character and plr.Character == _G.RedsAimbot.Stats.Player then
+	_G.RedsAimbot.Functions.deselect()
+	end
+	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_OAJB84_FAKESCRIPT))
-function SCRIPT_UGCN68_FAKESCRIPT() -- AutoTarget.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_HVYQ82_FAKESCRIPT))
+function SCRIPT_PFUH73_FAKESCRIPT() -- AutoTarget.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = AutoTarget
 	repeat wait() until _G.Changed
@@ -500,8 +505,8 @@ function SCRIPT_UGCN68_FAKESCRIPT() -- AutoTarget.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_UGCN68_FAKESCRIPT))
-function SCRIPT_RJAD85_FAKESCRIPT() -- TargetedPart.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_PFUH73_FAKESCRIPT))
+function SCRIPT_CUIO79_FAKESCRIPT() -- TargetedPart.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = TargetedPart
 	script.Parent.Text = "Loading..."
@@ -524,8 +529,8 @@ function SCRIPT_RJAD85_FAKESCRIPT() -- TargetedPart.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_RJAD85_FAKESCRIPT))
-function SCRIPT_BUCV85_FAKESCRIPT() -- LockCenterEnabled.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_CUIO79_FAKESCRIPT))
+function SCRIPT_CCXI79_FAKESCRIPT() -- LockCenterEnabled.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = LockCenterEnabled
 	repeat wait() until _G.RedsAimbot.Stats.CenterLock
@@ -542,8 +547,8 @@ function SCRIPT_BUCV85_FAKESCRIPT() -- LockCenterEnabled.LocalScript
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_BUCV85_FAKESCRIPT))
-function SCRIPT_TRXK88_FAKESCRIPT() -- Aimbot.LocalScript 
+coroutine.resume(coroutine.create(SCRIPT_CCXI79_FAKESCRIPT))
+function SCRIPT_XUYU81_FAKESCRIPT() -- Aimbot.LocalScript 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	for i,v in pairs(script.Parent:GetChildren()) do
@@ -559,5 +564,5 @@ function SCRIPT_TRXK88_FAKESCRIPT() -- Aimbot.LocalScript
 	script.Parent.Name = EncryptedName
 
 end
-coroutine.resume(coroutine.create(SCRIPT_TRXK88_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_XUYU81_FAKESCRIPT))
 end
