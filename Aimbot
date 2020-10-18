@@ -116,7 +116,7 @@ LockCenterEnabled.TextScaled = true
 LockCenterEnabled.TextSize = 14
 LockCenterEnabled.TextWrapped = true
 -- Scripts:
-function SCRIPT_ZEIW78_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_DXIP69_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	for i,v in pairs(script.Parent:GetChildren()) do
@@ -454,6 +454,7 @@ function SCRIPT_ZEIW78_FAKESCRIPT() -- Aimbot.Scripts
 	_G.AimbotGUIOpen = false
 	MainFrame.Parent:Destroy()
 	end)
+	MainFrame.TargetedPart.Text = "Targeted Part: "..RedsAimbot.Stats.Target
 	Changed(RedsAimbot.Stats, "Target", function(v)
 	MainFrame.TargetedPart.Text = "Targeted Part: "..v
 	end)
@@ -512,5 +513,5 @@ function SCRIPT_ZEIW78_FAKESCRIPT() -- Aimbot.Scripts
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_ZEIW78_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_DXIP69_FAKESCRIPT))
 end
