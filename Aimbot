@@ -1,7 +1,8 @@
+if not _G.RedsAimbot then
+_G.RedsAimbot = true
 -- Farewell Infortality.
 -- Version: 2.82
 -- Instances:
-if not _G.RedsAimbot then
 local Aimbot = Instance.new("ScreenGui")
 local MFrame = Instance.new("Frame")
 local TargetNearestPlayer = Instance.new("TextButton")
@@ -115,66 +116,29 @@ LockCenterEnabled.TextScaled = true
 LockCenterEnabled.TextSize = 14
 LockCenterEnabled.TextWrapped = true
 -- Scripts:
-function SCRIPT_ZWQC81_FAKESCRIPT() -- TargetNearestPlayer.LocalScript 
+function SCRIPT_IZQR88_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
-	script.Parent = TargetNearestPlayer
-	repeat wait() until _G.Changed and _G.RedsAimbot.Functions.GetNearestPlayer
-	_G.Changed(_G.RedsAimbot.Stats, "Player", function(v)
-	if v ~= "" then
-	script.Parent.Text = "Chosen "..v.Name
-	else
-	script.Parent.Text = "Target someone within 500 studs (Or Right Alt)"
+	script.Parent = Aimbot
+	for i,v in pairs(script.Parent:GetChildren()) do
+		if v.ClassName == "Frame" then
+			v.Draggable = true
+		end
 	end
-	end)
-	script.Parent.MouseButton1Click:connect(function()
-	_G.RedsAimbot.Functions.GetNearestPlayer()
-	end)
-
-end
-coroutine.resume(coroutine.create(SCRIPT_ZWQC81_FAKESCRIPT))
-function SCRIPT_BTLU68_FAKESCRIPT() -- IsAimbotOn.LocalScript 
-	local script = Instance.new('LocalScript')
-	script.Parent = IsAimbotOn
-	repeat wait() until _G.Changed
-	script.Parent.Text = "Aimbot Enabled: "..tostring(_G.RedsAimbot.Stats.IsOn)
-	_G.Changed(_G.RedsAimbot.Stats, "IsOn", function(v)
-	script.Parent.Text = "Aimbot Enabled: "..tostring(v)
-	if v == false then
-	_G.RedsAimbot.Functions.deselect()
+	local EncryptedName = ""
+	for i = 1, 15 do
+		local char = string.char(math.random(1, 255))
+		EncryptedName = EncryptedName..char
 	end
-	end)
-	script.Parent.MouseButton1Click:connect(function()
-	if _G.RedsAimbot.Stats.IsOn then
-	_G.RedsAimbot.Stats.IsOn = false
-	else
-	_G.RedsAimbot.Stats.IsOn = true
-	end
-	end)
-
-end
-coroutine.resume(coroutine.create(SCRIPT_BTLU68_FAKESCRIPT))
-function SCRIPT_IUIE77_FAKESCRIPT() -- X.LocalScript 
-	local script = Instance.new('LocalScript')
-	script.Parent = X
-	script.Parent.MouseButton1Click:connect(function()
-	_G.AimbotGUIOpen = false
-	script.Parent.Parent.Parent:Destroy()
-	end)
-
-end
-coroutine.resume(coroutine.create(SCRIPT_IUIE77_FAKESCRIPT))
-function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript 
-	local script = Instance.new('LocalScript')
-	script.Parent = MFrame
+	script.Parent.Name = EncryptedName
 	_G.AimbotGUIOpen = true
-	_G.RedsAimbot = {}
-	_G.RedsAimbot.Stats = {}
-	_G.RedsAimbot.Functions = {}
-	_G.RedsAimbot.Stats.Target = "Head"
-	_G.RedsAimbot.Stats.IsOn = false
-	_G.RedsAimbot.Stats.Player = ""
-	_G.RedsAimbot.Stats.AutoTarget = false
-	_G.RedsAimbot.Stats.CenterLock = true
+	local RedsAimbot = {}
+	RedsAimbot.Stats = {}
+	RedsAimbot.Functions = {}
+	RedsAimbot.Stats.Target = "Head"
+	RedsAimbot.Stats.IsOn = false
+	RedsAimbot.Stats.Player = ""
+	RedsAimbot.Stats.AutoTarget = false
+	RedsAimbot.Stats.CenterLock = true
 	local Keybinds = [[
 	Aimbot keybinds:
 	Left alt - turns Aimbot on/off
@@ -191,7 +155,7 @@ function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript
 	Both chat functions support shortened names (Ex: 'Criminal' can be written as 'crim')
 	]]
 	print(Keybinds)
-	_G.Changed = function(part, value, func)
+	Changed = function(part, value, func)
 	    local current = part[value]
 	    coroutine.resume(coroutine.create(function()
 	        while true do
@@ -233,18 +197,18 @@ function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript
 	camsettings = require(cammodule)
 	end
 	end
-	if plrmodule and cammodule and camsettings and _G.RedsAimbot.Stats.CenterLock then
+	if plrmodule and cammodule and camsettings and RedsAimbot.Stats.CenterLock then
 	return camsettings.activeCameraController
 	else
 	return nil
 	end
 	end
 	function selectplr(chr)
-	if _G.RedsAimbot.Stats.IsOn == true and _G.RedsAimbot.Stats.Player == "" then
-	_G.RedsAimbot.Stats.Player = chr
+	if RedsAimbot.Stats.IsOn == true and RedsAimbot.Stats.Player == "" then
+	RedsAimbot.Stats.Player = chr
 	if game.PlaceId == 286090429 then
 	chr.ChildAdded:connect(function(c)
-	if c.Name == "Cam" and _G.RedsAimbot.Stats.Player == chr then
+	if c.Name == "Cam" and RedsAimbot.Stats.Player == chr then
 	chr.Humanoid.Health = 0
 	chr.ChildRemoved:Wait()
 	chr.Humanoid.Health = 100
@@ -253,13 +217,13 @@ function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript
 	end
 	end
 	end
-	_G.RedsAimbot.Functions.deselect = function()
-	_G.RedsAimbot.Stats.Player = ""
+	RedsAimbot.Functions.deselect = function()
+	RedsAimbot.Stats.Player = ""
 	coroutine.resume(coroutine.create(function()
-	if _G.RedsAimbot.Stats.IsOn then
-	_G.RedsAimbot.Stats.IsOn = false
+	if RedsAimbot.Stats.IsOn then
+	RedsAimbot.Stats.IsOn = false
 	wait()
-	_G.RedsAimbot.Stats.IsOn = true
+	RedsAimbot.Stats.IsOn = true
 	end
 	end))
 	end
@@ -306,15 +270,15 @@ function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript
 	end
 	end
 	end
-	_G.RedsAimbot.Functions.GetNearestPlayer = function()
+	RedsAimbot.Functions.GetNearestPlayer = function()
 	local studs = 500
 	local table1 = {}
 	local table2 = {}
 	for i,v in pairs(game.Players:GetPlayers()) do
-		if v.Character and v.Name ~= lplr.Name and v.Character:FindFirstChild(_G.RedsAimbot.Stats.Target) then
+		if v.Character and v.Name ~= lplr.Name and v.Character:FindFirstChild(RedsAimbot.Stats.Target) then
 		if TeamIgnore(v) and v.Team ~= lplr.Team or allteam() then
-			local pos = math.floor(lplr:DistanceFromCharacter(v.Character[_G.RedsAimbot.Stats.Target].Position))
-			local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[_G.RedsAimbot.Stats.Target].Position)
+			local pos = math.floor(lplr:DistanceFromCharacter(v.Character[RedsAimbot.Stats.Target].Position))
+			local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[RedsAimbot.Stats.Target].Position)
 			if onscreen then
 			table1[pos] = v.Character
 			table.insert(table2, pos)
@@ -331,14 +295,14 @@ function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript
 	end
 		m.KeyDown:connect(function()
 		if game.UserInputService:IsKeyDown(Enum.KeyCode.LeftAlt) then
-		if _G.RedsAimbot.Stats.IsOn == false then
-		_G.RedsAimbot.Stats.IsOn = true
+		if RedsAimbot.Stats.IsOn == false then
+		RedsAimbot.Stats.IsOn = true
 		else
-		_G.RedsAimbot.Stats.IsOn = false
+		RedsAimbot.Stats.IsOn = false
 		end
 		end
 		if game.UserInputService:IsKeyDown(Enum.KeyCode.RightAlt) then
-		_G.RedsAimbot.Functions.GetNearestPlayer()
+		RedsAimbot.Functions.GetNearestPlayer()
 		end
 		end)
 	local function message(txt)
@@ -356,25 +320,25 @@ function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript
 	local Torso = chr:FindFirstChild("Torso") or chr:FindFirstChild("UpperTorso")
 	m.Button1Down:connect(function()
 	if game.UserInputService:IsKeyDown(Enum.KeyCode.X) then
-	if _G.RedsAimbot.Stats.Target == "Torso" or _G.RedsAimbot.Stats.Target == "UpperTorso" then
-	_G.RedsAimbot.Stats.Target = "Head"
+	if RedsAimbot.Stats.Target == "Torso" or RedsAimbot.Stats.Target == "UpperTorso" then
+	RedsAimbot.Stats.Target = "Head"
 	else
-	_G.RedsAimbot.Stats.Target = Torso.Name
+	RedsAimbot.Stats.Target = Torso.Name
 	end
 	end
 	end)
 	game.RunService.RenderStepped:connect(function()
-	if _G.AimbotGUIOpen then
-		if _G.RedsAimbot.Stats.Player ~= "" and _G.RedsAimbot.Stats.Player:FindFirstChild(_G.RedsAimbot.Stats.Target) then
-		local v, _ = workspace.Camera:WorldToScreenPoint(_G.RedsAimbot.Stats.Player[_G.RedsAimbot.Stats.Target].Position)
+	if AimbotGUIOpen then
+		if RedsAimbot.Stats.Player ~= "" and RedsAimbot.Stats.Player:FindFirstChild(RedsAimbot.Stats.Target) then
+		local v, _ = workspace.Camera:WorldToScreenPoint(RedsAimbot.Stats.Player[RedsAimbot.Stats.Target].Position)
 	if _ then
 	local StabilizeNum = 0.45
 		local x, y = (v.X - m.X)*StabilizeNum, (v.Y - m.Y)*StabilizeNum
-		if _G.RedsAimbot.Stats.IsOn then
+		if RedsAimbot.Stats.IsOn then
 		mousemoverel(x, y)
 		end
 	elseif not _ then
-	_G.RedsAimbot.Functions.deselect()
+	RedsAimbot.Functions.deselect()
 	end
 		end
 		if m.Target ~= nil then
@@ -384,12 +348,12 @@ function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript
 	    GetPlayer(m.Target.Parent.Parent)
 		end
 		end
-	if _G.RedsAimbot.Stats.AutoTarget then
-	_G.RedsAimbot.Functions.GetNearestPlayer()
+	if RedsAimbot.Stats.AutoTarget then
+	RedsAimbot.Functions.GetNearestPlayer()
 	end
 	if LockMouse() then
-	if _G.RedsAimbot.Stats.Player ~= "" then
-	if _G.RedsAimbot.Stats.IsOn then
+	if RedsAimbot.Stats.Player ~= "" then
+	if RedsAimbot.Stats.IsOn then
 	LockMouse():SetIsMouseLocked(true)
 	lplr.Character.Humanoid.CameraOffset = Vector3.new(2, 0, 0)
 	else
@@ -470,8 +434,8 @@ function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript
 	local function OnDeath(chr)
 	chr:WaitForChild("Humanoid")
 	chr.Humanoid.Died:connect(function()
-	if _G.RedsAimbot.Stats.Player == chr then
-	_G.RedsAimbot.Functions.deselect()
+	if RedsAimbot.Stats.Player == chr then
+	RedsAimbot.Functions.deselect()
 	end
 	end)
 	end
@@ -481,88 +445,72 @@ function SCRIPT_HVYQ82_FAKESCRIPT() -- MFrame.LocalScript
 	for i,v in pairs(game.Players:GetPlayers()) do Died(v) end
 	game.Players.PlayerAdded:connect(Died)
 	game.Players.PlayerRemoving:connect(function(plr)
-	if plr.Character and plr.Character == _G.RedsAimbot.Stats.Player then
-	_G.RedsAimbot.Functions.deselect()
+	if plr.Character and plr.Character == RedsAimbot.Stats.Player then
+	RedsAimbot.Functions.deselect()
 	end
 	end)
-
-end
-coroutine.resume(coroutine.create(SCRIPT_HVYQ82_FAKESCRIPT))
-function SCRIPT_PFUH73_FAKESCRIPT() -- AutoTarget.LocalScript 
-	local script = Instance.new('LocalScript')
-	script.Parent = AutoTarget
-	repeat wait() until _G.Changed
-	script.Parent.Text = "Auto-Targeting Enabled: "..tostring(_G.RedsAimbot.Stats.AutoTarget)
-	_G.Changed(_G.RedsAimbot.Stats, "AutoTarget", function(v)
-	script.Parent.Text = "Auto-Targeting Enabled: "..tostring(v)
+	local MainFrame = script.Parent.MFrame
+	MainFrame.X.MouseButton1Click:connect(function()
+	_G.AimbotGUIOpen = false
+	MainFrame.Parent:Destroy()
 	end)
-	script.Parent.MouseButton1Click:connect(function()
-	if _G.RedsAimbot.Stats.AutoTarget then
-	_G.RedsAimbot.Stats.AutoTarget = false
+	Changed(RedsAimbot.Stats, "Target", function(v)
+	MainFrame.TargetedPart.Text = "Targeted Part: "..v
+	end)
+	MainFrame.TargetedPart.MouseButton1Click:connect(function()
+	if RedsAimbot.Stats.Target == "Torso" or RedsAimbot.Stats.Target == "UpperTorso" then
+	RedsAimbot.Stats.Target = "Head"
 	else
-	_G.RedsAimbot.Stats.AutoTarget = true
+	RedsAimbot.Stats.Target = Torso.Name
 	end
 	end)
-
-end
-coroutine.resume(coroutine.create(SCRIPT_PFUH73_FAKESCRIPT))
-function SCRIPT_CUIO79_FAKESCRIPT() -- TargetedPart.LocalScript 
-	local script = Instance.new('LocalScript')
-	script.Parent = TargetedPart
-	script.Parent.Text = "Loading..."
-	repeat wait() until _G.Changed
-	local lplr = game.Players.LocalPlayer
-	if not lplr.Character then lplr.CharacterAdded:Wait() end
-	local chr = lplr.Character
-	repeat wait() until chr:FindFirstChild("Torso") or chr:FindFirstChild("UpperTorso")
-	script.Parent.Text = "Targeted Part: ".._G.RedsAimbot.Stats.Target
-	local Torso = chr:FindFirstChild("Torso") or chr:FindFirstChild("UpperTorso")
-	_G.Changed(_G.RedsAimbot.Stats, "Target", function(v)
-	script.Parent.Text = "Targeted Part: "..v
-	end)
-	script.Parent.MouseButton1Click:connect(function()
-	if _G.RedsAimbot.Stats.Target == "Torso" or _G.RedsAimbot.Stats.Target == "UpperTorso" then
-	_G.RedsAimbot.Stats.Target = "Head"
+	Changed(RedsAimbot.Stats, "Player", function(v)
+	if v ~= "" then
+	MainFrame.TargetNearestPlayer.Text = "Chosen "..v.Name
 	else
-	_G.RedsAimbot.Stats.Target = Torso.Name
+	MainFrame.TargetNearestPlayer.Text = "Target someone within 500 studs (Or Right Alt)"
 	end
 	end)
-
-end
-coroutine.resume(coroutine.create(SCRIPT_CUIO79_FAKESCRIPT))
-function SCRIPT_CCXI79_FAKESCRIPT() -- LockCenterEnabled.LocalScript 
-	local script = Instance.new('LocalScript')
-	script.Parent = LockCenterEnabled
-	repeat wait() until _G.RedsAimbot.Stats.CenterLock
-	script.Parent.Text = "Center-Lock Mouse: "..tostring(_G.RedsAimbot.Stats.CenterLock)
-	_G.Changed(_G.RedsAimbot.Stats, "CenterLock", function(v)
-	script.Parent.Text = "Center-Lock Mouse: "..tostring(v)
+	MainFrame.TargetNearestPlayer.MouseButton1Click:connect(function()
+	RedsAimbot.Functions.GetNearestPlayer()
 	end)
-	script.Parent.MouseButton1Click:connect(function()
-	if _G.RedsAimbot.Stats.CenterLock then
-	_G.RedsAimbot.Stats.CenterLock = false
+	MainFrame.LockCenterEnabled.Text = "Center-Lock Mouse: "..tostring(RedsAimbot.Stats.CenterLock)
+	Changed(RedsAimbot.Stats, "CenterLock", function(v)
+	MainFrame.LockCenterEnabled.Text = "Center-Lock Mouse: "..tostring(v)
+	end)
+	MainFrame.LockCenterEnabled.MouseButton1Click:connect(function()
+	if RedsAimbot.Stats.CenterLock then
+	RedsAimbot.Stats.CenterLock = false
 	else
-	_G.RedsAimbot.Stats.CenterLock = true
+	RedsAimbot.Stats.CenterLock = true
+	end
+	end)
+	MainFrame.IsAimbotOn.Text = "Aimbot Enabled: "..tostring(RedsAimbot.Stats.IsOn)
+	Changed(RedsAimbot.Stats, "IsOn", function(v)
+	MainFrame.IsAimbotOn.Text = "Aimbot Enabled: "..tostring(v)
+	if v == false then
+	RedsAimbot.Functions.deselect()
+	end
+	end)
+	MainFrame.IsAimbotOn.MouseButton1Click:connect(function()
+	if RedsAimbot.Stats.IsOn then
+	RedsAimbot.Stats.IsOn = false
+	else
+	RedsAimbot.Stats.IsOn = true
+	end
+	end)
+	MainFrame.AutoTarget.Text = "Auto-Targeting Enabled: "..tostring(RedsAimbot.Stats.AutoTarget)
+	Changed(RedsAimbot.Stats, "AutoTarget", function(v)
+	MainFrame.AutoTarget.Text = "Auto-Targeting Enabled: "..tostring(v)
+	end)
+	MainFrame.AutoTarget.MouseButton1Click:connect(function()
+	if RedsAimbot.Stats.AutoTarget then
+	RedsAimbot.Stats.AutoTarget = false
+	else
+	RedsAimbot.Stats.AutoTarget = true
 	end
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_CCXI79_FAKESCRIPT))
-function SCRIPT_XUYU81_FAKESCRIPT() -- Aimbot.LocalScript 
-	local script = Instance.new('LocalScript')
-	script.Parent = Aimbot
-	for i,v in pairs(script.Parent:GetChildren()) do
-		if v.ClassName == "Frame" then
-			v.Draggable = true
-		end
-	end
-	local EncryptedName = ""
-	for i = 1, 15 do
-		local char = string.char(math.random(1, 255))
-		EncryptedName = EncryptedName..char
-	end
-	script.Parent.Name = EncryptedName
-
-end
-coroutine.resume(coroutine.create(SCRIPT_XUYU81_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_IZQR88_FAKESCRIPT))
 end
