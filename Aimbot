@@ -116,7 +116,7 @@ LockCenterEnabled.TextScaled = true
 LockCenterEnabled.TextSize = 14
 LockCenterEnabled.TextWrapped = true
 -- Scripts:
-function SCRIPT_TEWW72_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_ZEIW78_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	for i,v in pairs(script.Parent:GetChildren()) do
@@ -132,6 +132,8 @@ function SCRIPT_TEWW72_FAKESCRIPT() -- Aimbot.Scripts
 	script.Parent.Name = EncryptedName
 	_G.AimbotGUIOpen = true
 	local RedsAimbot = {}
+	local lplr = game.Players.LocalPlayer
+	local m = lplr:GetMouse()
 	RedsAimbot.Stats = {}
 	RedsAimbot.Functions = {}
 	RedsAimbot.Stats.Target = "Head"
@@ -209,8 +211,6 @@ function SCRIPT_TEWW72_FAKESCRIPT() -- Aimbot.Scripts
 	    end
 	    end))
 	end
-	local lplr = game.Players.LocalPlayer
-	local m = lplr:GetMouse()
 	local TeamTable = {}
 	function repack(str)
 	local t = {}
@@ -512,5 +512,5 @@ function SCRIPT_TEWW72_FAKESCRIPT() -- Aimbot.Scripts
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_TEWW72_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_ZEIW78_FAKESCRIPT))
 end
