@@ -12,6 +12,22 @@ local AutoTarget = Instance.new("TextButton")
 local Title = Instance.new("TextLabel")
 local TargetedPart = Instance.new("TextButton")
 local LockCenterEnabled = Instance.new("TextButton")
+local TeamWhitelist = Instance.new("Frame")
+local Title_2 = Instance.new("TextLabel")
+local WhitelistedTeams = Instance.new("ScrollingFrame")
+local UISizeConstraint = Instance.new("UISizeConstraint")
+local UIListLayout = Instance.new("UIListLayout")
+local wlteam = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local X_2 = Instance.new("TextButton")
+local hide = Instance.new("TextButton")
+local setup = Instance.new("TextButton")
+local team1 = Instance.new("TextBox")
+local team2 = Instance.new("TextBox")
+local about = Instance.new("TextButton")
+local AboutUI = Instance.new("Frame")
+local Info = Instance.new("TextLabel")
+local Close = Instance.new("TextButton")
 --Properties:
 Aimbot.Name = "Aimbot"
 Aimbot.Parent = game.CoreGui
@@ -32,7 +48,7 @@ TargetNearestPlayer.BorderColor3 = Color3.new(0, 0.666667, 0)
 TargetNearestPlayer.Position = UDim2.new(0, 0, 0.611028135, 0)
 TargetNearestPlayer.Size = UDim2.new(0, 88, 0, 50)
 TargetNearestPlayer.Font = Enum.Font.Highway
-TargetNearestPlayer.Text = "Target someone within 500 studs (Or Right Alt)"
+TargetNearestPlayer.Text = "Click to open team whitelist UI"
 TargetNearestPlayer.TextColor3 = Color3.new(0, 0.666667, 0)
 TargetNearestPlayer.TextScaled = true
 TargetNearestPlayer.TextSize = 14
@@ -84,10 +100,10 @@ Title.BackgroundTransparency = 1
 Title.Position = UDim2.new(0, 0, -0.00507530803, 0)
 Title.Size = UDim2.new(0, 214, 0, 46)
 Title.Font = Enum.Font.Highway
-Title.Text = "RedWire's Somewhat-Universal Aimbot"
+Title.Text = "RedWire's Universal Aimbot"
 Title.TextColor3 = Color3.new(0, 0.666667, 0)
 Title.TextScaled = true
-Title.TextSize = 14
+Title.TextSize = 18
 Title.TextWrapped = true
 
 TargetedPart.Name = "TargetedPart"
@@ -115,8 +131,176 @@ LockCenterEnabled.TextColor3 = Color3.new(0, 0.666667, 0)
 LockCenterEnabled.TextScaled = true
 LockCenterEnabled.TextSize = 14
 LockCenterEnabled.TextWrapped = true
+
+TeamWhitelist.Name = "TeamWhitelist"
+TeamWhitelist.Parent = Aimbot
+TeamWhitelist.BackgroundColor3 = Color3.new(0, 0, 0)
+TeamWhitelist.BorderColor3 = Color3.new(0, 0.666667, 0)
+TeamWhitelist.BorderSizePixel = 2
+TeamWhitelist.Position = UDim2.new(0.428989738, 0, 0.0729166642, 0)
+TeamWhitelist.Size = UDim2.new(0, 324, 0, 269)
+TeamWhitelist.Visible = false
+
+Title_2.Name = "Title"
+Title_2.Parent = TeamWhitelist
+Title_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Title_2.BackgroundTransparency = 1
+Title_2.Size = UDim2.new(0, 284, 0, 30)
+Title_2.Font = Enum.Font.Highway
+Title_2.Text = "Team Whitelisting UI"
+Title_2.TextColor3 = Color3.new(0, 0.666667, 0)
+Title_2.TextScaled = true
+Title_2.TextSize = 14
+Title_2.TextWrapped = true
+
+WhitelistedTeams.Name = "WhitelistedTeams"
+WhitelistedTeams.Parent = TeamWhitelist
+WhitelistedTeams.Active = true
+WhitelistedTeams.BackgroundColor3 = Color3.new(0, 0, 0)
+WhitelistedTeams.BorderColor3 = Color3.new(0, 0.666667, 0)
+WhitelistedTeams.Position = UDim2.new(0, 0, 0.364312261, 0)
+WhitelistedTeams.Size = UDim2.new(0, 324, 0, 171)
+
+UISizeConstraint.Parent = WhitelistedTeams
+UISizeConstraint.MaxSize = Vector2.new(324, INF)
+
+UIListLayout.Parent = WhitelistedTeams
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+wlteam.Name = "wlteam"
+wlteam.Parent = TeamWhitelist
+wlteam.BackgroundColor3 = Color3.new(0, 0, 0)
+wlteam.BorderColor3 = Color3.new(0, 0.666667, 0)
+wlteam.Size = UDim2.new(0, 312, 0, 37)
+wlteam.Visible = false
+
+TextLabel.Parent = wlteam
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.Size = UDim2.new(0, 264, 0, 37)
+TextLabel.Font = Enum.Font.Highway
+TextLabel.Text = "The Criminal team will be whitelisted when you're in the Police team"
+TextLabel.TextColor3 = Color3.new(0, 0.666667, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14
+TextLabel.TextWrapped = true
+
+X_2.Name = "X"
+X_2.Parent = wlteam
+X_2.BackgroundColor3 = Color3.new(1, 1, 1)
+X_2.BackgroundTransparency = 1
+X_2.Position = UDim2.new(0.846153855, 0, 0, 0)
+X_2.Size = UDim2.new(0, 48, 0, 37)
+X_2.Font = Enum.Font.Highway
+X_2.Text = "X"
+X_2.TextColor3 = Color3.new(1, 0, 0)
+X_2.TextScaled = true
+X_2.TextSize = 14
+X_2.TextWrapped = true
+
+hide.Name = "hide"
+hide.Parent = TeamWhitelist
+hide.BackgroundColor3 = Color3.new(1, 1, 1)
+hide.BackgroundTransparency = 1
+hide.Position = UDim2.new(0.876543224, 0, 0, 0)
+hide.Size = UDim2.new(0, 39, 0, 30)
+hide.Font = Enum.Font.Highway
+hide.Text = "_"
+hide.TextColor3 = Color3.new(0, 0.666667, 0)
+hide.TextScaled = true
+hide.TextSize = 14
+hide.TextWrapped = true
+
+setup.Name = "setup"
+setup.Parent = TeamWhitelist
+setup.BackgroundColor3 = Color3.new(0, 0, 0)
+setup.BorderColor3 = Color3.new(0, 0.666667, 0)
+setup.Position = UDim2.new(0.722222209, 0, 0.245353162, 0)
+setup.Size = UDim2.new(0, 89, 0, 32)
+setup.Font = Enum.Font.Highway
+setup.Text = "Setup team whitelist"
+setup.TextColor3 = Color3.new(0, 0.666667, 0)
+setup.TextScaled = true
+setup.TextSize = 14
+setup.TextWrapped = true
+
+team1.Name = "team1"
+team1.Parent = TeamWhitelist
+team1.BackgroundColor3 = Color3.new(0, 0, 0)
+team1.BorderColor3 = Color3.new(0, 0.666667, 0)
+team1.Position = UDim2.new(0, 0, 0.245353162, 0)
+team1.Size = UDim2.new(0, 124, 0, 32)
+team1.Font = Enum.Font.Highway
+team1.PlaceholderColor3 = Color3.new(0, 0.666667, 0)
+team1.PlaceholderText = "Team to whitelist"
+team1.Text = ""
+team1.TextColor3 = Color3.new(0, 0.666667, 0)
+team1.TextScaled = true
+team1.TextSize = 14
+team1.TextWrapped = true
+
+team2.Name = "team2"
+team2.Parent = TeamWhitelist
+team2.BackgroundColor3 = Color3.new(0, 0, 0)
+team2.BorderColor3 = Color3.new(0, 0.666667, 0)
+team2.Position = UDim2.new(0.38271606, 0, 0.245353162, 0)
+team2.Size = UDim2.new(0, 110, 0, 32)
+team2.Font = Enum.Font.Highway
+team2.PlaceholderColor3 = Color3.new(0, 0.666667, 0)
+team2.PlaceholderText = "Team YOU'LL be on"
+team2.Text = ""
+team2.TextColor3 = Color3.new(0, 0.666667, 0)
+team2.TextScaled = true
+team2.TextSize = 14
+team2.TextWrapped = true
+
+about.Name = "about"
+about.Parent = TeamWhitelist
+about.BackgroundColor3 = Color3.new(1, 1, 1)
+about.BackgroundTransparency = 1
+about.Position = UDim2.new(0, 0, 0.110419229, 0)
+about.Size = UDim2.new(0, 48, 0, 35)
+about.Font = Enum.Font.Highway
+about.Text = "?"
+about.TextColor3 = Color3.new(0, 0.333333, 1)
+about.TextScaled = true
+about.TextSize = 14
+about.TextWrapped = true
+
+AboutUI.Name = "AboutUI"
+AboutUI.Parent = TeamWhitelist
+AboutUI.BackgroundColor3 = Color3.new(0, 0, 0)
+AboutUI.BorderColor3 = Color3.new(0, 0.666667, 0)
+AboutUI.Position = UDim2.new(-0.111111119, 0, 0.438661695, 0)
+AboutUI.Size = UDim2.new(0, 378, 0, 223)
+AboutUI.Visible = false
+
+Info.Name = "Info"
+Info.Parent = AboutUI
+Info.BackgroundColor3 = Color3.new(0, 0, 0)
+Info.BackgroundTransparency = 1
+Info.Size = UDim2.new(0, 380, 0, 172)
+Info.Font = Enum.Font.Highway
+Info.Text = "Selected teams will be whitelisted ONLY if you are on the 'Team YOU'LL be on'. For example, if 'Team to whitelist' is \"Prisoner\", and 'Team YOU'LL be on' is \"Criminal\", then anyone that is a Prisoner will be ignored as a target if you're a Criminal."
+Info.TextColor3 = Color3.new(0, 0.666667, 0)
+Info.TextScaled = true
+Info.TextSize = 14
+Info.TextWrapped = true
+
+Close.Name = "Close"
+Close.Parent = AboutUI
+Close.BackgroundColor3 = Color3.new(0, 0, 0)
+Close.BorderColor3 = Color3.new(0, 0.666667, 0)
+Close.Position = UDim2.new(0.232804239, 0, 0.771300435, 0)
+Close.Size = UDim2.new(0, 200, 0, 50)
+Close.Font = Enum.Font.Highway
+Close.Text = "Close frame"
+Close.TextColor3 = Color3.new(0, 0.666667, 0)
+Close.TextScaled = true
+Close.TextSize = 14
+Close.TextWrapped = true
 -- Scripts:
-function SCRIPT_DXIP69_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_YZND84_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	for i,v in pairs(script.Parent:GetChildren()) do
@@ -125,6 +309,9 @@ function SCRIPT_DXIP69_FAKESCRIPT() -- Aimbot.Scripts
 		end
 	end
 	local EncryptedName = ""
+	local wlui = script.Parent.TeamWhitelist
+	wlui.WhitelistedTeams.UISizeConstraint.MaxSize = Vector2.new(324, math.huge)
+	wlui.WhitelistedTeams.ScrollBarImageColor3 = Color3.new(0,1,0)
 	for i = 1, 15 do
 		local char = string.char(math.random(1, 255))
 		EncryptedName = EncryptedName..char
@@ -193,12 +380,6 @@ function SCRIPT_DXIP69_FAKESCRIPT() -- Aimbot.Scripts
 	Left click + X - Changes the targeted part (This is set to head by default)
 	Auto-Targeting - Basically spams the GetNearestPlayer function
 	Center-Lock mouse: Chooses whether you want your mouse to stay on the center of the screen or not (some games might not support center-locking.)
-	--Chat functions
-	/e teamignore [Name of team to ignore] [Team YOU'LL be on when ignoring the selected team] / Example: if [Team Name] is Criminal and [Your Team Name] is Prisoner, then anyone on the Criminal team will be ignored as a
-	target when you're a Prisoner.
-	/e unteamignore [Name of team] [Team you'll be on] (will stop ignoring a certain team if you already set both team to ignore and
-	the team that you'll be on)
-	Both chat functions support shortened names (Ex: 'Criminal' can be written as 'crim')
 	]]
 	print(Keybinds)
 	Changed = function(part, value, func)
@@ -384,50 +565,6 @@ function SCRIPT_DXIP69_FAKESCRIPT() -- Aimbot.Scripts
 	game.StarterGui:SetCore("SendNotification", {
 	Title = "Aimbot";
 	Text = "To see how the aimbot works, check the developer log.";})
-	lplr.Chatted:connect(function(msg)
-	if msg:sub(1,14) == "/e teamignore " then
-	local args = repack(msg)
-	if args[3] and args[4] then
-	local teamtoignore
-	local teamtoignoreteam
-	for i,team in pairs(game.Teams:GetTeams()) do
-	if team.Name:lower():sub(1, string.len(args[3])) == string.lower(args[3]) then
-	teamtoignore = team.Name
-	end
-	if team.Name:lower():sub(1, string.len(args[4])) == string.lower(args[4]) then
-	teamtoignoreteam = team.Name
-	end
-	if teamtoignore and teamtoignoreteam then
-	local chat = lplr.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Wait()
-	    if string.match(chat.TextLabel.Text, "Emote") then
-	        chat.TextLabel.Text = "Players in the "..teamtoignore.." team will be ignored when you're in the "..teamtoignoreteam.." team."
-	        chat.TextLabel.TextColor3 = Color3.new(0,1,0)
-	    end
-	TeamTable[teamtoignore] = teamtoignoreteam
-	end
-	end
-	end
-	end
-	if msg:sub(1,16) == "/e unteamignore " then
-	local args = repack(msg)
-	local chat = lplr.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Wait()
-	if args[3] and args[4] then
-	local t1
-	local t2
-	for team1, team2 in pairs(TeamTable) do
-	if team1:lower():sub(1, string.len(args[3])) == string.lower(args[3]) and team2:lower():sub(1, string.len(args[4])) == string.lower(args[4]) then
-	t1 = team1
-	t2 = team2
-	TeamTable[team1] = nil
-	end
-	end
-	    if string.match(chat.TextLabel.Text, "Emote") then
-	        chat.TextLabel.Text = "Players in the "..t1.." team will no longer be ignored when you're in the "..t2.." team."
-	        chat.TextLabel.TextColor3 = Color3.new(0,1,0)
-	    end
-	end
-	end
-	end)
 	
 	function Died(player)
 	if not player.Character then player.CharacterAdded:Wait() end
@@ -469,11 +606,11 @@ function SCRIPT_DXIP69_FAKESCRIPT() -- Aimbot.Scripts
 	if v ~= "" then
 	MainFrame.TargetNearestPlayer.Text = "Chosen "..v.Name
 	else
-	MainFrame.TargetNearestPlayer.Text = "Target someone within 500 studs (Or Right Alt)"
+	MainFrame.TargetNearestPlayer.Text = "Click to open team whitelist UI"
 	end
 	end)
 	MainFrame.TargetNearestPlayer.MouseButton1Click:connect(function()
-	RedsAimbot.Functions.GetNearestPlayer()
+	wlui.Visible = true
 	end)
 	MainFrame.LockCenterEnabled.Text = "Center-Lock Mouse: "..tostring(RedsAimbot.Stats.CenterLock)
 	Changed(RedsAimbot.Stats, "CenterLock", function(v)
@@ -511,7 +648,39 @@ function SCRIPT_DXIP69_FAKESCRIPT() -- Aimbot.Scripts
 	RedsAimbot.Stats.AutoTarget = true
 	end
 	end)
+	wlui.about.MouseButton1Click:Connect(function()
+	wlui.AboutUI.Visible = true
+	end)
+	wlui.AboutUI.Close.MouseButton1Click:connect(function()
+	wlui.AboutUI.Visible = false
+	end)
+	wlui.hide.MouseButton1Click:connect(function()
+	wlui.Visible = false
+	end)
+	wlui.setup.MouseButton1Click:Connect(function()
+	local team1 = wlui.team1.Text
+	local team2 = wlui.team2.Text
+	local listui = wlui.wlteam:Clone()
+	local Team_1 = Instance.new("StringValue", listui)
+	local Team_2 = Instance.new("StringValue", listui)
+	for i,team in pairs(game.Teams:GetTeams()) do
+	if team.Name:lower():sub(1,team1:len()) == team1:lower() then
+	Team_1.Value = team.Name
+	end
+	if team.Name:lower():sub(1,team2:len()) == team2:lower() then
+	Team_2.Value = team.Name
+	end
+	end
+	listui.Visible = true
+	listui.Parent = wlui.WhitelistedTeams
+	listui.TextLabel.Text = "The "..Team_1.Value.." team will be whitelisted when you're in the "..Team_2.Value.." team."
+	TeamTable[Team_1.Value] = Team_2.Value
+	listui.X.MouseButton1Click:connect(function()
+	TeamTable[Team_1.Value] = nil
+	listui:Destroy()
+	end)
+	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_DXIP69_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_YZND84_FAKESCRIPT))
 end
