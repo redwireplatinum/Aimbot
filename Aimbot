@@ -35,7 +35,6 @@ Aimbot.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 MFrame.Name = "MFrame"
 MFrame.Parent = Aimbot
-MFrame.Active = true
 MFrame.BackgroundColor3 = Color3.new(0, 0, 0)
 MFrame.BorderColor3 = Color3.new(0, 0.666667, 0)
 MFrame.Position = UDim2.new(0.66648984, 0, 0.112894237, 0)
@@ -300,12 +299,13 @@ Close.TextScaled = true
 Close.TextSize = 14
 Close.TextWrapped = true
 -- Scripts:
-function SCRIPT_WVNX86_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_JLGW90_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	for i,v in pairs(script.Parent:GetChildren()) do
 		if v.ClassName == "Frame" then
 			v.Draggable = true
+			v.Active = true
 		end
 	end
 	local EncryptedName = ""
@@ -684,5 +684,5 @@ function SCRIPT_WVNX86_FAKESCRIPT() -- Aimbot.Scripts
 	end)
 
 end
-coroutine.resume(coroutine.create(SCRIPT_WVNX86_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_JLGW90_FAKESCRIPT))
 end
