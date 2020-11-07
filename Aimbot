@@ -3,19 +3,19 @@
 -- Instances:
 local Aimbot = Instance.new("ScreenGui")
 local MFrame = Instance.new("Frame")
-local TargetNearestPlayer = Instance.new("TextButton")
+local WhitelistUIOpener = Instance.new("TextButton")
 local IsAimbotOn = Instance.new("TextButton")
 local X = Instance.new("TextButton")
 local AutoTarget = Instance.new("TextButton")
 local Title = Instance.new("TextLabel")
 local TargetedPart = Instance.new("TextButton")
 local FirstPerson = Instance.new("TextButton")
-local TeamWhitelist = Instance.new("Frame")
+local WhitelistUI = Instance.new("Frame")
 local Title_2 = Instance.new("TextLabel")
-local WhitelistedTeams = Instance.new("ScrollingFrame")
+local WhitelistedInstances = Instance.new("ScrollingFrame")
 local UISizeConstraint = Instance.new("UISizeConstraint")
 local UIListLayout = Instance.new("UIListLayout")
-local wlteam = Instance.new("Frame")
+local whitelistframe = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
 local X_2 = Instance.new("TextButton")
 local hide = Instance.new("TextButton")
@@ -26,6 +26,8 @@ local about = Instance.new("TextButton")
 local AboutUI = Instance.new("Frame")
 local Info = Instance.new("TextLabel")
 local Close = Instance.new("TextButton")
+local playername = Instance.new("TextBox")
+local whitelistplayer = Instance.new("TextButton")
 --Properties:
 Aimbot.Name = "Aimbot"
 Aimbot.Parent = game.CoreGui
@@ -38,18 +40,18 @@ MFrame.BorderColor3 = Color3.new(0, 0.666667, 0)
 MFrame.Position = UDim2.new(0.66648984, 0, 0.112894237, 0)
 MFrame.Size = UDim2.new(0, 260, 0, 130)
 
-TargetNearestPlayer.Name = "TargetNearestPlayer"
-TargetNearestPlayer.Parent = MFrame
-TargetNearestPlayer.BackgroundColor3 = Color3.new(0, 0, 0)
-TargetNearestPlayer.BorderColor3 = Color3.new(0, 0.666667, 0)
-TargetNearestPlayer.Position = UDim2.new(0, 0, 0.611028135, 0)
-TargetNearestPlayer.Size = UDim2.new(0, 88, 0, 50)
-TargetNearestPlayer.Font = Enum.Font.Highway
-TargetNearestPlayer.Text = "Click to open team whitelist UI"
-TargetNearestPlayer.TextColor3 = Color3.new(0, 0.666667, 0)
-TargetNearestPlayer.TextScaled = true
-TargetNearestPlayer.TextSize = 14
-TargetNearestPlayer.TextWrapped = true
+WhitelistUIOpener.Name = "WhitelistUIOpener"
+WhitelistUIOpener.Parent = MFrame
+WhitelistUIOpener.BackgroundColor3 = Color3.new(0, 0, 0)
+WhitelistUIOpener.BorderColor3 = Color3.new(0, 0.666667, 0)
+WhitelistUIOpener.Position = UDim2.new(0, 0, 0.611028135, 0)
+WhitelistUIOpener.Size = UDim2.new(0, 88, 0, 50)
+WhitelistUIOpener.Font = Enum.Font.Highway
+WhitelistUIOpener.Text = "Click to open the whitelisting UI"
+WhitelistUIOpener.TextColor3 = Color3.new(0, 0.666667, 0)
+WhitelistUIOpener.TextScaled = true
+WhitelistUIOpener.TextSize = 14
+WhitelistUIOpener.TextWrapped = true
 
 IsAimbotOn.Name = "IsAimbotOn"
 IsAimbotOn.Parent = MFrame
@@ -129,17 +131,17 @@ FirstPerson.TextScaled = true
 FirstPerson.TextSize = 14
 FirstPerson.TextWrapped = true
 
-TeamWhitelist.Name = "TeamWhitelist"
-TeamWhitelist.Parent = Aimbot
-TeamWhitelist.BackgroundColor3 = Color3.new(0, 0, 0)
-TeamWhitelist.BorderColor3 = Color3.new(0, 0.666667, 0)
-TeamWhitelist.BorderSizePixel = 2
-TeamWhitelist.Position = UDim2.new(0.428989738, 0, 0.0729166642, 0)
-TeamWhitelist.Size = UDim2.new(0, 324, 0, 269)
-TeamWhitelist.Visible = false
+WhitelistUI.Name = "WhitelistUI"
+WhitelistUI.Parent = Aimbot
+WhitelistUI.BackgroundColor3 = Color3.new(0, 0, 0)
+WhitelistUI.BorderColor3 = Color3.new(0, 0.666667, 0)
+WhitelistUI.BorderSizePixel = 2
+WhitelistUI.Position = UDim2.new(0.428989738, 0, 0.0729166642, 0)
+WhitelistUI.Size = UDim2.new(0, 324, 0, 269)
+WhitelistUI.Visible = false
 
 Title_2.Name = "Title"
-Title_2.Parent = TeamWhitelist
+Title_2.Parent = WhitelistUI
 Title_2.BackgroundColor3 = Color3.new(1, 1, 1)
 Title_2.BackgroundTransparency = 1
 Title_2.Size = UDim2.new(0, 284, 0, 30)
@@ -150,28 +152,28 @@ Title_2.TextScaled = true
 Title_2.TextSize = 14
 Title_2.TextWrapped = true
 
-WhitelistedTeams.Name = "WhitelistedTeams"
-WhitelistedTeams.Parent = TeamWhitelist
-WhitelistedTeams.Active = true
-WhitelistedTeams.BackgroundColor3 = Color3.new(0, 0, 0)
-WhitelistedTeams.BorderColor3 = Color3.new(0, 0.666667, 0)
-WhitelistedTeams.Position = UDim2.new(0, 0, 0.364312261, 0)
-WhitelistedTeams.Size = UDim2.new(0, 324, 0, 171)
+WhitelistedInstances.Name = "WhitelistedInstances"
+WhitelistedInstances.Parent = WhitelistUI
+WhitelistedInstances.Active = true
+WhitelistedInstances.BackgroundColor3 = Color3.new(0, 0, 0)
+WhitelistedInstances.BorderColor3 = Color3.new(0, 0.666667, 0)
+WhitelistedInstances.Position = UDim2.new(0, 0, 0.364312261, 0)
+WhitelistedInstances.Size = UDim2.new(0, 324, 0, 171)
 
-UISizeConstraint.Parent = WhitelistedTeams
+UISizeConstraint.Parent = WhitelistedInstances
 UISizeConstraint.MaxSize = Vector2.new(324, INF)
 
-UIListLayout.Parent = WhitelistedTeams
+UIListLayout.Parent = WhitelistedInstances
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
-wlteam.Name = "wlteam"
-wlteam.Parent = TeamWhitelist
-wlteam.BackgroundColor3 = Color3.new(0, 0, 0)
-wlteam.BorderColor3 = Color3.new(0, 0.666667, 0)
-wlteam.Size = UDim2.new(0, 312, 0, 37)
-wlteam.Visible = false
+whitelistframe.Name = "whitelistframe"
+whitelistframe.Parent = WhitelistUI
+whitelistframe.BackgroundColor3 = Color3.new(0, 0, 0)
+whitelistframe.BorderColor3 = Color3.new(0, 0.666667, 0)
+whitelistframe.Size = UDim2.new(0, 312, 0, 37)
+whitelistframe.Visible = false
 
-TextLabel.Parent = wlteam
+TextLabel.Parent = whitelistframe
 TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
 TextLabel.BackgroundTransparency = 1
 TextLabel.Size = UDim2.new(0, 264, 0, 37)
@@ -183,7 +185,7 @@ TextLabel.TextSize = 14
 TextLabel.TextWrapped = true
 
 X_2.Name = "X"
-X_2.Parent = wlteam
+X_2.Parent = whitelistframe
 X_2.BackgroundColor3 = Color3.new(1, 1, 1)
 X_2.BackgroundTransparency = 1
 X_2.Position = UDim2.new(0.846153855, 0, 0, 0)
@@ -196,7 +198,7 @@ X_2.TextSize = 14
 X_2.TextWrapped = true
 
 hide.Name = "hide"
-hide.Parent = TeamWhitelist
+hide.Parent = WhitelistUI
 hide.BackgroundColor3 = Color3.new(1, 1, 1)
 hide.BackgroundTransparency = 1
 hide.Position = UDim2.new(0.876543224, 0, 0, 0)
@@ -209,7 +211,7 @@ hide.TextSize = 14
 hide.TextWrapped = true
 
 setup.Name = "setup"
-setup.Parent = TeamWhitelist
+setup.Parent = WhitelistUI
 setup.BackgroundColor3 = Color3.new(0, 0, 0)
 setup.BorderColor3 = Color3.new(0, 0.666667, 0)
 setup.Position = UDim2.new(0.722222209, 0, 0.245353162, 0)
@@ -222,7 +224,7 @@ setup.TextSize = 14
 setup.TextWrapped = true
 
 team1.Name = "team1"
-team1.Parent = TeamWhitelist
+team1.Parent = WhitelistUI
 team1.BackgroundColor3 = Color3.new(0, 0, 0)
 team1.BorderColor3 = Color3.new(0, 0.666667, 0)
 team1.Position = UDim2.new(0, 0, 0.245353162, 0)
@@ -237,7 +239,7 @@ team1.TextSize = 14
 team1.TextWrapped = true
 
 team2.Name = "team2"
-team2.Parent = TeamWhitelist
+team2.Parent = WhitelistUI
 team2.BackgroundColor3 = Color3.new(0, 0, 0)
 team2.BorderColor3 = Color3.new(0, 0.666667, 0)
 team2.Position = UDim2.new(0.38271606, 0, 0.245353162, 0)
@@ -252,20 +254,20 @@ team2.TextSize = 14
 team2.TextWrapped = true
 
 about.Name = "about"
-about.Parent = TeamWhitelist
+about.Parent = WhitelistUI
 about.BackgroundColor3 = Color3.new(1, 1, 1)
 about.BackgroundTransparency = 1
 about.Position = UDim2.new(0, 0, 0.110419229, 0)
 about.Size = UDim2.new(0, 48, 0, 35)
 about.Font = Enum.Font.Highway
-about.Text = "?"
+about.Text = "Info"
 about.TextColor3 = Color3.new(0, 0.333333, 1)
 about.TextScaled = true
 about.TextSize = 14
 about.TextWrapped = true
 
 AboutUI.Name = "AboutUI"
-AboutUI.Parent = TeamWhitelist
+AboutUI.Parent = WhitelistUI
 AboutUI.BackgroundColor3 = Color3.new(0, 0, 0)
 AboutUI.BorderColor3 = Color3.new(0, 0.666667, 0)
 AboutUI.Position = UDim2.new(-0.111111119, 0, 0.438661695, 0)
@@ -296,8 +298,36 @@ Close.TextColor3 = Color3.new(0, 0.666667, 0)
 Close.TextScaled = true
 Close.TextSize = 14
 Close.TextWrapped = true
+
+playername.Name = "playername"
+playername.Parent = WhitelistUI
+playername.BackgroundColor3 = Color3.new(0, 0, 0)
+playername.BorderColor3 = Color3.new(0, 0.666667, 0)
+playername.Position = UDim2.new(0.148148149, 0, 0.118959107, 0)
+playername.Size = UDim2.new(0, 186, 0, 32)
+playername.Font = Enum.Font.Highway
+playername.PlaceholderColor3 = Color3.new(0, 0.666667, 0)
+playername.PlaceholderText = "Player name here"
+playername.Text = ""
+playername.TextColor3 = Color3.new(0, 0.666667, 0)
+playername.TextScaled = true
+playername.TextSize = 14
+playername.TextWrapped = true
+
+whitelistplayer.Name = "whitelistplayer"
+whitelistplayer.Parent = WhitelistUI
+whitelistplayer.BackgroundColor3 = Color3.new(0, 0, 0)
+whitelistplayer.BorderColor3 = Color3.new(0, 0.666667, 0)
+whitelistplayer.Position = UDim2.new(0.728395045, 0, 0.118959121, 0)
+whitelistplayer.Size = UDim2.new(0, 89, 0, 32)
+whitelistplayer.Font = Enum.Font.Highway
+whitelistplayer.Text = "Setup team whitelist"
+whitelistplayer.TextColor3 = Color3.new(0, 0.666667, 0)
+whitelistplayer.TextScaled = true
+whitelistplayer.TextSize = 14
+whitelistplayer.TextWrapped = true
 -- Scripts:
-function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_EQAF74_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -309,16 +339,19 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 		end
 	end
 	local EncryptedName = ""
-	local wlui = script.Parent.TeamWhitelist
-	wlui.WhitelistedTeams.UISizeConstraint.MaxSize = Vector2.new(324, math.huge)
-	wlui.WhitelistedTeams.ScrollBarImageColor3 = Color3.new(0,1,0)
+	local wlui = script.Parent.WhitelistUI
+	wlui.WhitelistedInstances.UISizeConstraint.MaxSize = Vector2.new(324, math.huge)
+	wlui.WhitelistedInstances.ScrollBarImageColor3 = Color3.new(0,1,0)
 	for i = 1, 15 do
 		local char = string.char(math.random(1, 255))
 		EncryptedName = EncryptedName..char
 	end
 	script.Parent.Name = EncryptedName
 	local RedsAimbot = {}
-	local lplr = game.Players.LocalPlayer
+	local TeamTable = {}
+	local WhitelistedPlrs = {}
+	local plrs = game.Players
+	local lplr = plrs.LocalPlayer
 	local m = lplr:GetMouse()
 	RedsAimbot.Stats = {}
 	RedsAimbot.Functions = {}
@@ -337,11 +370,30 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 	end
 	end))
 	end
+	function IsTeamWhitelisted(character)
+	local numberofargs = 0
+	local AAA = 0
+	for playerteam, lplrteam in pairs(TeamTable) do
+	numberofargs = numberofargs + 1
+	if lplr.Team == game.Teams[lplrteam] then
+	if plrs[character.Name].Team ~= game.Teams[playerteam] then
+	AAA = AAA + 1
+	end
+	else
+	AAA = AAA + 1
+	end
+	end
+	if numberofargs == AAA then
+	return true
+	else
+	return false
+	end
+	end
 	function GetPlayer(character)
 	if character.Name ~= lplr.Name then
-	if game.Teams:FindFirstChildOfClass("Team") and TeamIgnore(character) and game.Players[character.Name].Team ~= lplr.Team and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
+	if game.Teams:FindFirstChildOfClass("Team") and IsTeamWhitelisted(character) and not table.find(WhitelistedPlrs, game.Players[character.Name]) and plrs[character.Name].Team ~= lplr.Team and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
 	selectplr(character)
-	elseif not game.Teams:FindFirstChildOfClass("Team") and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
+	elseif not game.Teams:FindFirstChildOfClass("Team") and not table.find(WhitelistedPlrs, game.Players[character.Name]) and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
 	selectplr(character)
 	elseif allteam() then
 	selectplr(character)
@@ -352,12 +404,12 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 	local studs = 500
 	local table1 = {}
 	local table2 = {}
-	for i,v in pairs(game.Players:GetPlayers()) do
+	for i,v in pairs(plrs:GetPlayers()) do
 		local outcome = pcall(function()
 	 return v.Character.Humanoid and v.Character[RedsAimbot.Stats.Target]
 		end)
-		if outcome and v.Name ~= lplr.Name and v.Character.Humanoid.Health ~= 0 then
-		if TeamIgnore(v) and v.Team ~= lplr.Team or allteam() then
+		if outcome and v.Name ~= lplr.Name and v.Character.Humanoid.Health ~= 0 and not table.find(WhitelistedPlrs, v) then
+		if IsTeamWhitelisted(v) and v.Team ~= lplr.Team or allteam() then
 			local pos = math.floor(lplr:DistanceFromCharacter(v.Character[RedsAimbot.Stats.Target].Position))
 			local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[RedsAimbot.Stats.Target].Position)
 			if onscreen then
@@ -394,7 +446,6 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 	    end
 	    end))
 	end
-	local TeamTable = {}
 	function repack(str)
 	local t = {}
 	local arg = ""
@@ -430,31 +481,12 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 	end
 	function allteam()
 	local count = 0
-	for i, plr in pairs(game.Players:GetPlayers()) do
+	for i, plr in pairs(plrs:GetPlayers()) do
 	if plr.Team == lplr.Team then
 	count = count + 1
 	end
 	end
-	if count == #game.Players:GetPlayers() then
-	return true
-	else
-	return false
-	end
-	end
-	function TeamIgnore(character)
-	local numberofargs = 0
-	local AAA = 0
-	for playerteam, lplrteam in pairs(TeamTable) do
-	numberofargs = numberofargs + 1
-	if lplr.Team == game.Teams[lplrteam] then
-	if game.Players[character.Name].Team ~= game.Teams[playerteam] then
-	AAA = AAA + 1
-	end
-	else
-	AAA = AAA + 1
-	end
-	end
-	if numberofargs == AAA then
+	if count == #plrs:GetPlayers() then
 	return true
 	else
 	return false
@@ -509,9 +541,9 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 	end
 		end
 		if m.Target ~= nil then
-		if game.Players:FindFirstChild(m.Target.Parent.Name) then
+		if plrs:FindFirstChild(m.Target.Parent.Name) then
 		GetPlayer(m.Target.Parent)
-		elseif game.Players:FindFirstChild(m.Target.Parent.Parent.Name) then
+		elseif plrs:FindFirstChild(m.Target.Parent.Parent.Name) then
 	    GetPlayer(m.Target.Parent.Parent)
 		end
 		end
@@ -520,12 +552,12 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 	end
 	if RedsAimbot.Stats.FPEnabled then
 	if RedsAimbot.Stats.Character ~= ""  and RedsAimbot.Stats.IsOn then
-	game.Players.LocalPlayer.CameraMode = Enum.CameraMode.LockFirstPerson
+	plrs.LocalPlayer.CameraMode = Enum.CameraMode.LockFirstPerson
 	else
-	game.Players.LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	plrs.LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end
 	else
-	game.Players.LocalPlayer.CameraMode = Enum.CameraMode.Classic
+	plrs.LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end
 	end
 		end)
@@ -551,9 +583,9 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 	end
 	end)
 	end
-	for i,v in pairs(game.Players:GetPlayers()) do Died(v) end
-	game.Players.PlayerAdded:connect(Died)
-	game.Players.PlayerRemoving:connect(function(plr)
+	for i,v in pairs(plrs:GetPlayers()) do Died(v) end
+	plrs.PlayerAdded:connect(Died)
+	plrs.PlayerRemoving:connect(function(plr)
 	if plr.Character and plr.Character == RedsAimbot.Stats.Character then
 	RedsAimbot.Functions.deselect()
 	end
@@ -576,12 +608,12 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 	end)
 	Changed(RedsAimbot.Stats, "Character", function(v)
 	if v ~= "" then
-	MainFrame.TargetNearestPlayer.Text = "Chosen "..v.Name
+	MainFrame.WhitelistUIOpener.Text = "Chosen "..v.Name
 	else
-	MainFrame.TargetNearestPlayer.Text = "Click to open team whitelist UI"
+	MainFrame.WhitelistUIOpener.Text = "Click to open the whitelisting UI"
 	end
 	end)
-	MainFrame.TargetNearestPlayer.MouseButton1Click:connect(function()
+	MainFrame.WhitelistUIOpener.MouseButton1Click:connect(function()
 	wlui.Visible = true
 	end)
 	MainFrame.FirstPerson.Text = "First Person Mode Enabled: "..tostring(RedsAimbot.Stats.FPEnabled)
@@ -632,23 +664,47 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 	wlui.setup.MouseButton1Click:Connect(function()
 	local team1 = wlui.team1.Text
 	local team2 = wlui.team2.Text
-	local listui = wlui.wlteam:Clone()
-	local Team_1 = Instance.new("StringValue", listui)
-	local Team_2 = Instance.new("StringValue", listui)
+	local listui = wlui.whitelistframe:Clone()
+	local Team_1 = ""
+	local Team_2 = ""
 	for i,team in pairs(game.Teams:GetTeams()) do
 	if team.Name:lower():sub(1,team1:len()) == team1:lower() then
-	Team_1.Value = team.Name
+	Team_1 = team.Name
 	end
 	if team.Name:lower():sub(1,team2:len()) == team2:lower() then
-	Team_2.Value = team.Name
+	Team_2 = team.Name
 	end
 	end
 	listui.Visible = true
-	listui.Parent = wlui.WhitelistedTeams
-	listui.TextLabel.Text = "The "..Team_1.Value.." team will be whitelisted when you're in the "..Team_2.Value.." team."
-	TeamTable[Team_1.Value] = Team_2.Value
+	listui.Parent = wlui.WhitelistedInstances
+	listui.TextLabel.Text = "The "..Team_1.." team will be whitelisted when you're in the "..Team_2.." team."
+	TeamTable[Team_1] = Team_2
 	listui.X.MouseButton1Click:connect(function()
-	TeamTable[Team_1.Value] = nil
+	TeamTable[Team_1] = nil
+	listui:Destroy()
+	end)
+	end)
+	local Abouttext = [[
+	-Selected teams will be whitelisted ONLY if you are on the 'Team YOU'LL be on'. For example, if 'Team to whitelist' is "Prisoner", and 'Team YOU'LL be on' is "Criminal", then anyone that is a Prisoner will be ignored as a target if you're a Criminal.
+	-Whitelisted players will simply not be targeted until you un-whitelist them.
+	-Both whitelisting functions support shortened names (ex: "Criminal" can be "crim", and a player named "RedWirePlatinum" can be "redwire")
+	]]
+	wlui.AboutUI.Info.Text = Abouttext
+	wlui.whitelistplayer.MouseButton1Click:connect(function()
+	local plrname = wlui.playername.Text
+	local plr2whitelist
+	local listui = wlui.whitelistframe:Clone()
+	for i, plr in pairs(plrs:GetPlayers()) do
+	if plr.Name:lower():sub(1, plrname:len()) == plrname:lower() then
+	plr2whitelist = plr
+	end
+	end
+	listui.Visible = true
+	listui.Parent = wlui.WhitelistedInstances
+	listui.TextLabel.Text = plr2whitelist.Name.." will no longer be targeted until un-whitelisted."
+	table.insert(WhitelistedPlrs, plr2whitelist)
+	listui.X.MouseButton1Click:connect(function()
+	table.remove(plr2whitelist)
 	listui:Destroy()
 	end)
 	end)
@@ -658,4 +714,4 @@ function SCRIPT_RAQW68_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_RAQW68_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_EQAF74_FAKESCRIPT))
