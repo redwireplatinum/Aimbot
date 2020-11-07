@@ -138,12 +138,13 @@ WhitelistUI.BorderColor3 = Color3.new(0, 0.666667, 0)
 WhitelistUI.BorderSizePixel = 2
 WhitelistUI.Position = UDim2.new(0.428989738, 0, 0.0729166642, 0)
 WhitelistUI.Size = UDim2.new(0, 324, 0, 269)
+WhitelistUI.Visible = false
 
 Title_2.Name = "Title"
 Title_2.Parent = WhitelistUI
 Title_2.BackgroundColor3 = Color3.new(1, 1, 1)
 Title_2.BackgroundTransparency = 1
-Title_2.Size = UDim2.new(0, 284, 0, 30)
+Title_2.Size = UDim2.new(0, 244, 0, 30)
 Title_2.Font = Enum.Font.Highway
 Title_2.Text = "Whitelisting UI"
 Title_2.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -198,13 +199,13 @@ X_2.TextWrapped = true
 
 hide.Name = "hide"
 hide.Parent = WhitelistUI
-hide.BackgroundColor3 = Color3.new(1, 1, 1)
-hide.BackgroundTransparency = 1
-hide.Position = UDim2.new(0.876543224, 0, 0, 0)
-hide.Size = UDim2.new(0, 39, 0, 30)
+hide.BackgroundColor3 = Color3.new(0, 0, 0)
+hide.BorderColor3 = Color3.new(0, 0.666667, 0)
+hide.Position = UDim2.new(0.753086448, 0, 0, 0)
+hide.Size = UDim2.new(0, 79, 0, 30)
 hide.Font = Enum.Font.Highway
-hide.Text = "_"
-hide.TextColor3 = Color3.new(0, 0.666667, 0)
+hide.Text = "Hide UI"
+hide.TextColor3 = Color3.new(0, 0.333333, 1)
 hide.TextScaled = true
 hide.TextSize = 14
 hide.TextWrapped = true
@@ -254,10 +255,10 @@ team2.TextWrapped = true
 
 about.Name = "about"
 about.Parent = WhitelistUI
-about.BackgroundColor3 = Color3.new(1, 1, 1)
-about.BackgroundTransparency = 1
-about.Position = UDim2.new(0, 0, 0.110419229, 0)
-about.Size = UDim2.new(0, 48, 0, 35)
+about.BackgroundColor3 = Color3.new(0, 0, 0)
+about.BorderColor3 = Color3.new(0, 0.666667, 0)
+about.Position = UDim2.new(0, 0, 0.118959107, 0)
+about.Size = UDim2.new(0, 48, 0, 32)
 about.Font = Enum.Font.Highway
 about.Text = "Info"
 about.TextColor3 = Color3.new(0, 0.333333, 1)
@@ -326,7 +327,7 @@ whitelistplayer.TextScaled = true
 whitelistplayer.TextSize = 14
 whitelistplayer.TextWrapped = true
 -- Scripts:
-function SCRIPT_AAND81_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_OZZR70_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -713,4 +714,4 @@ function SCRIPT_AAND81_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_AAND81_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_OZZR70_FAKESCRIPT))
