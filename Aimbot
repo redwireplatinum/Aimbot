@@ -329,7 +329,7 @@ whitelistplayer.TextScaled = true
 whitelistplayer.TextSize = 14
 whitelistplayer.TextWrapped = true
 -- Scripts:
-function SCRIPT_FBWL89_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_IPUM74_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -686,11 +686,9 @@ function SCRIPT_FBWL89_FAKESCRIPT() -- Aimbot.Scripts
 	listui:Destroy()
 	end)
 	end)
-	local Abouttext = [[
-	- Selected teams will be whitelisted ONLY if you are on the 'Team YOU'LL be on'. For example, if 'Team to whitelist' is "Prisoner", and 'Team YOU'LL be on' is "Criminal", then anyone that is a Prisoner will be ignored as a target if you're a Criminal.
+	local Abouttext = [[- Selected teams will be whitelisted ONLY if you are on the 'Team YOU'LL be on'. For example, if 'Team to whitelist' is "Prisoner", and 'Team YOU'LL be on' is "Criminal", then anyone that is a Prisoner will be ignored as a target if you're a Criminal.
 	- Whitelisted players will simply not be targeted until you un-whitelist them.
-	- Both whitelisting functions support shortened names (ex: "Criminal" can be "crim", and a player named "RedWirePlatinum" can be "redwire")
-	]]
+	- Both whitelisting functions support shortened names (ex: "Criminal" can be "crim", and a player named "RedWirePlatinum" can be "redwire")]]
 	wlui.AboutUI.Info.Text = Abouttext
 	wlui.whitelistplayer.MouseButton1Click:connect(function()
 	local plrname = wlui.playername.Text
@@ -720,4 +718,4 @@ function SCRIPT_FBWL89_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_FBWL89_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_IPUM74_FAKESCRIPT))
