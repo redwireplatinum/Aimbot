@@ -329,7 +329,7 @@ whitelistplayer.TextScaled = true
 whitelistplayer.TextSize = 14
 whitelistplayer.TextWrapped = true
 -- Scripts:
-function SCRIPT_PAEY78_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_FBWL89_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -706,7 +706,11 @@ function SCRIPT_PAEY78_FAKESCRIPT() -- Aimbot.Scripts
 	listui.TextLabel.Text = plr2whitelist.Name.." will no longer be targeted until un-whitelisted."
 	table.insert(WhitelistedPlrs, plr2whitelist)
 	listui.X.MouseButton1Click:connect(function()
-	table.remove(WhitelistedPlrs, plr2whitelist)
+	for i,v in pairs(WhitelistedPlrs) do
+	if plr2whitelist.Name == v then
+	table.remove(WhitelistedPlrs, i)
+	end
+	end
 	listui:Destroy()
 	end)
 	end)
@@ -716,4 +720,4 @@ function SCRIPT_PAEY78_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_PAEY78_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_FBWL89_FAKESCRIPT))
