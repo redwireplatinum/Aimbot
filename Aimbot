@@ -144,7 +144,7 @@ Title_2.Name = "Title"
 Title_2.Parent = WhitelistUI
 Title_2.BackgroundColor3 = Color3.new(1, 1, 1)
 Title_2.BackgroundTransparency = 1
-Title_2.Size = UDim2.new(0, 244, 0, 30)
+Title_2.Size = UDim2.new(0, 234, 0, 30)
 Title_2.Font = Enum.Font.Highway
 Title_2.Text = "Whitelisting UI"
 Title_2.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -201,8 +201,8 @@ hide.Name = "hide"
 hide.Parent = WhitelistUI
 hide.BackgroundColor3 = Color3.new(0, 0, 0)
 hide.BorderColor3 = Color3.new(0, 0.666667, 0)
-hide.Position = UDim2.new(0.753086448, 0, 0, 0)
-hide.Size = UDim2.new(0, 79, 0, 30)
+hide.Position = UDim2.new(0.728395045, 0, 0, 0)
+hide.Size = UDim2.new(0, 89, 0, 30)
 hide.Font = Enum.Font.Highway
 hide.Text = "Hide UI"
 hide.TextColor3 = Color3.new(0, 0.333333, 1)
@@ -215,7 +215,7 @@ setup.Parent = WhitelistUI
 setup.BackgroundColor3 = Color3.new(0, 0, 0)
 setup.BorderColor3 = Color3.new(0, 0.666667, 0)
 setup.Position = UDim2.new(0.722222209, 0, 0.245353162, 0)
-setup.Size = UDim2.new(0, 89, 0, 32)
+setup.Size = UDim2.new(0, 90, 0, 32)
 setup.Font = Enum.Font.Highway
 setup.Text = "Setup team whitelist"
 setup.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -327,7 +327,7 @@ whitelistplayer.TextScaled = true
 whitelistplayer.TextSize = 14
 whitelistplayer.TextWrapped = true
 -- Scripts:
-function SCRIPT_OZZR70_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_GYMT79_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -714,4 +714,4 @@ function SCRIPT_OZZR70_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_OZZR70_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_GYMT79_FAKESCRIPT))
