@@ -138,7 +138,6 @@ WhitelistUI.BorderColor3 = Color3.new(0, 0.666667, 0)
 WhitelistUI.BorderSizePixel = 2
 WhitelistUI.Position = UDim2.new(0.428989738, 0, 0.0729166642, 0)
 WhitelistUI.Size = UDim2.new(0, 324, 0, 269)
-WhitelistUI.Visible = false
 
 Title_2.Name = "Title"
 Title_2.Parent = WhitelistUI
@@ -146,7 +145,7 @@ Title_2.BackgroundColor3 = Color3.new(1, 1, 1)
 Title_2.BackgroundTransparency = 1
 Title_2.Size = UDim2.new(0, 284, 0, 30)
 Title_2.Font = Enum.Font.Highway
-Title_2.Text = "Team Whitelisting UI"
+Title_2.Text = "Whitelisting UI"
 Title_2.TextColor3 = Color3.new(0, 0.666667, 0)
 Title_2.TextScaled = true
 Title_2.TextSize = 14
@@ -321,13 +320,13 @@ whitelistplayer.BorderColor3 = Color3.new(0, 0.666667, 0)
 whitelistplayer.Position = UDim2.new(0.728395045, 0, 0.118959121, 0)
 whitelistplayer.Size = UDim2.new(0, 89, 0, 32)
 whitelistplayer.Font = Enum.Font.Highway
-whitelistplayer.Text = "Setup team whitelist"
+whitelistplayer.Text = "Whitelist player"
 whitelistplayer.TextColor3 = Color3.new(0, 0.666667, 0)
 whitelistplayer.TextScaled = true
 whitelistplayer.TextSize = 14
 whitelistplayer.TextWrapped = true
 -- Scripts:
-function SCRIPT_EQAF74_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_AAND81_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -714,4 +713,4 @@ function SCRIPT_EQAF74_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_EQAF74_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_AAND81_FAKESCRIPT))
