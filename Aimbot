@@ -31,6 +31,7 @@ local whitelistplayer = Instance.new("TextButton")
 --Properties:
 Aimbot.Name = "Aimbot"
 Aimbot.Parent = game.CoreGui
+Aimbot.Enabled = false
 Aimbot.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 MFrame.Name = "MFrame"
@@ -329,7 +330,7 @@ whitelistplayer.TextScaled = true
 whitelistplayer.TextSize = 14
 whitelistplayer.TextWrapped = true
 -- Scripts:
-function SCRIPT_IPUM74_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_UPNQ85_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -360,7 +361,7 @@ function SCRIPT_IPUM74_FAKESCRIPT() -- Aimbot.Scripts
 	RedsAimbot.Stats.Target = "Head"
 	RedsAimbot.Stats.IsOn = false
 	RedsAimbot.Stats.Character = ""
-	RedsAimbot.Stats.AutoTarget = false
+	RedsAimbot.Stats.AutoTarget = true
 	RedsAimbot.Stats.FPEnabled = true
 	RedsAimbot.Functions.deselect = function()
 	RedsAimbot.Stats.Character = ""
@@ -713,9 +714,13 @@ function SCRIPT_IPUM74_FAKESCRIPT() -- Aimbot.Scripts
 	end)
 	end)
 	else
+	game.StarterGui:SetCore("SendNotification", {
+	Title = "Aimbot";
+	Text = "Attempting to execute this twice will mess up the aiming function";
+	})
 	wait(0.2)
 	script.Parent:Destroy()
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_IPUM74_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_UPNQ85_FAKESCRIPT))
