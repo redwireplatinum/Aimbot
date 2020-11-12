@@ -193,7 +193,7 @@ X_2.BackgroundTransparency = 1
 X_2.Position = UDim2.new(0.846153855, 0, 0, 0)
 X_2.Size = UDim2.new(0, 48, 0, 37)
 X_2.Font = Enum.Font.Highway
-X_2.Text = "X"
+X_2.Text = "×"
 X_2.TextColor3 = Color3.new(1, 0, 0)
 X_2.TextScaled = true
 X_2.TextSize = 14
@@ -359,7 +359,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_OAMV67_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_MDCF76_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -775,4 +775,4 @@ function SCRIPT_OAMV67_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_OAMV67_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_MDCF76_FAKESCRIPT))
