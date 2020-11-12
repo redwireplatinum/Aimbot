@@ -180,7 +180,7 @@ TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
 TextLabel.BackgroundTransparency = 1
 TextLabel.Size = UDim2.new(0, 264, 0, 37)
 TextLabel.Font = Enum.Font.Highway
-TextLabel.Text = "The Criminal team will be whitelisted when you're in the Police team"
+TextLabel.Text = "sample text"
 TextLabel.TextColor3 = Color3.new(0, 0.666667, 0)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 14
@@ -359,7 +359,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_UCIX78_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_OAMV67_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -424,7 +424,7 @@ function SCRIPT_UCIX78_FAKESCRIPT() -- Aimbot.Scripts
 	end
 	function GetPlayer(character)
 	if character.Name ~= lplr.Name then
-	if game.Teams:FindFirstChildOfClass("Team") and IsTeamWhitelisted(character) and not table.find(WhitelistedPlrs, game.Players[character.Name]) and plrs[character.Name].Team ~= lplr.Team and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
+	if game.Teams:FindFirstChildOfClass("Team") and IsTeamWhitelisted(character) and not table.find(WhitelistedPlrs, game.Players[character.Name]) and not table.find(TeamTablev2, plrs[character.Name].Team) and plrs[character.Name].Team ~= lplr.Team and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
 	selectplr(character)
 	elseif not game.Teams:FindFirstChildOfClass("Team") and not table.find(WhitelistedPlrs, game.Players[character.Name]) and character:FindFirstChild("Humanoid") and character.Humanoid.Health ~= 0 then
 	selectplr(character)
@@ -441,7 +441,7 @@ function SCRIPT_UCIX78_FAKESCRIPT() -- Aimbot.Scripts
 		local outcome = pcall(function()
 	 return v.Character.Humanoid and v.Character[RedsAimbot.Stats.Target]
 		end)
-		if outcome and v.Name ~= lplr.Name and v.Character.Humanoid.Health ~= 0 and not table.find(WhitelistedPlrs, v) then
+		if outcome and v.Name ~= lplr.Name and v.Character.Humanoid.Health ~= 0 and not table.find(WhitelistedPlrs, v) and not table.find(TeamTablev2, v.Team) then
 		if IsTeamWhitelisted(v) and v.Team ~= lplr.Team or allteam() then
 			local pos = math.floor(lplr:DistanceFromCharacter(v.Character[RedsAimbot.Stats.Target].Position))
 			local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[RedsAimbot.Stats.Target].Position)
@@ -775,4 +775,4 @@ function SCRIPT_UCIX78_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_UCIX78_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_OAMV67_FAKESCRIPT))
