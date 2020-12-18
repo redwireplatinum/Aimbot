@@ -271,7 +271,7 @@ Info.BackgroundColor3 = Color3.new(0, 0, 0)
 Info.BackgroundTransparency = 1
 Info.Size = UDim2.new(0, 378, 0, 196)
 Info.Font = Enum.Font.Highway
-Info.Text = "Selected teams will be whitelisted ONLY if you are on the 'Team YOU'LL be on'. For example, if 'Team to whitelist' is \"Prisoner\", and 'Team YOU'LL be on' is \"Criminal\", then anyone that is a Prisoner will be ignored as a target if you're a Criminal."
+Info.Text = "sample text"
 Info.TextColor3 = Color3.new(0, 0.666667, 0)
 Info.TextScaled = true
 Info.TextSize = 14
@@ -348,7 +348,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_QQAU82_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_UJMV67_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -656,8 +656,8 @@ function SCRIPT_QQAU82_FAKESCRIPT() -- Aimbot.Scripts
 	wlui.hide.MouseButton1Click:connect(function()
 	wlui.Visible = false
 	end)
-	local Abouttext = [[- Selected teams will be whitelisted ONLY if you are on the 'Team YOU'LL be on'. For example, if 'Team to whitelist' is "Prisoner", and 'Team YOU'LL be on' is "Criminal", then anyone that is a Prisoner will be ignored as a target if you're a Criminal.
-	- Whitelisted players will simply not be targeted until you un-whitelist them.
+	local Abouttext = [[- Whitelisting teams/players will have the targeting system avoid targeting the specified player or any player within a team. 
+	- By default, your own team is whitelisted, this can be disabled/re-enabled by simply clicking the "Yes" text.
 	- Both whitelisting functions support shortened names (ex: "Criminal" can be "crim", and a player named "RedWirePlatinum" can be "redwire")]]
 	wlui.AboutUI.Info.Text = Abouttext
 	wlui.whitelistplayer.MouseButton1Click:connect(function()
@@ -726,4 +726,4 @@ function SCRIPT_QQAU82_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_QQAU82_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_UJMV67_FAKESCRIPT))
