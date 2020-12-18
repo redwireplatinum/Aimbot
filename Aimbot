@@ -247,12 +247,14 @@ about.Parent = WhitelistUI
 about.BackgroundColor3 = Color3.new(0, 0, 0)
 about.BorderColor3 = Color3.new(0, 0.666667, 0)
 about.Position = UDim2.new(0, 0, 0.118959107, 0)
-about.Size = UDim2.new(0, 48, 0, 32)
+about.Size = UDim2.new(0, 39, 0, 32)
 about.Font = Enum.Font.Highway
-about.Text = "Info"
+about.Text = "ⓘ"
 about.TextColor3 = Color3.new(0, 0.333333, 1)
 about.TextScaled = true
 about.TextSize = 14
+about.TextStrokeColor3 = Color3.new(0, 0.333333, 1)
+about.TextStrokeTransparency = 0.60000002384186
 about.TextWrapped = true
 
 AboutUI.Name = "AboutUI"
@@ -294,8 +296,8 @@ playername.Name = "playername"
 playername.Parent = WhitelistUI
 playername.BackgroundColor3 = Color3.new(0, 0, 0)
 playername.BorderColor3 = Color3.new(0, 0.666667, 0)
-playername.Position = UDim2.new(0.148148149, 0, 0.118959107, 0)
-playername.Size = UDim2.new(0, 186, 0, 32)
+playername.Position = UDim2.new(0.120370373, 0, 0.118959107, 0)
+playername.Size = UDim2.new(0, 195, 0, 32)
 playername.Font = Enum.Font.Highway
 playername.PlaceholderColor3 = Color3.new(0, 0.666667, 0)
 playername.PlaceholderText = "Player name here"
@@ -346,7 +348,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_LZXX85_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_QQAU82_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -724,4 +726,4 @@ function SCRIPT_LZXX85_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_LZXX85_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_QQAU82_FAKESCRIPT))
