@@ -364,7 +364,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_NXCD86_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -470,6 +470,19 @@ function SCRIPT_NXCD86_FAKESCRIPT() -- Aimbot.Scripts
 	    end
 	    end))
 	end
+	GetFamily = function(ins)
+	local Pathway = {}
+	function _GetFamily(v)
+	if v.Parent ~= nil then
+	        table.insert(Pathway, 1, v)
+	        _GetFamily(v.Parent)
+	    else
+	       table.insert(Pathway, 1, v)
+	    end
+	end
+	_GetFamily(ins)
+	return Pathway
+	end
 	function repack(str)
 	local t = {}
 	local arg = ""
@@ -552,10 +565,10 @@ function SCRIPT_NXCD86_FAKESCRIPT() -- Aimbot.Scripts
 	end
 		end
 		if m.Target ~= nil then
-		if plrs:FindFirstChild(m.Target.Parent.Name) then
-		GetPlayer(plrs[m.Target.Parent.Name])
-		elseif plrs:FindFirstChild(m.Target.Parent.Parent.Name) then
-	    GetPlayer(plrs[m.Target.Parent.Parent.Name])
+		for i,v in pairs(GetFamily(m.Target)) do
+		if game.Players:FindFirstChild(v.Name) then
+		GetPlayer(game.Players[v.Name])
+		end
 		end
 		end
 	if RedsAimbot.Stats.AutoTarget then
@@ -743,4 +756,4 @@ function SCRIPT_NXCD86_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_NXCD86_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_PSUK67_FAKESCRIPT))
