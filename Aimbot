@@ -10,6 +10,7 @@ local AutoTarget = Instance.new("TextButton")
 local Title = Instance.new("TextLabel")
 local TargetedPart = Instance.new("TextButton")
 local FirstPerson = Instance.new("TextButton")
+local ChosenPlayer = Instance.new("TextLabel")
 local WhitelistUI = Instance.new("Frame")
 local Title_2 = Instance.new("TextLabel")
 local WhitelistedInstances = Instance.new("ScrollingFrame")
@@ -132,6 +133,21 @@ FirstPerson.TextColor3 = Color3.new(0, 0.666667, 0)
 FirstPerson.TextScaled = true
 FirstPerson.TextSize = 14
 FirstPerson.TextWrapped = true
+
+ChosenPlayer.Name = "ChosenPlayer"
+ChosenPlayer.Parent = MFrame
+ChosenPlayer.BackgroundColor3 = Color3.new(0, 0, 0)
+ChosenPlayer.BorderColor3 = Color3.new(0, 0.666667, 0)
+ChosenPlayer.Position = UDim2.new(0.00221135071, 0, -0.223076925, 0)
+ChosenPlayer.Size = UDim2.new(0, 259, 0, 28)
+ChosenPlayer.Visible = false
+ChosenPlayer.Font = Enum.Font.Highway
+ChosenPlayer.Text = "sample text"
+ChosenPlayer.TextColor3 = Color3.new(0, 0.666667, 0)
+ChosenPlayer.TextScaled = true
+ChosenPlayer.TextSize = 14
+ChosenPlayer.TextWrapped = true
+ChosenPlayer.TextXAlignment = Enum.TextXAlignment.Left
 
 WhitelistUI.Name = "WhitelistUI"
 WhitelistUI.Parent = Aimbot
@@ -348,7 +364,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_UJMV67_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_NXCD86_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -603,9 +619,10 @@ function SCRIPT_UJMV67_FAKESCRIPT() -- Aimbot.Scripts
 	end)
 	Changed(RedsAimbot.Stats, "Character", function(v)
 	if v ~= "" then
-	MainFrame.WhitelistUIOpener.Text = "Chosen "..v.Name
+	MainFrame.ChosenPlayer.Visible = true
+	MainFrame.ChosenPlayer.Text = "Chosen "..v.Name
 	else
-	MainFrame.WhitelistUIOpener.Text = "Click to open the whitelisting UI"
+	MainFrame.ChosenPlayer.Visible = false
 	end
 	end)
 	MainFrame.WhitelistUIOpener.MouseButton1Click:connect(function()
@@ -726,4 +743,4 @@ function SCRIPT_UJMV67_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_UJMV67_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_NXCD86_FAKESCRIPT))
