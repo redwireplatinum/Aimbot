@@ -364,7 +364,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_VXJN79_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -384,31 +384,30 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 		EncryptedName = EncryptedName..char
 	end
 	script.Parent.Name = EncryptedName
-	local RedsAimbot = {}
 	local TeamTable = {}
 	local WhitelistedPlrs = {}
 	local plrs = game.Players
 	local lplr = plrs.LocalPlayer
 	local m = lplr:GetMouse()
-	RedsAimbot.Stats = {}
-	RedsAimbot.Stats.Target = "Head"
-	RedsAimbot.Stats.IsOn = false
-	RedsAimbot.Stats.Character = ""
-	RedsAimbot.Stats.AutoTarget = true
-	RedsAimbot.Stats.FPEnabled = true
-	RedsAimbot.Stats.OwnTeamWhitelisted = true
+	local AimbotStats = {}
+	AimbotStats.Target = "Head"
+	AimbotStats.IsOn = false
+	AimbotStats.Character = ""
+	AimbotStats.AutoTarget = true
+	AimbotStats.FPEnabled = true
+	AimbotStats.OwnTeamWhitelisted = true
 	deselect = function()
-	RedsAimbot.Stats.Character = ""
+	AimbotStats.Character = ""
 	coroutine.resume(coroutine.create(function()
-	if RedsAimbot.Stats.IsOn then
-	RedsAimbot.Stats.IsOn = false
+	if AimbotStats.IsOn then
+	AimbotStats.IsOn = false
 	wait()
-	RedsAimbot.Stats.IsOn = true
+	AimbotStats.IsOn = true
 	end
 	end))
 	end
 	function IsNotWhitelisted(plr)
-	if RedsAimbot.Stats.OwnTeamWhitelisted then
+	if AimbotStats.OwnTeamWhitelisted then
 	return plr.Team ~= lplr.Team and not table.find(WhitelistedPlrs, plr) and not table.find(TeamTable, plr.Team)
 	else
 	return not table.find(WhitelistedPlrs, plr) and not table.find(TeamTable, plr.Team)
@@ -432,11 +431,11 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	local table2 = {}
 	for i,v in pairs(plrs:GetPlayers()) do
 		local outcome = pcall(function()
-	 return v.Character.Humanoid and v.Character[RedsAimbot.Stats.Target]
+	 return v.Character.Humanoid and v.Character[AimbotStats.Target]
 		end)
 		if outcome and v.Name ~= lplr.Name and v.Character.Humanoid.Health ~= 0 and IsNotWhitelisted(v) then
-			local pos = math.floor(lplr:DistanceFromCharacter(v.Character[RedsAimbot.Stats.Target].Position))
-			local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[RedsAimbot.Stats.Target].Position)
+			local pos = math.floor(lplr:DistanceFromCharacter(v.Character[AimbotStats.Target].Position))
+			local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[AimbotStats.Target].Position)
 			if onscreen then
 			table1[pos] = v
 			table.insert(table2, pos)
@@ -503,11 +502,11 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	return t
 	end
 	function selectplr(chr)
-	if RedsAimbot.Stats.IsOn == true and RedsAimbot.Stats.Character == "" then
-	RedsAimbot.Stats.Character = chr
+	if AimbotStats.IsOn == true and AimbotStats.Character == "" then
+	AimbotStats.Character = chr
 	if game.PlaceId == 286090429 then
 	chr.ChildAdded:connect(function(c)
-	if c.Name == "Cam" and RedsAimbot.Stats.Character == chr then
+	if c.Name == "Cam" and AimbotStats.Character == chr then
 	chr.Humanoid.Health = 0
 	chr.ChildRemoved:Wait()
 	chr.Humanoid.Health = 100
@@ -518,10 +517,10 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	end
 		m.KeyDown:connect(function()
 		if game.UserInputService:IsKeyDown(Enum.KeyCode.LeftAlt) then
-		if RedsAimbot.Stats.IsOn == false then
-		RedsAimbot.Stats.IsOn = true
+		if AimbotStats.IsOn == false then
+		AimbotStats.IsOn = true
 		else
-		RedsAimbot.Stats.IsOn = false
+		AimbotStats.IsOn = false
 		end
 		end
 		if game.UserInputService:IsKeyDown(Enum.KeyCode.RightAlt) then
@@ -543,21 +542,21 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	local Torso = chr:FindFirstChild("Torso") or chr:FindFirstChild("UpperTorso")
 	m.Button1Down:connect(function()
 	if game.UserInputService:IsKeyDown(Enum.KeyCode.X) then
-	if RedsAimbot.Stats.Target == "Torso" or RedsAimbot.Stats.Target == "UpperTorso" then
-	RedsAimbot.Stats.Target = "Head"
+	if AimbotStats.Target == "Torso" or AimbotStats.Target == "UpperTorso" then
+	AimbotStats.Target = "Head"
 	else
-	RedsAimbot.Stats.Target = Torso.Name
+	AimbotStats.Target = Torso.Name
 	end
 	end
 	end)
 	game.RunService.RenderStepped:connect(function()
 	if not _G.AimbotGUIClosed then
-		if RedsAimbot.Stats.Character ~= "" and RedsAimbot.Stats.Character:FindFirstChild(RedsAimbot.Stats.Target) then
-		local v, _ = workspace.Camera:WorldToScreenPoint(RedsAimbot.Stats.Character[RedsAimbot.Stats.Target].Position)
+		if AimbotStats.Character ~= "" and AimbotStats.Character:FindFirstChild(AimbotStats.Target) then
+		local v, _ = workspace.Camera:WorldToScreenPoint(AimbotStats.Character[AimbotStats.Target].Position)
 	if _ then
 	local StabilizeNum = 0.45
 		local x, y = (v.X - m.X)*StabilizeNum, (v.Y - m.Y)*StabilizeNum
-		if RedsAimbot.Stats.IsOn then
+		if AimbotStats.IsOn then
 		mousemoverel(x, y)
 		end
 	elseif not _ then
@@ -571,11 +570,11 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 		end
 		end
 		end
-	if RedsAimbot.Stats.AutoTarget then
+	if AimbotStats.AutoTarget then
 	GetNearestPlayer()
 	end
-	if RedsAimbot.Stats.FPEnabled then
-	if RedsAimbot.Stats.Character ~= ""  and RedsAimbot.Stats.IsOn then
+	if AimbotStats.FPEnabled then
+	if AimbotStats.Character ~= ""  and AimbotStats.IsOn then
 	plrs.LocalPlayer.CameraMode = Enum.CameraMode.LockFirstPerson
 	else
 	plrs.LocalPlayer.CameraMode = Enum.CameraMode.Classic
@@ -594,7 +593,7 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	local function OnDeath(chr)
 	chr:WaitForChild("Humanoid")
 	chr.Humanoid.Died:connect(function()
-	if RedsAimbot.Stats.Character == chr then
+	if AimbotStats.Character == chr then
 	deselect()
 	end
 	end)
@@ -602,7 +601,7 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	OnDeath(player.Character)
 	player.CharacterAdded:connect(OnDeath)
 	player.CharacterRemoving:connect(function(chr)
-	if RedsAimbot.Stats.Character == chr then
+	if AimbotStats.Character == chr then
 	deselect()
 	end
 	end)
@@ -610,7 +609,7 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	for i,v in pairs(plrs:GetPlayers()) do Died(v) end
 	plrs.PlayerAdded:connect(Died)
 	plrs.PlayerRemoving:connect(function(plr)
-	if plr.Character and plr.Character == RedsAimbot.Stats.Character then
+	if plr.Character and plr.Character == AimbotStats.Character then
 	deselect()
 	end
 	end)
@@ -619,18 +618,19 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	_G.AimbotGUIClosed = true
 	MainFrame.Parent:Destroy()
 	end)
-	MainFrame.TargetedPart.Text = "Targeted Part: "..RedsAimbot.Stats.Target
-	Changed(RedsAimbot.Stats, "Target", function(v)
-	MainFrame.TargetedPart.Text = "Targeted Part: "..v
+	local targettext = MainFrame.TargetedPart.Text.." "
+	MainFrame.TargetedPart.Text = targettext..AimbotStats.Target
+	Changed(AimbotStats, "Target", function(v)
+	MainFrame.TargetedPart.Text = targettext..v
 	end)
 	MainFrame.TargetedPart.MouseButton1Click:connect(function()
-	if RedsAimbot.Stats.Target == "Torso" or RedsAimbot.Stats.Target == "UpperTorso" then
-	RedsAimbot.Stats.Target = "Head"
+	if AimbotStats.Target == "Torso" or AimbotStats.Target == "UpperTorso" then
+	AimbotStats.Target = "Head"
 	else
-	RedsAimbot.Stats.Target = Torso.Name
+	AimbotStats.Target = Torso.Name
 	end
 	end)
-	Changed(RedsAimbot.Stats, "Character", function(v)
+	Changed(AimbotStats, "Character", function(v)
 	if v ~= "" then
 	MainFrame.ChosenPlayer.Visible = true
 	MainFrame.ChosenPlayer.Text = "Chosen "..v.Name
@@ -641,40 +641,43 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	MainFrame.WhitelistUIOpener.MouseButton1Click:connect(function()
 	wlui.Visible = true
 	end)
-	MainFrame.FirstPerson.Text = "First Person Mode Enabled: "..tostring(RedsAimbot.Stats.FPEnabled)
-	Changed(RedsAimbot.Stats, "FPEnabled", function(v)
-	MainFrame.FirstPerson.Text = "First Person Mode Enabled: "..tostring(v)
+	local fptext = MainFrame.FirstPerson.Text.." "
+	MainFrame.FirstPerson.Text = fptext..tostring(AimbotStats.FPEnabled)
+	Changed(AimbotStats, "FPEnabled", function(v)
+	MainFrame.FirstPerson.Text = fptext..tostring(v)
 	end)
 	MainFrame.FirstPerson.MouseButton1Click:connect(function()
-	if RedsAimbot.Stats.FPEnabled then
-	RedsAimbot.Stats.FPEnabled = false
+	if AimbotStats.FPEnabled then
+	AimbotStats.FPEnabled = false
 	else
-	RedsAimbot.Stats.FPEnabled = true
+	AimbotStats.FPEnabled = true
 	end
 	end)
-	MainFrame.IsAimbotOn.Text = "Aimbot Enabled: "..tostring(RedsAimbot.Stats.IsOn)
-	Changed(RedsAimbot.Stats, "IsOn", function(v)
-	MainFrame.IsAimbotOn.Text = "Aimbot Enabled: "..tostring(v)
+	local aimbottext = MainFrame.IsAimbotOn.Text.." "
+	MainFrame.IsAimbotOn.Text = aimbottext..tostring(AimbotStats.IsOn)
+	Changed(AimbotStats, "IsOn", function(v)
+	MainFrame.IsAimbotOn.Text = aimbottext..tostring(v)
 	if v == false then
 	deselect()
 	end
 	end)
 	MainFrame.IsAimbotOn.MouseButton1Click:connect(function()
-	if RedsAimbot.Stats.IsOn then
-	RedsAimbot.Stats.IsOn = false
+	if AimbotStats.IsOn then
+	AimbotStats.IsOn = false
 	else
-	RedsAimbot.Stats.IsOn = true
+	AimbotStats.IsOn = true
 	end
 	end)
-	MainFrame.AutoTarget.Text = "Auto-Targeting Enabled: "..tostring(RedsAimbot.Stats.AutoTarget)
-	Changed(RedsAimbot.Stats, "AutoTarget", function(v)
-	MainFrame.AutoTarget.Text = "Auto-Targeting Enabled: "..tostring(v)
+	local autotargettext = MainFrame.AutoTarget.Text.." "
+	MainFrame.AutoTarget.Text = autotargettext..tostring(AimbotStats.AutoTarget)
+	Changed(AimbotStats, "AutoTarget", function(v)
+	MainFrame.AutoTarget.Text = autotargettext..tostring(v)
 	end)
 	MainFrame.AutoTarget.MouseButton1Click:connect(function()
-	if RedsAimbot.Stats.AutoTarget then
-	RedsAimbot.Stats.AutoTarget = false
+	if AimbotStats.AutoTarget then
+	AimbotStats.AutoTarget = false
 	else
-	RedsAimbot.Stats.AutoTarget = true
+	AimbotStats.AutoTarget = true
 	end
 	end)
 	wlui.about.MouseButton1Click:Connect(function()
@@ -736,12 +739,12 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	end)
 	wlui.WhitelistedInstances.whitelistownteam.Toggle.MouseButton1Click:connect(function()
 	local toggle = wlui.WhitelistedInstances.whitelistownteam.Toggle
-	if RedsAimbot.Stats.OwnTeamWhitelisted then
-	RedsAimbot.Stats.OwnTeamWhitelisted = false
+	if AimbotStats.OwnTeamWhitelisted then
+	AimbotStats.OwnTeamWhitelisted = false
 	toggle.TextColor3 = Color3.new(1,0,0)
 	toggle.Text = "No"
 	else
-	RedsAimbot.Stats.OwnTeamWhitelisted = true
+	AimbotStats.OwnTeamWhitelisted = true
 	toggle.TextColor3 = Color3.new(0,1,0)
 	toggle.Text = "Yes"
 	end
@@ -756,4 +759,4 @@ function SCRIPT_PSUK67_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_PSUK67_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_VXJN79_FAKESCRIPT))
