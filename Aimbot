@@ -364,7 +364,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_VXJN79_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -587,6 +587,9 @@ function SCRIPT_VXJN79_FAKESCRIPT() -- Aimbot.Scripts
 	game.StarterGui:SetCore("SendNotification", {
 	Title = "Aimbot";
 	Text = "To see how the aimbot works, check the developer log.";})
+	game.StarterGui:SetCore("SendNotification", {
+	Title = "Aimbot Update:";
+	Text = "Fixed an error where un-whitelisting players won't let you target them.";})
 	
 	function Died(player)
 	if not player.Character then player.CharacterAdded:Wait() end
@@ -704,16 +707,23 @@ function SCRIPT_VXJN79_FAKESCRIPT() -- Aimbot.Scripts
 	end
 	listui.Visible = true
 	listui.Parent = wlui.WhitelistedInstances
-	listui.TextLabel.Text = plr2whitelist.Name.." will no longer be targeted until un-whitelisted."
+	listui.TextLabel.Text = plr2whitelist.Name.." will not be targeted until un-whitelisted."
 	table.insert(WhitelistedPlrs, plr2whitelist)
-	listui.X.MouseButton1Click:connect(function()
+	local function unwhitelistplr()
 	for i,v in pairs(WhitelistedPlrs) do
-	if plr2whitelist.Name == v then
+	if plr2whitelist == v then
 	table.remove(WhitelistedPlrs, i)
 	end
 	end
 	listui:Destroy()
+	end
+	listui.X.MouseButton1Click:connect(function()
+	unwhitelistplr()
 	end)
+	coroutine.resume(coroutine.create(function()
+	repeat wait() until not game.Players:FindFirstChild(plr2whitelist.Name)
+	unwhitelistplr()
+	end))
 	end)
 	wlui.Whitelistteam.MouseButton1Click:connect(function()
 	local team2whitelist = wlui.teamname.Text
@@ -726,7 +736,7 @@ function SCRIPT_VXJN79_FAKESCRIPT() -- Aimbot.Scripts
 	end
 	listui.Visible = true
 	listui.Parent = wlui.WhitelistedInstances
-	listui.TextLabel.Text = "The "..Team_1.Name.." team will be whitelisted entirely until un-whitelisted."
+	listui.TextLabel.Text = "Anyone in the "..Team_1.Name.." team will not be targeted until un-whitelisted."
 	table.insert(TeamTable, Team_1)
 	listui.X.MouseButton1Click:connect(function()
 	for i,v in pairs(TeamTable) do
@@ -759,4 +769,4 @@ function SCRIPT_VXJN79_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_VXJN79_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_JBCM70_FAKESCRIPT))
