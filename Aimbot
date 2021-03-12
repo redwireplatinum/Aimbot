@@ -11,6 +11,7 @@ local Title = Instance.new("TextLabel")
 local TargetedPart = Instance.new("TextButton")
 local FirstPerson = Instance.new("TextButton")
 local ChosenPlayer = Instance.new("TextLabel")
+local raycasting = Instance.new("TextButton")
 local WhitelistUI = Instance.new("Frame")
 local Title_2 = Instance.new("TextLabel")
 local WhitelistedInstances = Instance.new("ScrollingFrame")
@@ -100,7 +101,7 @@ Title.Parent = MFrame
 Title.BackgroundColor3 = Color3.new(1, 1, 1)
 Title.BackgroundTransparency = 1
 Title.Position = UDim2.new(0, 0, -0.00507530803, 0)
-Title.Size = UDim2.new(0, 214, 0, 46)
+Title.Size = UDim2.new(0, 123, 0, 46)
 Title.Font = Enum.Font.Highway
 Title.Text = "RedWire's Universal Aimbot"
 Title.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -148,6 +149,19 @@ ChosenPlayer.TextScaled = true
 ChosenPlayer.TextSize = 14
 ChosenPlayer.TextWrapped = true
 ChosenPlayer.TextXAlignment = Enum.TextXAlignment.Left
+
+raycasting.Name = "raycasting"
+raycasting.Parent = MFrame
+raycasting.BackgroundColor3 = Color3.new(0, 0, 0)
+raycasting.BorderColor3 = Color3.new(0, 0.666667, 0)
+raycasting.Position = UDim2.new(0.47307691, 0, 0, 0)
+raycasting.Size = UDim2.new(0, 91, 0, 44)
+raycasting.Font = Enum.Font.Highway
+raycasting.Text = "Enable Raycasting:"
+raycasting.TextColor3 = Color3.new(0, 0.666667, 0)
+raycasting.TextScaled = true
+raycasting.TextSize = 14
+raycasting.TextWrapped = true
 
 WhitelistUI.Name = "WhitelistUI"
 WhitelistUI.Parent = Aimbot
@@ -364,7 +378,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_UJLH82_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -395,6 +409,7 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 	AimbotStats.Character = ""
 	AimbotStats.AutoTarget = true
 	AimbotStats.FPEnabled = true
+	AimbotStats.UseRaycasting = false
 	AimbotStats.OwnTeamWhitelisted = true
 	deselect = function()
 	AimbotStats.Character = ""
@@ -413,15 +428,31 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 	return not table.find(WhitelistedPlrs, plr) and not table.find(TeamTable, plr.Team)
 	end
 	end
+	local function usingraycast(chr)
+	local cast = workspace:Raycast(lplr.Character.HumanoidRootPart.Position, chr.HumanoidRootPart.Position)
+	if AimbotStats.UseRaycasting then
+	if not cast or cast and game.Players:GetPlayerFromCharacter(cast.Instance.Parent) then
+	return chr
+	else
+	return nil
+	end
+	else
+	return chr
+	end
+	end
 	function GetPlayer(player)
 	local humanoidvalid, humanoid = pcall(function()
 	return player.Character.Humanoid
 	end)
 	if player.Name ~= lplr.Name and humanoidvalid then
 	if game.Teams:FindFirstChildOfClass("Team") and IsNotWhitelisted(player) and humanoid.Health ~= 0 then
+	if usingraycast(player.Character) then
 	selectplr(player.Character)
+	end
 	elseif not game.Teams:FindFirstChildOfClass("Team") and IsNotWhitelisted(player) then
+	if usingraycast(player.Character) then
 	selectplr(player.Character)
+	end
 	end
 	end
 	end
@@ -436,7 +467,7 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 		if outcome and v.Name ~= lplr.Name and v.Character.Humanoid.Health ~= 0 and IsNotWhitelisted(v) then
 			local pos = math.floor(lplr:DistanceFromCharacter(v.Character[AimbotStats.Target].Position))
 			local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[AimbotStats.Target].Position)
-			if onscreen then
+			if onscreen and usingraycast(v.Character) then
 			table1[pos] = v
 			table.insert(table2, pos)
 		end
@@ -517,11 +548,7 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 	end
 		m.KeyDown:connect(function()
 		if game.UserInputService:IsKeyDown(Enum.KeyCode.LeftAlt) then
-		if AimbotStats.IsOn == false then
-		AimbotStats.IsOn = true
-		else
-		AimbotStats.IsOn = false
-		end
+		AimbotStats.IsOn = not AimbotStats.IsOn
 		end
 		if game.UserInputService:IsKeyDown(Enum.KeyCode.RightAlt) then
 		GetNearestPlayer()
@@ -559,10 +586,10 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 		if AimbotStats.IsOn then
 		mousemoverel(x, y)
 		end
-	elseif not _ then
+	else
 	deselect()
 	end
-		end
+	end
 		if m.Target ~= nil then
 		for i,v in pairs(GetFamily(m.Target)) do
 		if game.Players:FindFirstChild(v.Name) then
@@ -589,7 +616,7 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 	Text = "To see how the aimbot works, check the developer log.";})
 	game.StarterGui:SetCore("SendNotification", {
 	Title = "Aimbot Update:";
-	Text = "Fixed an error where un-whitelisting players won't let you target them.";})
+	Text = "Fixed player unwhitelisted issue + Added a raycasting option.";})
 	
 	function Died(player)
 	if not player.Character then player.CharacterAdded:Wait() end
@@ -621,6 +648,14 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 	_G.AimbotGUIClosed = true
 	MainFrame.Parent:Destroy()
 	end)
+	local raytext = MainFrame.raycasting.Text.." "
+	MainFrame.raycasting.Text = raytext..tostring(AimbotStats.UseRaycasting)
+	Changed(AimbotStats, "UseRaycasting", function(val)
+	MainFrame.raycasting.Text = raytext..tostring(val)
+	end)
+	MainFrame.raycasting.MouseButton1Down:connect(function()
+	AimbotStats.UseRaycasting = not AimbotStats.UseRaycasting
+	end)
 	local targettext = MainFrame.TargetedPart.Text.." "
 	MainFrame.TargetedPart.Text = targettext..AimbotStats.Target
 	Changed(AimbotStats, "Target", function(v)
@@ -650,11 +685,7 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 	MainFrame.FirstPerson.Text = fptext..tostring(v)
 	end)
 	MainFrame.FirstPerson.MouseButton1Click:connect(function()
-	if AimbotStats.FPEnabled then
-	AimbotStats.FPEnabled = false
-	else
-	AimbotStats.FPEnabled = true
-	end
+	AimbotStats.FPEnabled = not AimbotStats.FPEnabled
 	end)
 	local aimbottext = MainFrame.IsAimbotOn.Text.." "
 	MainFrame.IsAimbotOn.Text = aimbottext..tostring(AimbotStats.IsOn)
@@ -665,11 +696,7 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 	end
 	end)
 	MainFrame.IsAimbotOn.MouseButton1Click:connect(function()
-	if AimbotStats.IsOn then
-	AimbotStats.IsOn = false
-	else
-	AimbotStats.IsOn = true
-	end
+	AimbotStats.IsOn = not AimbotStats.IsOn
 	end)
 	local autotargettext = MainFrame.AutoTarget.Text.." "
 	MainFrame.AutoTarget.Text = autotargettext..tostring(AimbotStats.AutoTarget)
@@ -677,11 +704,7 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 	MainFrame.AutoTarget.Text = autotargettext..tostring(v)
 	end)
 	MainFrame.AutoTarget.MouseButton1Click:connect(function()
-	if AimbotStats.AutoTarget then
-	AimbotStats.AutoTarget = false
-	else
-	AimbotStats.AutoTarget = true
-	end
+	AimbotStats.AutoTarget = not AimbotStats.AutoTarget
 	end)
 	wlui.about.MouseButton1Click:Connect(function()
 	wlui.AboutUI.Visible = true
@@ -747,14 +770,13 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 	listui:Destroy()
 	end)
 	end)
-	wlui.WhitelistedInstances.whitelistownteam.Toggle.MouseButton1Click:connect(function()
 	local toggle = wlui.WhitelistedInstances.whitelistownteam.Toggle
-	if AimbotStats.OwnTeamWhitelisted then
-	AimbotStats.OwnTeamWhitelisted = false
+	toggle.MouseButton1Click:connect(function()
+	AimbotStats.OwnTeamWhitelisted = not AimbotStats.OwnTeamWhitelisted
+	if not AimbotStats.OwnTeamWhitelisted then
 	toggle.TextColor3 = Color3.new(1,0,0)
 	toggle.Text = "No"
 	else
-	AimbotStats.OwnTeamWhitelisted = true
 	toggle.TextColor3 = Color3.new(0,1,0)
 	toggle.Text = "Yes"
 	end
@@ -769,4 +791,4 @@ function SCRIPT_JBCM70_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_JBCM70_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_UJLH82_FAKESCRIPT))
