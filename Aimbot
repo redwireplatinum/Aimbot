@@ -41,15 +41,15 @@ MFrame.Name = "MFrame"
 MFrame.Parent = Aimbot
 MFrame.BackgroundColor3 = Color3.new(0, 0, 0)
 MFrame.BorderColor3 = Color3.new(0, 0.666667, 0)
-MFrame.Position = UDim2.new(0.66648984, 0, 0.112894237, 0)
-MFrame.Size = UDim2.new(0, 260, 0, 130)
+MFrame.Position = UDim2.new(0.66648978, 0, 0.112894237, 0)
+MFrame.Size = UDim2.new(0, 260, 0, 170)
 
 WhitelistUIOpener.Name = "WhitelistUIOpener"
 WhitelistUIOpener.Parent = MFrame
 WhitelistUIOpener.BackgroundColor3 = Color3.new(0, 0, 0)
 WhitelistUIOpener.BorderColor3 = Color3.new(0, 0.666667, 0)
-WhitelistUIOpener.Position = UDim2.new(0, 0, 0.611028135, 0)
-WhitelistUIOpener.Size = UDim2.new(0, 88, 0, 50)
+WhitelistUIOpener.Position = UDim2.new(0, 0, 0.652204633, 0)
+WhitelistUIOpener.Size = UDim2.new(0, 94, 0, 50)
 WhitelistUIOpener.Font = Enum.Font.Highway
 WhitelistUIOpener.Text = "Click to open the whitelisting UI"
 WhitelistUIOpener.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -61,8 +61,8 @@ IsAimbotOn.Name = "IsAimbotOn"
 IsAimbotOn.Parent = MFrame
 IsAimbotOn.BackgroundColor3 = Color3.new(0, 0, 0)
 IsAimbotOn.BorderColor3 = Color3.new(0, 0.666667, 0)
-IsAimbotOn.Position = UDim2.new(0.707692325, 0, 0.611028135, 0)
-IsAimbotOn.Size = UDim2.new(0, 76, 0, 50)
+IsAimbotOn.Position = UDim2.new(0.680769205, 0, 0.652204573, 0)
+IsAimbotOn.Size = UDim2.new(0, 83, 0, 50)
 IsAimbotOn.Font = Enum.Font.Highway
 IsAimbotOn.Text = "Aimbot Enabled: "
 IsAimbotOn.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -87,8 +87,8 @@ AutoTarget.Name = "AutoTarget"
 AutoTarget.Parent = MFrame
 AutoTarget.BackgroundColor3 = Color3.new(0, 0, 0)
 AutoTarget.BorderColor3 = Color3.new(0, 0.666667, 0)
-AutoTarget.Position = UDim2.new(0.338461548, 0, 0.611028135, 0)
-AutoTarget.Size = UDim2.new(0, 95, 0, 50)
+AutoTarget.Position = UDim2.new(0.36153847, 0, 0.652204633, 0)
+AutoTarget.Size = UDim2.new(0, 83, 0, 50)
 AutoTarget.Font = Enum.Font.Highway
 AutoTarget.Text = "Auto-Targeting Enabled:"
 AutoTarget.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -100,8 +100,8 @@ Title.Name = "Title"
 Title.Parent = MFrame
 Title.BackgroundColor3 = Color3.new(1, 1, 1)
 Title.BackgroundTransparency = 1
-Title.Position = UDim2.new(0, 0, -0.00507530803, 0)
-Title.Size = UDim2.new(0, 123, 0, 46)
+Title.Position = UDim2.new(0, 0, -0.00507529778, 0)
+Title.Size = UDim2.new(0, 214, 0, 45)
 Title.Font = Enum.Font.Highway
 Title.Text = "RedWire's Universal Aimbot"
 Title.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -113,8 +113,8 @@ TargetedPart.Name = "TargetedPart"
 TargetedPart.Parent = MFrame
 TargetedPart.BackgroundColor3 = Color3.new(0, 0, 0)
 TargetedPart.BorderColor3 = Color3.new(0, 0.666667, 0)
-TargetedPart.Position = UDim2.new(0.511538446, 0, 0.348770857, 0)
-TargetedPart.Size = UDim2.new(0, 127, 0, 33)
+TargetedPart.Position = UDim2.new(0.680769205, 0, 0.266417921, 0)
+TargetedPart.Size = UDim2.new(0, 83, 0, 57)
 TargetedPart.Font = Enum.Font.Highway
 TargetedPart.Text = "Targeted Part: "
 TargetedPart.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -126,8 +126,8 @@ FirstPerson.Name = "FirstPerson"
 FirstPerson.Parent = MFrame
 FirstPerson.BackgroundColor3 = Color3.new(0, 0, 0)
 FirstPerson.BorderColor3 = Color3.new(0, 0.666667, 0)
-FirstPerson.Position = UDim2.new(0, 0, 0.348770857, 0)
-FirstPerson.Size = UDim2.new(0, 133, 0, 33)
+FirstPerson.Position = UDim2.new(0, 0, 0.266417921, 0)
+FirstPerson.Size = UDim2.new(0, 94, 0, 57)
 FirstPerson.Font = Enum.Font.Highway
 FirstPerson.Text = "First Person Mode Enabled:"
 FirstPerson.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -154,8 +154,8 @@ raycasting.Name = "raycasting"
 raycasting.Parent = MFrame
 raycasting.BackgroundColor3 = Color3.new(0, 0, 0)
 raycasting.BorderColor3 = Color3.new(0, 0.666667, 0)
-raycasting.Position = UDim2.new(0.47307691, 0, 0, 0)
-raycasting.Size = UDim2.new(0, 91, 0, 44)
+raycasting.Position = UDim2.new(0.36153847, 0, 0.264705896, 0)
+raycasting.Size = UDim2.new(0, 83, 0, 57)
 raycasting.Font = Enum.Font.Highway
 raycasting.Text = "Enable Raycasting:"
 raycasting.TextColor3 = Color3.new(0, 0.666667, 0)
@@ -378,7 +378,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_UJLH82_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_BHOT68_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -791,4 +791,4 @@ function SCRIPT_UJLH82_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_UJLH82_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_BHOT68_FAKESCRIPT))
