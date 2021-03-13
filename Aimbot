@@ -139,8 +139,8 @@ ChosenPlayer.Name = "ChosenPlayer"
 ChosenPlayer.Parent = MFrame
 ChosenPlayer.BackgroundColor3 = Color3.new(0, 0, 0)
 ChosenPlayer.BorderColor3 = Color3.new(0, 0.666667, 0)
-ChosenPlayer.Position = UDim2.new(0.00221135071, 0, -0.223076925, 0)
-ChosenPlayer.Size = UDim2.new(0, 259, 0, 28)
+ChosenPlayer.Position = UDim2.new(-0.00163480313, 0, -0.170135766, 0)
+ChosenPlayer.Size = UDim2.new(0, 260, 0, 28)
 ChosenPlayer.Visible = false
 ChosenPlayer.Font = Enum.Font.Highway
 ChosenPlayer.Text = "sample text"
@@ -378,7 +378,7 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_BHOT68_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
 	if not _G.RedsAimbot then
@@ -791,4 +791,4 @@ function SCRIPT_BHOT68_FAKESCRIPT() -- Aimbot.Scripts
 	end
 
 end
-coroutine.resume(coroutine.create(SCRIPT_BHOT68_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_XBLR87_FAKESCRIPT))
