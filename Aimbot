@@ -741,7 +741,7 @@ function SCRIPT_UZHI89_FAKESCRIPT() -- Aimbot.Scripts
 	wlui.AboutUI.Info.Text = Abouttext
 	wlui.whitelistplayer.MouseButton1Click:connect(function()
 	local plrname = wlui.playername.Text
-	local plr2whitelist
+	local plr2whitelist = nil
 	local listui = wlui.whitelistframe:Clone()
 	for i, plr in pairs(plrs:GetPlayers()) do
 	if plr.Name:lower():sub(1, plrname:len()) == plrname:lower() then
@@ -780,7 +780,7 @@ function SCRIPT_UZHI89_FAKESCRIPT() -- Aimbot.Scripts
 	wlui.Whitelistteam.MouseButton1Click:connect(function()
 	local team2whitelist = wlui.teamname.Text
 	local listui = wlui.whitelistframe:Clone()
-	local Team_1 = ""
+	local Team_1 = nil
 	for i,team in pairs(game.Teams:GetTeams()) do
 	if team.Name:lower():sub(1,team2whitelist:len()) == team2whitelist:lower() then
 	Team_1 = team
