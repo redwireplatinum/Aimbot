@@ -93,7 +93,7 @@ AutoTarget.Font = Enum.Font.Highway
 AutoTarget.Text = "Auto-Targeting Enabled:"
 AutoTarget.TextColor3 = Color3.new(0, 0.666667, 0)
 AutoTarget.TextScaled = true
-AutoTarget.TextSize = 14
+AutoTarget.TextSize = 23
 AutoTarget.TextWrapped = true
 
 Title.Name = "Title"
@@ -129,7 +129,7 @@ FirstPerson.BorderColor3 = Color3.new(0, 0.666667, 0)
 FirstPerson.Position = UDim2.new(0, 0, 0.266417921, 0)
 FirstPerson.Size = UDim2.new(0, 94, 0, 57)
 FirstPerson.Font = Enum.Font.Highway
-FirstPerson.Text = "First Person Mode Enabled:"
+FirstPerson.Text = "First Person Mode enabled:"
 FirstPerson.TextColor3 = Color3.new(0, 0.666667, 0)
 FirstPerson.TextScaled = true
 FirstPerson.TextSize = 14
@@ -378,24 +378,44 @@ Whitelistteam.TextScaled = true
 Whitelistteam.TextSize = 14
 Whitelistteam.TextWrapped = true
 -- Scripts:
-function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts 
+function SCRIPT_UZHI89_FAKESCRIPT() -- Aimbot.Scripts 
 	local script = Instance.new('LocalScript')
 	script.Parent = Aimbot
+	-- Farewell Infortality.
+	-- Version: 2.82
+	-- Instances:
+	local Aimbot = Instance.new("ScreenGui")
+	local MFrame = Instance.new("Frame")
+	local WhitelistUIOpener = Instance.new("TextButton")
+	local IsAimbotOn = Instance.new("TextButton")
+	local X = Instance.new("TextButton")
+	local AutoTarget = Instance.new("TextButton")
+	local Title = Instance.new("TextLabel")
+	local TargetedPart = Instance.new("TextButton")
+	local FirstPerson = Instance.new("TextButton")
+	local ChosenPlayer = Instance.new("TextLabel")
+	local raycasting = Instance.new("TextButton")
+	local WhitelistUI = Instance.new("Frame")
+	local Title_2 = Instance.new("TextLabel")
+	local WhitelistedInstances = Instance.new("ScrollingFrame")
+	local UISizeConstraint = Instance.new("UISizeConstraint")
+	local UIListLayout = Instance.new("UIListLayout")
+	local whitelistownteam = Instance.new("Frame")
 	if not _G.RedsAimbot then
 	_G.RedsAimbot = true
 	for i,v in pairs(script.Parent:GetChildren()) do
-		if v.ClassName == "Frame" then
-			v.Draggable = true
-			v.Active = true
-		end
+	if v.ClassName == "Frame" then
+	v.Draggable = true
+	v.Active = true
+	end
 	end
 	local EncryptedName = ""
 	local wlui = script.Parent.WhitelistUI
 	wlui.WhitelistedInstances.UISizeConstraint.MaxSize = Vector2.new(324, math.huge)
 	wlui.WhitelistedInstances.ScrollBarImageColor3 = Color3.new(0,1,0)
 	for i = 1, 15 do
-		local char = string.char(math.random(1, 255))
-		EncryptedName = EncryptedName..char
+	local char = string.char(math.random(1, 255))
+	EncryptedName = EncryptedName..char
 	end
 	script.Parent.Name = EncryptedName
 	local TeamTable = {}
@@ -431,7 +451,7 @@ function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts
 	local function usingraycast(chr)
 	local cast = workspace:Raycast(lplr.Character.HumanoidRootPart.Position, chr.HumanoidRootPart.Position)
 	if AimbotStats.UseRaycasting then
-	if not cast or cast and game.Players:GetPlayerFromCharacter(cast.Instance.Parent) then
+	if not cast or cast and game.Players:GetPlayerFromCharacter(cast.Instance.Parent) or cast and cast.Instance.CanCollide == false then
 	return chr
 	else
 	return nil
@@ -461,16 +481,16 @@ function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts
 	local table1 = {}
 	local table2 = {}
 	for i,v in pairs(plrs:GetPlayers()) do
-		local outcome = pcall(function()
+	local outcome = pcall(function()
 	 return v.Character.Humanoid and v.Character[AimbotStats.Target]
-		end)
-		if outcome and v.Name ~= lplr.Name and v.Character.Humanoid.Health ~= 0 and IsNotWhitelisted(v) then
-			local pos = math.floor(lplr:DistanceFromCharacter(v.Character[AimbotStats.Target].Position))
-			local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[AimbotStats.Target].Position)
-			if onscreen and usingraycast(v.Character) then
-			table1[pos] = v
-			table.insert(table2, pos)
-		end
+	end)
+	if outcome and v.Name ~= lplr.Name and v.Character.Humanoid.Health ~= 0 and IsNotWhitelisted(v) then
+	local pos = math.floor(lplr:DistanceFromCharacter(v.Character[AimbotStats.Target].Position))
+	local _, onscreen = workspace.Camera:WorldToScreenPoint(v.Character[AimbotStats.Target].Position)
+	if onscreen and usingraycast(v.Character) then
+	table1[pos] = v
+	table.insert(table2, pos)
+	end
 	end
 	end
 	table.sort(table2)
@@ -546,14 +566,14 @@ function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts
 	end
 	end
 	end
-		m.KeyDown:connect(function()
-		if game.UserInputService:IsKeyDown(Enum.KeyCode.LeftAlt) then
-		AimbotStats.IsOn = not AimbotStats.IsOn
-		end
-		if game.UserInputService:IsKeyDown(Enum.KeyCode.RightAlt) then
-		GetNearestPlayer()
-		end
-		end)
+	m.KeyDown:connect(function()
+	if game.UserInputService:IsKeyDown(Enum.KeyCode.LeftAlt) then
+	AimbotStats.IsOn = not AimbotStats.IsOn
+	end
+	if game.UserInputService:IsKeyDown(Enum.KeyCode.RightAlt) then
+	GetNearestPlayer()
+	end
+	end)
 	local function message(txt)
 	game.StarterGui:SetCore("SendNotification", {
 	Title = "Aimbot target";
@@ -578,25 +598,25 @@ function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts
 	end)
 	game.RunService.RenderStepped:connect(function()
 	if not _G.AimbotGUIClosed then
-		if AimbotStats.Character ~= "" and AimbotStats.Character:FindFirstChild(AimbotStats.Target) then
-		local v, _ = workspace.Camera:WorldToScreenPoint(AimbotStats.Character[AimbotStats.Target].Position)
+	if AimbotStats.Character ~= "" and AimbotStats.Character:FindFirstChild(AimbotStats.Target) then
+	local v, _ = workspace.Camera:WorldToScreenPoint(AimbotStats.Character[AimbotStats.Target].Position)
 	if _ then
 	local StabilizeNum = 0.45
-		local x, y = (v.X - m.X)*StabilizeNum, (v.Y - m.Y)*StabilizeNum
-		if AimbotStats.IsOn then
-		mousemoverel(x, y)
-		end
+	local x, y = (v.X - m.X)*StabilizeNum, (v.Y - m.Y)*StabilizeNum
+	if AimbotStats.IsOn then
+	mousemoverel(x, y)
+	end
 	else
 	deselect()
 	end
 	end
-		if m.Target ~= nil then
-		for i,v in pairs(GetFamily(m.Target)) do
-		if game.Players:FindFirstChild(v.Name) then
-		GetPlayer(game.Players[v.Name])
-		end
-		end
-		end
+	if m.Target ~= nil then
+	for i,v in pairs(GetFamily(m.Target)) do
+	if game.Players:FindFirstChild(v.Name) then
+	GetPlayer(game.Players[v.Name])
+	end
+	end
+	end
 	if AimbotStats.AutoTarget then
 	GetNearestPlayer()
 	end
@@ -610,13 +630,13 @@ function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts
 	plrs.LocalPlayer.CameraMode = Enum.CameraMode.Classic
 	end
 	end
-		end)
+	end)
 	game.StarterGui:SetCore("SendNotification", {
 	Title = "Aimbot";
 	Text = "To see how the aimbot works, check the developer log.";})
 	game.StarterGui:SetCore("SendNotification", {
 	Title = "Aimbot Update:";
-	Text = "Fixed player unwhitelisted issue + Added a raycasting option.";})
+	Text = "Raycasting should work even if there's an invisible/uncollidable part blocking you.";})
 	
 	function Died(player)
 	if not player.Character then player.CharacterAdded:Wait() end
@@ -728,9 +748,13 @@ function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts
 	plr2whitelist = plr
 	end
 	end
+	local success, playername = pcall(function()
+	return plr2whitelist.Name
+	end)
+	if success then
 	listui.Visible = true
 	listui.Parent = wlui.WhitelistedInstances
-	listui.TextLabel.Text = plr2whitelist.Name.." will not be targeted until un-whitelisted."
+	listui.TextLabel.Text = playername.." will not be targeted until un-whitelisted."
 	table.insert(WhitelistedPlrs, plr2whitelist)
 	local function unwhitelistplr()
 	for i,v in pairs(WhitelistedPlrs) do
@@ -747,6 +771,11 @@ function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts
 	repeat wait() until not game.Players:FindFirstChild(plr2whitelist.Name)
 	unwhitelistplr()
 	end))
+	else
+	listui.TextLabel.Text = "Invalid Player Name. This textbox will delete itself in 10 seconds."
+	wait(10)
+	listui:Destroy()
+	end
 	end)
 	wlui.Whitelistteam.MouseButton1Click:connect(function()
 	local team2whitelist = wlui.teamname.Text
@@ -757,9 +786,13 @@ function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts
 	Team_1 = team
 	end
 	end
+	local success, teamname = pcall(function()
+	return Team_1.Name
+	end)
+	if success then
 	listui.Visible = true
 	listui.Parent = wlui.WhitelistedInstances
-	listui.TextLabel.Text = "Anyone in the "..Team_1.Name.." team will not be targeted until un-whitelisted."
+	listui.TextLabel.Text = "Anyone in the "..teamname.." team will not be targeted until un-whitelisted."
 	table.insert(TeamTable, Team_1)
 	listui.X.MouseButton1Click:connect(function()
 	for i,v in pairs(TeamTable) do
@@ -769,6 +802,11 @@ function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts
 	end
 	listui:Destroy()
 	end)
+	else
+	listui.TextLabel.Text = "Invalid Team Name. This textbox will delete itself in 10 seconds."
+	wait(10)
+	listui:Destroy()
+	end
 	end)
 	local toggle = wlui.WhitelistedInstances.whitelistownteam.Toggle
 	toggle.MouseButton1Click:connect(function()
@@ -789,6 +827,7 @@ function SCRIPT_XBLR87_FAKESCRIPT() -- Aimbot.Scripts
 	wait(0.2)
 	script.Parent:Destroy()
 	end
+	
 
 end
-coroutine.resume(coroutine.create(SCRIPT_XBLR87_FAKESCRIPT))
+coroutine.resume(coroutine.create(SCRIPT_UZHI89_FAKESCRIPT))
